@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>CreateObject 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsmthcreateobject"></A>CreateObject 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>创建 COM 对象。</P>
+
+<PRE class="syntax"><I>object</I>.<B>CreateObject</B>(<I>strProgID</I>[,<I>strPrefix</I>]) </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>WScript 对象。</dd>
+
+<DT><I>strProgID</I></DT>
+
+<DD>表示要创建的对象的编程标识符 (ProgID) 的字符串值。</dd>
+
+<DT><I>strPrefix</I></DT>
+
+<DD>可选。表示函数前缀的字符串值。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>使用 <I>strPrefix </I>参数，通过 CreateObject 方法创建的对象是已连接的对象。当您要同步对象的事件时，这些对象非常有用。创建对象后，该对象的输出接口将连接到脚本文件。事件函数由该前缀和事件名称组成。如果您创建对象时未提供 <I>strPrefix </I>参数，则仍可通过 ConnectObject 方法同步发生在该对象上的事件。当对象引发事件时，WSH 将调用在事件名称开头附加了 <I>strPrefix </I>的子例程。例如，如果 <I>strPrefix</I> 是 <I>MYOBJ</I>，对象引发的事件名为 <I>OnBegin</I>，则 Windows 脚本宿主将调用脚本中的 <I>MYOBJ_OnBegin </I>子例程。CreateObject 方法返回一个指向该对象的 IDispatch 接口的指针。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的 VBScript 代码使用 CreateObject 方法创建 WshNetwork 对象：</P>
+
+<PRE class="code">Set WshNetwork = WScript.<code><b class="cfe">CreateObject(</b></code>"WScript.Network"<code><b class="cfe">)</b></code></PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsobjwscript.htm">WScript 对象</A> | <A HREF="wsmthgetobject.htm">GetObject 方法</A> | <A HREF="wsmthconnectobject.htm">ConnectObject 方法</A> | <A HREF="wsmthdisconnectobject.htm">DisconnectObject 方法</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

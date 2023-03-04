@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>VBScript 编码约定</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vbscodingconventions"></A>VBScript 编码约定</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>编码约定是帮助您使用 Microsoft Visual Basic Scripting Edition 编写代码的一些建议。编码约定包含以下内容： 
+
+<UL type="disc">
+	<LI>对象、变量和过程的命名规则 </li>
+
+	<LI>注释约定 </li>
+
+	<LI>文本格式和缩进指南 </li>
+</UL>
+
+<P>使用一致的编码约定的主要原因是使脚本或脚本集的结构和编码样式标准化，这样代码易于阅读和理解。使用好的编码约定可以使源代码明白、易读、准确，更加直观且与其他语言约定保持一致。</P>
+
+<H2 class="dtH2">常数命名规则</H2>
+
+<P>VBScript 的早期版本不允许创建用户自定义常数。如果要使用常数，则常数以变量的方式实现，且全部字母大写以和其他变量区分。常数名中的多个单词用下划线 (_) 分隔。例如： </P>
+
+<PRE class="code"> USER_LIST_MAX
+ NEW_LINE</PRE>
+
+<P>这种标识常数的方法依旧可行，但您还可以选择其他方案，用 <A HREF="vsstmconst.htm">Const</A> 语句创建真正的常数。这个约定使用大小写混合的格式，并以“con”作为常数名的前缀。例如： </P>
+
+<PRE class="code"> conYourOwnConstant</PRE>
+
+<H2 class="dtH2">变量命名规则</H2>
+
+<P>为提高易读和一致性，请在 VBScript 代码中使用以下变量命名规则：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=38%>子类型</TH>
+<TH width=16%>前缀</TH>
+<TH width=46%>示例</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Boolean</TD>
+<TD width=16%>bln</TD>
+<TD width=46%>blnFound</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Byte</TD>
+<TD width=16%>byt</TD>
+<TD width=46%>bytRasterData</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Date (Time)</TD>
+<TD width=16%>dtm</TD>
+<TD width=46%>dtmStart</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Double</TD>
+<TD width=16%>dbl</TD>
+<TD width=46%>dblTolerance</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Error</TD>
+<TD width=16%>err</TD>
+<TD width=46%>errOrderNum</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Integer</TD>
+<TD width=16%>int</TD>
+<TD width=46%>intQuantity</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Long</TD>
+<TD width=16%>lng</TD>
+<TD width=46%>lngDistance</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Object</TD>
+<TD width=16%>obj</TD>
+<TD width=46%>objCurrent</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>Single</TD>
+<TD width=16%>sng</TD>
+<TD width=46%>sngAverage</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=38%>String</TD>
+<TD width=16%>str</TD>
+<TD width=46%>strFirstName</TD>
+</TR>
+</table></div>
+
+<H2 class="dtH2">变量作用域</H2>
+
+<P>变量应定义在尽量小的作用域中。VBScript 变量的作用域如下所示：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=14%>作用域</TH>
+<TH width=53%>声明变量处</TH>
+<TH width=33%>可见性</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>过程级</TD>
+<TD width=53%>事件、函数或子过程。</TD>
+<TD width=33%>在声明变量的过程中可见。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>Script 级</TD>
+<TD width=53%>HTML 页面的 HEAD 部分，任何过程之外。</TD>
+<TD width=33%>在脚本的所有过程中可见。</TD>
+</TR>
+</table></div>
+
+<H2 class="dtH2">变量作用域前缀</H2>
+
+<P>随着脚本代码长度的增加，有必要快速区分变量的作用域。在类型前缀前面添加一个单字符前缀可以实现这一点，而不致使变量名过长。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=27%>作用域</TH>
+<TH width=16%>前缀</TH>
+<TH width=57%>示例</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>过程级</TD>
+<TD width=16%>无</TD>
+<TD width=57%>dblVelocity</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>Script 级</TD>
+<TD width=16%>s</TD>
+<TD width=57%>sblnCalcInProgress</TD>
+</TR>
+</table></div>
+
+<H2 class="dtH2">描述性变量名和过程名</H2>
+
+<P>变量名或过程名的主体应使用大小写混合格式，并且尽量完整地描述其目的。另外，过程名应以动词开始，例如 InitNameArray 或 CloseDialog。</P>
+
+<P>对于经常使用的或较长的名称，推荐使用标准缩写以使名称保持在适当的长度内。通常多于 32 个字符的变量名会变得难以阅读。使用缩写时，应确保在整个脚本中保持一致。例如，在一个脚本或脚本集中随意切换 Cnt 和 Count 将造成混乱。</P>
+
+<H2 class="dtH2">对象命名规则</H2>
+
+<P>下表列出了 VBScript 中可能用到的对象命名规则（推荐）：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=45%>对象类型</TH>
+<TH width=14%>前缀</TH>
+<TH width=41%>示例</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>3D 面板</TD>
+<TD width=14%>pnl</TD>
+<TD width=41%>pnlGroup</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>动画按钮</TD>
+<TD width=14%>ani</TD>
+<TD width=41%>aniMailBox</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>复选框</TD>
+<TD width=14%>chk</TD>
+<TD width=41%>chkReadOnly</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>组合框、下拉列表框</TD>
+<TD width=14%>cbo</TD>
+<TD width=41%>cboEnglish</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>命令按钮</TD>
+<TD width=14%>cmd</TD>
+<TD width=41%>cmdExit</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>公共对话框</TD>
+<TD width=14%>dlg</TD>
+<TD width=41%>dlgFileOpen</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>框架</TD>
+<TD width=14%>fra</TD>
+<TD width=41%>fraLanguage</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>水平滚动条</TD>
+<TD width=14%>hsb</TD>
+<TD width=41%>hsbVolume</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>图像</TD>
+<TD width=14%>img</TD>
+<TD width=41%>imgIcon</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>标签</TD>
+<TD width=14%>lbl</TD>
+<TD width=41%>lblHelpMessage</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>直线</TD>
+<TD width=14%>lin</TD>
+<TD width=41%>linVertical</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>列表框</TD>
+<TD width=14%>lst</TD>
+<TD width=41%>lstPolicyCodes</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>旋钮</TD>
+<TD width=14%>spn</TD>
+<TD width=41%>spnPages</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>文本框</TD>
+<TD width=14%>txt</TD>
+<TD width=41%>txtLastName</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>垂直滚动条</TD>
+<TD width=14%>vsb</TD>
+<TD width=41%>vsbRate</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=45%>滑块</TD>
+<TD width=14%>sld</TD>
+<TD width=41%>sldScale</TD>
+</TR>
+</table></div>
+
+<H2 class="dtH2">代码注释约定</H2>
+
+<P>所有过程的开始部分都应有描述其功能的简要注释。这些注释并不描述细节信息（如何实现功能），这是因为细节有时要频繁更改。这样就可以避免不必要的注释维护工作以及错误的注释。细节信息由代码本身及必要的内部注释来描述。</P>
+
+<P>当传递给过程的参数的用途不明显，或过程对参数的取值范围有要求时，应加以说明。如果过程改变了函数和变量的返回值（特别是通过参数引用来改变），也应在过程的开始部分描述该返回值。</P>
+
+<P>过程开始部分的注释应包含以下区段标题。相关样例，请参阅后面的“格式化代码”部分。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=15%>区段标题</TH>
+<TH width=85%>注释内容</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=15%>目的</TD>
+<TD width=85%>过程的功能（不是实现功能的方法）。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=15%>假设</TD>
+<TD width=85%>其状态影响此过程的外部变量、控件或其他元素的列表。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=15%>效果</TD>
+<TD width=85%>过程对每个外部变量、控件或其他元素的影响效果的列表。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=15%>输入</TD>
+<TD width=85%>每个目的不明显的参数的解释。每个参数都应占据单独一行并有其内部注释。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=15%>返回</TD>
+<TD width=85%>返回值的解释。</TD>
+</TR>
+</table></div>
+
+<P>请记住以下几点： 
+
+<UL type="disc">
+	<LI>每个重要的变量声明都应有内部注释，描述变量的用途。</li>
+
+	<LI>应清楚地命名变量、控件和过程，仅在说明复杂细节时需要内部注释。</li>
+
+	<LI>应在脚本的开始部分包含描述该脚本的概述，列举对象、过程、运算法则、对话框和其他系统从属物。有时一段描述运算法则的假码是很有用的。</li>
+</UL>
+
+<H2 class="dtH2">格式化代码</H2>
+
+<P>应尽可能多地保留屏幕空间，但仍允许用代码格式反映逻辑结构和嵌套。以下为几点提示： 
+
+<UL type="disc">
+	<LI>标准嵌套块应缩进 4 个空格。</li>
+
+	<LI>过程的概述注释应缩进 1 个空格。</li>
+
+	<LI>概述注释后的最高层语句应缩进 4 个空格，每一层嵌套块再缩进 4 个空格。</li>
+</UL>
+
+<P>下列代码符合 VBScript 编码规范。</P>
+
+<PRE class="code">'*********************************************************
+' 目的：在 UserList 数组中
+'          定位指定用户的首次出现。
+' 输入：strUserList()：要搜索的用户列表。
+'         strTargetUser：要搜索的用户名。
+' 返回：索引 strUserList 数组中
+'          strTargetUser 的首次出现。
+'          如果找不到目标用户，则返回 -1。
+'*********************************************************
+Function intFindUser (strUserList(), strTargetUser)
+    Dim i   ' Loop counter.
+    Dim blnFound   ' 找到目标标志
+    intFindUser = -1
+    i = 0   ' 初始化循环计数器
+    Do While i &lt;= Ubound(strUserList) and Not blnFound
+      If strUserList(i) = strTargetUser Then 
+         blnFound = True   ' 将标志设置为 True
+         intFindUser = i   ' 将返回值设置成循环计数
+      End If
+      i = i + 1   ' 递增循环计数器
+    Loop
+End Function
+
+</PRE>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

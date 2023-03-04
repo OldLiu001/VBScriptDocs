@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML xmlns:MSHelp="http://msdn.microsoft.com/mshelp" DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>IDispatchEx::DeleteMemberByName</TITLE>
+<xml>
+<MSHelp:TOCTitle Title="IDispatchEx::DeleteMemberByName"/>
+<MSHelp:RLTitle Title="IDispatchEx::DeleteMemberByName"/>
+<MSHelp:Keyword Index="A" Term="lrfIDispatchExDeleteMemberByName"/>
+<MSHelp:Keyword Index="A" Term="lrfIDispatchExDeleteMemberByName"/>
+<MSHelp:Attr Name="DevLang" Value="JScript"/>
+<MSHelp:Attr Name="DevLangVers" Value="kbJScript"/>
+<MSHelp:Attr Name="DevLang" Value="VBScript"/>
+<MSHelp:Attr Name="DevLangVers" Value="kbVBScript"/>
+<MSHelp:Attr Name="DocSet" Value="PSDK"/>
+<MSHelp:Attr Name="Product" Value="VS"/>
+<MSHelp:Attr Name="ProductVers" Value="kbVS"/>
+<MSHelp:Attr Name="TargetOS" Value="WinCE"/>
+<MSHelp:Attr Name="TargetOSVers" Value="kbWinCE"/>
+<MSHelp:Attr Name="TargetOSVers" Value="kbWinOS"/>
+<MSHelp:Attr Name="Technology" Value="IE"/>
+<MSHelp:Attr Name="TechnologyVers" Value="kbIE"/>
+<MSHelp:Attr Name="TopicType" Value="kbSyntax"/>
+<MSHelp:Attr Name="TargetOS" Value="Windows"/>
+<MSHelp:Attr Name="Locale" Value="kbEnglish"/>
+</xml>
+<META name="rtfFileName" content="idispatchex.rtf">
+<!--CSS_START-->
+<SCRIPT SRC="ms-help:/../commoner/scripts/dtuelink.js"></SCRIPT>
+<!--CSS_END--><META NAME="msdnID" CONTENT="_686659">
+</HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY"><div id="scrollyes">Microsoft&nbsp;Windows&nbsp;Script&nbsp;Interfaces
+<H1 class="dtH1"><A NAME="lrfidispatchexdeletememberbyname"></A>IDispatchEx::DeleteMemberByName</H1>
+
+<P>Deletes a member by name.</P>
+
+<PRE class="syntax"><B>HRESULT DeleteMemberByName(</B>
+<B>   BSTR</B> <I>bstrName</I><B>,</B>
+   <B>DWORD</B> <I>grfdex</I>
+<B>)</B>;</PRE>
+
+<P>Returns one of the following values:</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TD width=50%><B>S_OK</B></TD>
+<TD width=50%>Success.</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><B>S_FALSE</B></TD>
+<TD width=50%>Member exists but cannot be deleted.</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">Parameters</H4>
+
+<DL>
+<DT><I>bstrName </I></DT>
+
+<DD>Name of member to be deleted.</dd>
+
+<DT><I>grfdex </I></DT>
+
+<DD>Determines if the member name is case sensitive. This can be one of the following values:
+
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=50%>Value</TH>
+<TH width=50%>Meaning</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><B>fdexNameCaseSensitive</B></TD>
+<TD width=50%>Requests that the name lookup be done in a case-sensitive manner. Can be ignored by object that does not support case-sensitive lookup.</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><B>fdexNameCaseInsensitive</B></TD>
+<TD width=50%>Requests that the name lookup be done in a case-insensitive manner. Can be ignored by object that does not support case-insensitive lookup.</TD>
+</TR>
+</table></div>
+
+</dd>
+</DL>
+
+<H4 class="dtH4">Remarks</H4>
+
+<P>If the member is deleted, the <B>DISPID</B> needs to remain valid for <B>GetNextDispID</B>.</P>
+
+<P>If a member with a given name is deleted and later a member with the same name is recreated, the <B>DISPID</B> should be the same. (Whether members that differ only by case are the "same" is object-dependent.)</P>
+
+<H4 class="dtH4">Example </H4>
+
+<PRE class="code">BSTR bstrName;
+IDispatch *pdex;
+
+// Assign to pdex and bstrName
+pdex-&gt;<code><b class="cfe">DeleteMemberByName(</b></code>bstrName, fdexNameCaseSensitive<code><b class="cfe">)</b></code>;</PRE>
+
+<H4 class="dtH4">See Also</H4>
+
+<P><A HREF="jslrfidispatchex.htm">IDispatchEx Interface</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p><MSHelp:link keywords="vxmscCopyright" TABINDEX="0">&copy; 2001 Microsoft Corporation. All rights reserved.</MSHelp:link></p><p>Build: 9309.1546 
+</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

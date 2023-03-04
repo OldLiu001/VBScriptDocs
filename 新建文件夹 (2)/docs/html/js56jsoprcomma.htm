@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>逗号运算符 (,)</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsoprcomma"></A>逗号运算符 (,)</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>顺序执行两个表达式。</P>
+
+<PRE class="syntax">expression1<B>,</B> expression2</PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>expression1</I></DT>
+
+<DD>任何表达式。</dd>
+
+<DT><I>expression2</I></DT>
+
+<DD>任何表达式。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P><B>,</B> 运算符使它两边的表达式以从左到右的顺序被执行，并获得右边表达式的值。<B>,</B> 运算符最普通的用途是在 <B>for</B> 循环的递增表达式中使用。例如： </P>
+
+<PRE class="code">for (i = 0; i &lt; 10; i++<code><b class="cfe">,</b></code> j++)
+{
+   k = i + j;
+}</PRE>
+
+<P>每次通过循环的末端时， <B>for</B> 语句只允许单个表达式被执行。<B>,</B> 运算符被用来允许多个表达式被当作单个表达式，从而规避该限制。</P>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsstmfor.htm">for 语句</A> | <A HREF="js56jsconoperatorprecedence.htm">运算符优先级</A> | <A HREF="js56jsmsclist.htm">运算符总结</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

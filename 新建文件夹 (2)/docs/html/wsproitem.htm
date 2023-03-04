@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Item 属性（Windows 脚本宿主）</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsproitem"></A>Item 属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>展示集合中指定的项目。</P>
+
+<PRE class="syntax"><I>Object</I>.<B>Item</B>(<I>natIndex</I>) </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>Object</I></DT>
+
+<DD>EnumNetworkDrive 或 EnumPrinterConnections 方法的结果，或者由 Environment 或 SpecialFolders 属性返回的对象。</dd>
+
+<DT><I>natIndex</I></DT>
+
+<DD>要检索的项目。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>Item 是每个集合的默认属性。对于 EnumNetworkDrive 和 EnumPrinterConnections 集合来说，<I>索引</I>是一个整数；对 Environment 和 SpecialFolders 集合来说，<I>索引</I>是一个字符串。</P>
+
+<P>如果请求的文件夹 (<I>strFolderName</I>) 不可用，则 WshShell.SpecialFolders.Item (<I>strFolderName</I>) 在 VBScript 中返回 "Empty"，而在 JScript 中返回 "undefined"。</P>
+
+<P>下表列出了特殊文件夹以及支持它们的 Windows 版本。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=43%>文件夹</TH>
+<TH width=57%>Windows 版本</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>AllUsersDesktop</TD>
+<TD width=57%>Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>AllUsersStartMenu</TD>
+<TD width=57%>Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>AllUsersPrograms</TD>
+<TD width=57%>Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>AllUsersStartup</TD>
+<TD width=57%>Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Desktop</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Favorites</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Fonts</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>My Documents</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>NetHood</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>PrintHood</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Programs</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Recent</TD>
+<TD width=57%>Windows 98/ME, Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>SendTo</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Start Menu</TD>
+<TD width=57%>Windows 98/ME，Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>StartupB</TD>
+<TD width=57%>Windows 2000</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=43%>Templates</TD>
+<TD width=57%>Windows 2000</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的代码显示驱动器和打印机的网络映射信息。</P>
+
+<PRE class="code">&lt;package&gt;
+   &lt;job id="vbs"&gt;
+      &lt;script language="VBScript"&gt;
+         Set WshNetwork = WScript.CreateObject("WScript.Network")
+         Set oDrives = WshNetwork.EnumNetworkDrives
+         Set oPrinters = WshNetwork.EnumPrinterConnections
+         WScript.Echo "Network drive mappings:"
+         For i = 0 to oDrives.Count - 1 Step 2
+            WScript.Echo "Drive " &amp; oDrives.Item(i) &amp; " = " &amp; oDrives.Item(i+1)
+         Next
+         WScript.Echo 
+         WScript.Echo "Network printer mappings:"
+         For i = 0 to oPrinters.Count - 1 Step 2
+            WScript.Echo "Port " &amp; oPrinters.<code><b class="cfe">Item</b></code>(i) &amp; " = " &amp; oPrinters.Item(i+1)
+         Next
+      &lt;/script&gt;
+   &lt;/job&gt;
+
+   &lt;job id="js"&gt;
+      &lt;script language="JScript"&gt;
+         var WshNetwork = WScript.CreateObject("WScript.Network");
+         var oDrives = WshNetwork.EnumNetworkDrives();
+         var oPrinters = WshNetwork.EnumPrinterConnections();
+         WScript.Echo();
+         WScript.Echo("Network drive mappings:");
+         for(i = 0; i &lt; oDrives.length; i += 2){
+            WScript.Echo("Drive " + oDrives.Item(i) + " = " + oDrives.Item(i + 1));
+         }
+         WScript.Echo();
+         WScript.Echo("Network printer mappings:");
+         for(i = 0; i &lt; oPrinters.length; i += 2){
+            WScript.Echo("Port " + oPrinters.<code><b class="cfe">Item</b></code>(i) + " = " + oPrinters.Item(i + 1));
+         }
+      &lt;/script&gt;
+   &lt;/job&gt;
+&lt;/package&gt;</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsmthenumnetworkdrives.htm">EnumNetworkDrive 方法</A> | <A HREF="wsmthenumprinterconnections.htm">EnumPrinterConnections 方法</A> | <A HREF="wsproenvironment.htm">Environment 属性</A> | <A HREF="wsprospecialfolders.htm">SpecialFolders 属性</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>&lt;method&gt; 元素</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letelemethod"></A>&lt;method&gt; 元素</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>声明一个方法。</P>
+
+<PRE class="syntax">&lt;<B>method</B> name="<I>methodName</I>" internalName="<I>functionName</I>" dispid=<I>dispID</I><B>&gt;</B>
+<B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</B>[&lt;parameter name="<I>parameterID</I>"/&gt;]
+<B>&lt;/method&gt;</B></PRE>
+
+<H4 class="dtH4">值</H4>
+
+<DL>
+<DT><I>methodName</I></DT>
+
+<DD>要说明的方法名称。</dd>
+
+<DT><I>functionName</I></DT>
+
+<DD>(可选项) 在脚本部件中实现该方法的过程（函数或子程序）名称。如果没有指定内部名称，则使用<I>methodName</I>。
+
+<BLOCKQUOTE class="dtBlock">
+<B><b class="le">提示</b>&nbsp;&nbsp;&nbsp;</B>在 XML 中，可以实现没有内容的元素（如 &lt;method&gt; 元素），方法是用 /&gt; 来结束该元素。</BLOCKQUOTE>
+</dd>
+
+<DT><I>dispID</I></DT>
+
+<DD>(可选项)&nbsp;&nbsp;&nbsp;该方法的 COM 派遣 ID。如果没有指定 dispid，则将自动生成 dispid。如果 dispid 设为 0，则该方法将称为脚本部件的缺省方法。关于 dispid 的详细信息，请参阅<A HREF="letexpevt.htm">说明事件</A>。</dd>
+
+<DT><I>parameterID</I></DT>
+
+<DD>如果给该方法显式声明了参数，则这个值标识该参数的名称。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>方法是在单独的 &lt;script&gt; 元素中作为过程（函数或子程序）来实现的。&lt;method&gt; 元素将该方法名映射到实现该方法的过程。</P>
+
+<P>可以有选择地声明方法的参数。这样做并不是必需的，但是如果要为脚本部件生成类型库，则应说明参数信息（请参阅 <A HREF="letcreatetypelib.htm">创建脚本部件类型库</A>）。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的脚本部件片段定义了两个方法(factorial 和 random)。random 方法包括了其参数的定义，并绑定到一个称为 <B>getRandomNumber</B> 的函数。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;CDATA 项是必需的，以使 &lt;script&gt; 元素中的脚本是不透明的。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;public&gt;
+&nbsp;&nbsp;&nbsp;&lt;method name="factorial"/&gt;
+&nbsp;&nbsp;&nbsp;&lt;method name="random" internalName="getRandomNumber"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;parameter name="upperBound"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;parameter name="seed"&gt;
+&nbsp;&nbsp;&nbsp;&lt;/method&gt;
+&lt;/public&gt;
+
+&lt;script language="VBScript"&gt;
+&lt;![CDATA[
+&nbsp;&nbsp;&nbsp;Function factorial(n)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If isNumeric(n) Then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If n &lt;= 1 Then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factorial = 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factorial = n*factorial(n-1)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End If
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;factorial = -2&nbsp;&nbsp;&nbsp; '错误代码。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End If
+&nbsp;&nbsp;&nbsp;End Function
+
+&nbsp;&nbsp;&nbsp;Function getRandomNumber(upperBound, seed)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upperBound = CInt(upperBound)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Randomize
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getRandomNumber = Cint(upperBound * Rnd(seed) + 1)
+&nbsp;&nbsp;&nbsp;End Function
+]]&gt;
+&lt;/script&gt;</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="leteleevent.htm">&lt;event&gt; 元素</A> | <A HREF="leteleproperty.htm">&lt;property&gt; 元素</A> | <A HREF="letexpevt.htm">说明事件</A> | <A HREF="letexpmth.htm">说明方法</A> | <A HREF="letexppro.htm">说明属性</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

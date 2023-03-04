@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Read 方法（Windows 脚本宿主）</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsmthread"></A>Read 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>从输入流返回指定数量的字符。</P>
+
+<PRE class="syntax"><I>object</I><B>.Read</B>(<I>characters</I>) </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>StdIn 文本流对象。</dd>
+
+<DT><I>characters</I></DT>
+
+<DD>表示要读取的字符数的整数值。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>Read 方法返回一个字符串。StdIn、StdOut 和 StdErr 属性与方法只在用 CScript.exe 主机可执行文件运行脚本时奏效。用 WScript.exe 运行脚本时返回错误。从当前的位置指针所在的位置开始读取并一次向前移动一个字符。</P>
+
+<P>在按 enter 键之前，Read 方法不返回任何字符串。所返回的只是被请求的字符数。任何其他字符都将只在以后调用 Read、ReadLine 或 ReadAll 方法时返回。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的代码使用 Read 方法从键盘获得字符，并在控制台显示。</P>
+<div class=filtered><span class="lang">[VBScript]</span>
+
+<PRE class="code">Dim Input
+Input = ""
+
+Do While Not WScript.StdIn.AtEndOfLine
+   Input = Input &amp; WScript.StdIn.<code><b class="cfe">Read</b></code>(1)
+Loop
+WScript.Echo Input</PRE>
+</div><!-- [end] -->
+<div class=filtered><span class="lang">[JScript]</span>
+
+<PRE class="code">var input = "";
+while (!WScript.StdIn.AtEndOfLine)
+{
+   input += WScript.StdIn.<code><b class="cfe">Read</b></code>(1);
+}
+WScript.Echo(input);</PRE>
+</div><!-- [end] -->
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsprostdin.htm">StdIn 属性 (WScript)</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

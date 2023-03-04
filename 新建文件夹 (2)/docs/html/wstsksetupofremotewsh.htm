@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>设置远程 WSH</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wstsksetupofremotewsh"></A>设置远程 WSH</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>“远程 WSH”是一项新技术，它包含在 WSH 5.6 中，使得能够在一台或多台远程计算机上运行脚本。通过远程 WSH，可在执行前将脚本从本机物理复制到远程计算机上。若要启用远程 WSH 功能，必须首先对远程计算机进行正确的安全设置。以下步骤执行的任务可启用远程 WSH。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;为了使用远程 WSH，远程和本地计算机必须都运行 Windows NT 4 SP3 或更高版本。</BLOCKQUOTE>
+
+<P class="labelproc"><B>使计算机能够运行远程脚本</B>
+
+<OL type="1">
+	<LI>在计算机上安装 WSH V5.6。如果使用的是Windows 2001 或已安装了Internet Explorer 6 或更高版本，则已安装了 WSH 5.6。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;WSH 5.6 可从网址 http://www.microsoft.com/china/scripting 下载获得</BLOCKQUOTE>
+</li>
+
+	<LI>将您本人添加到远程计算机的 "Local Administrators" 组中。</li>
+
+	<LI>若要启用远程 WSH，请使用服务器上的 Poledit.exe。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;管理员若想启用远程 WSH，则必须拥有 Windows 2000 资源包，或使用 http://www.microsoft.com/china/scripting 来获得必需的 windowsscript.adm 文件，其中包括 WSH 设置。windowsscript.adm 文件必须复制到设置了适用的组策略的服务器上。虽然不必将该文件复制到服务器的 \WINNT\INF 目录中，但它是默认 adm 文件所在的目录。</BLOCKQUOTE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;有关 Poledit.exe 的详细信息，请参阅 Poledit.exe 的联机帮助系统。</BLOCKQUOTE>
+</li>
+
+	<LI>WSH 现在应已在计算机上启用。要证实这一点，请参阅<A HREF="wsconrunningscriptsremotelyrunningscriptovertherefromhere.htm">远程运行脚本</A>。</li>
+</OL>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsconsecuritywindowsscripthost.htm">安全和 Windows 脚本宿主</A> | <A HREF="wsconrunningscriptsremotelyrunningscriptovertherefromhere.htm">远程运行脚本</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>对脚本进行签名</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsconsigningscript"></A>对脚本进行签名</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>对脚本进行签名意味着在脚本中编写注释的数字签名块。签名中包含有关作者身份的编码信息，还封装了有关脚本自身的编码信息。因此，对脚本的任何更改都将使签名无效。</P>
+
+<P>脚本签名是通过 Scripting.Signer 对象的 SignFile 方法以编程方式实现的。</P>
+
+<PRE class="code">&lt;job&gt;
+&lt;runtime&gt;
+   &lt;named name="file" helpstring="the file to sign" required="true" type="string"/&gt;
+   &lt;named name="cert" helpstring="the name of the signing certificate" required="true" type="string"/&gt;
+   &lt;named name="store" helpstring="the name of the certificate store" required="false" type="string"/&gt;
+&lt;/runtime&gt;
+&lt;script language="JScript"&gt;
+   var Signer, File, Cert, Store;
+   if (!(WScript.Arguments.Named.Exists("cert") &amp;&amp; WScript.Arguments.Named.Exists("file"))) 
+   {
+      WScript.Arguments.ShowUsage();
+      WScript.Quit();
+   }
+   Signer = new ActiveXObject("Scripting.Signer");
+   File  = WScript.Arguments.Named("file");
+   Cert  = WScript.Arguments.Named("cert");
+   if (WScript.Arguments.Named.Exists("store"))
+   {
+      Store = WScript.Arguments.Named("store");
+   }
+   else
+   {
+      Store = "";
+   }
+    Signer.SignFile(File, Cert, Store);
+&lt;/script&gt;
+&lt;/job&gt;</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;若要对脚本进行签名，必须拥有有效的证书。向管理员咨询有关证书策略事宜，或与商业证书颁发机构联系。</BLOCKQUOTE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsconsecuritywindowsscripthost.htm">安全和 Windows 脚本宿主</A> | <A HREF="wsconverifyingscript.htm">验证脚本</A> |<A HREF="wscontrustpolicy.htm"> 签名验证策略</A> | <A HREF="wsconwintrust.htm">WinTrust</A> | <A HREF="wssamsigningscript.htm">对脚本进行签名</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>&lt;named&gt; 元素</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wslrfnamedelement"></A>&lt;named&gt; 元素</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>对脚本的命名参数进行说明。</P>
+
+<PRE class="syntax"><B>&lt;named
+</B>&nbsp;&nbsp;&nbsp;<B>name </B>= <I>namedname</I>
+&nbsp;&nbsp;&nbsp;<B>helpstring </B>= <I>helpstring</I>
+&nbsp;&nbsp;&nbsp;<B>type </B>= <I>"string|boolean|simple"</I>
+&nbsp;&nbsp;&nbsp;<B>required </B>= <I>boolean</I>
+<B>/&gt;</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>name</I></DT>
+
+<DD>表示要说明的参数名的字符串。在命令行和脚本中定义参数。</dd>
+
+<DT><I>helpstring</I></DT>
+
+<DD>表示有关参数帮助说明的字符串。WSH 运行时使用 ShowUsage 方法或 /? 参数提供帮助说明。</dd>
+
+<DT><I>type</I></DT>
+
+<DD>可选。对参数的类型进行说明，参数的类型定义如何从命令行分析参数。默认值为 <code class="ce">simple</code>。</dd>
+
+<DT><I>required</I></DT>
+
+<DD>可选。指明某个参数是否必需的布尔值。只影响用法的显示。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>"&lt;named&gt;" 元素是用一对 runtime 标记括起来的。</P>
+
+<P>名为 <code class="ce">server</code> 的参数在命令行提供一个 <code class="ce">/server</code><I> </I>参数，在 WSHNamed 参数集中提供名为 <code class="ce">server</code> 的参数。</P>
+
+<P>如果类型为 <code class="ce">string</code>，则参数为字符串。该参数以 <code class="ce">/named:stringvalue</code> 的形式传递给脚本。</P>
+
+<P>如果类型为 <code class="ce">Boolean</code>，则参数为布尔值。该参数以 <code class="ce">/named+</code> 的形式传递给脚本以开启它，或者以 <code class="ce">/named-</code> 的形式传递给脚本以关闭它。</P>
+
+<P>如果类型为 <code class="ce">simple</code>，则该参数不采用其他值，而只以名称 <code class="ce">/named </code>的形式传递。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的脚本将演示 &lt;named&gt; 元素的用法：</P>
+
+<PRE class="code">&lt;job&gt;
+&lt;runtime&gt;
+&lt;named
+name="server"
+helpstring="Server to access"
+type="string"
+required="true"
+  /&gt;
+&lt;named
+name="user"
+helpstring="User account to use on server.Default is current account."
+type="string"
+required="false"
+  /&gt;
+&lt;named
+name="enable"
+helpstring="If true (+), enables the action.A minus(-) disables."
+type="boolean"
+required="true"
+  /&gt;
+&lt;named
+name="verbose"
+helpstring="If specified, output will be verbose."
+type="boolean"
+required="false"
+  /&gt;
+&lt;/runtime&gt;
+&lt;script language="JScript"&gt;
+WScript.Arguments.ShowUsage();
+&lt;/script&gt;
+&lt;/job&gt;
+
+This will produce the following output when usage is shown:
+
+Usage:example.wsf /server:value [/user:value] /enable[+|-] [/verbose]
+
+Options:
+
+server    :Server to access
+user      :User account to use on server.Default is current account.
+enable    :If true (+), enables the action.A minus(-) disables.
+verbose   :If specified, output will be verbose.</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wslrfshowusagemethod.htm">ShowUsage 方法</A> | <A HREF="wslrfruntimeelement.htm">&lt;runtime&gt; 元素</A> | <A HREF="wsconunnamedelement.htm">&lt;unnamed&gt; 元素</A> | <A HREF="wslrfdescriptionelement.htm">&lt;description&gt; 元素</A> | <A HREF="wslrfexampleelement.htm">&lt;example&gt; 元素</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>正则表达式对象</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsobjregexpression"></A>正则表达式对象</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>本对象包含正则表达式模式以及表明如何应用模式的标志。</P>
+
+<H4 class="dtH4">语法 1</H4>
+
+<PRE class="syntax">re = <B>/</B><I>pattern</I><B>/</B>[<I>flags</I>]</PRE>
+
+<H4 class="dtH4">语法 2</H4>
+
+<PRE class="syntax">re = <B>new RegExp("</B><I>pattern</I><B>",</B>[<B>"</B><I>flags</I><B>"</B>]<B>)</B> </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>re</I></DT>
+
+<DD>必选项。将要赋值为正则表达式模式的变量名。</dd>
+
+<DT><I>Pattern </I></DT>
+
+<DD>必选项。要使用的正则表达式模式。如果使用语法 1，用 "/" 字符分隔模式。如果用语法 2，用引号将模式引起来。</dd>
+
+<DT><I>flags</I></DT>
+
+<DD>可选项。如果使用语法 2 要用引号将 flag 引起来。标志可以组合使用，可用的有：
+
+<UL type="disc">
+	<LI>g （全文查找出现的所有 <I>pattern</I>）</li>
+
+	<LI>i （忽略大小写）</li>
+
+	<LI>m （多行查找）</li>
+</UL>
+</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>不要将<B>正则表达式</B>对象跟全局 <B>RegExp</B> 对象混淆。尽管听起来像是一回事，但它们是截然不同的。<B>正则表达式</B>对象的属性只包含一个<B>正则表达式</B>的信息，而全局 <B>RegExp</B> 对象的属性包含了不断更新的每一个匹配出现的信息。</P>
+
+<P><B>正则表达式</B>对象保存用于查找字符串中的字符组合时的模式。创建<B>正则表达式</B>对象后，或者它被传递给字符串方法，或者字符串被传递给一个正则表达式方法。有关最近进行查找的信息被保存在全局 <B>RegExp</B> 对象中。</P>
+
+<P>当预先知道查找字符串时用语法 1。当查找字符串经常变动或不知道时用语法 2，比如由用户输入得到的字符串。</P>
+
+<P>在使用前 <I>pattern</I> 参数被编译为内部格式。对语法 1 来说，<I>pattern</I> 在该脚本被装载时被编译。对语法 2 来说，<I>pattern</I> 在使用前，或调用 <B>compile</B> 方法时被编译。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的示例创建一个包含正则表达式模式及相关标志的对象(re)，向您演示<B>正则表达式</B>对象的用法。在本例中，作为结果的<B>正则表达式</B>对象又用于 <B>match</B> 方法中：</P>
+
+<PRE class="code">function MatchDemo(){
+   var r, re;                     // 声明变量。
+   var s = "The rain in Spain falls mainly in the plain";
+   <code><b class="cfe">re = new RegExp("Spain","i")</b></code>;  // 创建正则表达式对象。
+   r = <code><b class="cfe">s.match(</b></code><B>re</B><code><b class="cfe">)</b></code>;               // 在字符串 s 中查找匹配。
+   return(r);                     // 返回匹配结果。
+}</PRE>
+
+
+
+<H4 class="dtH4"><A NAME="js56jsobjregexpressionprop"></A>属性</H4>
+
+<P><A HREF="js56jsprolastindex.htm">lastIndex 属性</A> | <A HREF="js56jsprosource.htm">source 属性</A></P>
+
+
+
+<H4 class="dtH4"><A NAME="js56jsobjregexpressionmeth"></A>方法</H4>
+
+<P><A HREF="js56jsmthcompile.htm">compile 方法</A> | <A HREF="js56jsmthexec.htm">exec 方法</A> | <A HREF="js56jsmthtest.htm">test 方法</A></P>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 3</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsobjregexp.htm">RegExp 对象</A> | <A HREF="js56jsgrpregexpsyntax.htm">正则表达式语法</A> | <A HREF="js56jsobjstring.htm">String 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>创建脚本部件类型库</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letcreatetypelib"></A>创建脚本部件类型库</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>可以为 Windows&reg; 脚本部件生成一个类型库，用来包含其接口和成员的信息。在有些宿主应用程序（如 Visual Basic）中，如果要给脚本部件启用事件能力，则类型库是必需的，而在其他宿主应用程序中，类型库则是可选的。不过，即使类型库不是必需的，生成类型库也能使脚本部件更易于使用，并在宿主应用程序中更少产生错误。</P>
+
+<P>例如，如果您要使用 Visual Basic 作为宿主应用程序，使用 Reference 对话框来选择脚本部件的类型库。这样做可以将事件绑定到脚本部件上，并且在 Visual Basic 中可见。此外，在您编写脚本部件的相关 Visual Basic 代码时，Visual Basic 可以在语句结束时在对象浏览器中使用类型库信息，从而使您能够很方便地看到和使用脚本部件的属性、方法和事件。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>关于在宿主应用程序中使用类型库的详细信息，请参阅应用程序的文档。</BLOCKQUOTE>
+
+<P class="labelproc"><B>创建脚本部件类型库 </B>
+
+<UL type="disc">
+	<LI>在 Windows 资源管理器中，用鼠标右键单击脚本部件的 .wsc 文件，然后选择“生成类型库”。
+<P>这将为脚本部件生成一个.tlb 文件，其文件名与脚本部件文件名相同，并在 Windows 注册表中注册。该文件位于 .wsc 文件所处的文件夹。
+</li>
+</UL>
+
+<P>要更精确控制类型库的生成，您可以从脚本部件文件的脚本内动态地生成类型库，或者也可以使用命令行接口。</P>
+
+<H2 class="dtH2">动态生成类型库 </H2>
+
+<P>脚本部件运行库包括一个由Component.GenerateTypeLib 对象实现的 Automation 接口。您可以在脚本中使用这个对象从脚本部件文件内生成类型库。这对于在注册脚本部件时自动创建类型库是特别有用的。</P>
+
+<P class="labelproc"><B>动态创建脚本部件类型库 </B>
+
+<OL type="1">
+	<LI>在脚本部件文件内的脚本中，可以使用类似下面的语法创建 Component.GenerateTypeLib 对象的一个实例： 
+<PRE class="code">set oTL = CreateObject("Scriptlet.GenerateTypeLib")</PRE>
+</li>
+
+	<LI>可以设置Component.GenerateTypeLib 对象的下述属性：</li>
+</OL>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=26%>属性/方法</TH>
+<TH width=74%>描述</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>AddURL</TD>
+<TD width=74%>(方法) 添加脚本部件的 URL 来生成类型库。您可以多次调用该方法属性，从而使类型库中包含多个脚本部件。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>Path</TD>
+<TD width=74%>(属性) 类型库的路径和文件名。如缺省路径是当前路径，缺省文件名是带有 .tlb 扩展名的脚本部件文件名。果该对象不能创建所指定的类型库，则将在脚本部件所处目录下缺省创建一个名为component.tlb 的类型库。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>Doc</TD>
+<TD width=74%>(属性) 是一个字符串，包含与类型库信息一起存储在注册表中的任何信息。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>GUID</TD>
+<TD width=74%>(属性) 该类型库的 GUID。（不是脚本部件的 GUID。）如果不提供这个值，则GenerateTypeLib 对象将创建一个，但是这样在每个机器上类型库将具有不同的GUID。GUID 必须遵照以下格式，其中 <I>x </I>代表十六进制值：
+<PRE class="code">{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}</PRE>
+</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>Name</TD>
+<TD width=74%>(属性) 类型库的内部名称。有些应用程序（如 Visual Basic Object Browser)将显示该名字。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>MajorVersion</TD>
+<TD width=74%>(属性) 指定的一个整数值。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=26%>MinorVersion</TD>
+<TD width=74%>(属性) 指定的一个整数值。</TD>
+</TR>
+</table></div>
+
+<OL type="1">
+	<LI>调用该类型库对象的 <B>Write</B> 方法来创建 .tlb 文件，然后将其注册。</li>
+
+	<LI>如果要创建一个附加类型库，请调用 <B>GenerateTypeLib</B> 对象的 <B>Reset</B> 方法来清除 <B>AddURL</B> 属性中的脚本部件文件的列表，重新设置 URL 以及任何其他所需的属性，然后重新调用 <B>Write</B> 方法。</li>
+</OL>
+
+<P>例如，下面 &lt;registration&gt; 元素中的脚本将动态创建一个类型库。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>CDATA 项是必需的，将使 &lt;script&gt; 元素中的脚本成为不透明的。详细信息请参阅 <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;registration
+&nbsp;&nbsp;&nbsp;description="My Test Component"
+&nbsp;&nbsp;&nbsp;progid="Component.TestScript"
+&nbsp;&nbsp;&nbsp;version="1"
+&nbsp;&nbsp;&nbsp;classid="{2154c700-9253-11d1-a3ac-0aa0044eb5f}"&gt;
+&nbsp;&nbsp;&nbsp;&lt;script language="VBScript"&gt;
+&nbsp;&nbsp;&nbsp;&lt;![CDATA[
+&nbsp;&nbsp;&nbsp;Function Register()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set oTL = CreateObject("Scriptlet.GenerateTypeLib")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.AddURL "d:\components\MyComponent.wsc"&nbsp;&nbsp;&nbsp;' 脚本部件的 URL。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.AddURL "d:\components\YourComponent.wsc"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.Path = "d:\components\MyComponent.tlb"&nbsp;&nbsp;&nbsp;' .tlb 路径。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.Doc = "Sample component typelib"&nbsp;&nbsp;&nbsp;' 文档字符串。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.GUID = "{a1e1e3e0-a252-11d1-9fa1-00a0c90fffc0}"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.Name = "MyComponentTLib" ' tlb 的内部名称。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.MajorVersion = 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.MinorVersion = 0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.Write ' 将 tlib 写入磁盘。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTL.Reset ' 清除 AddURL 中的 URL 列表。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Function
+&nbsp;&nbsp;&nbsp;]]&gt;
+&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+&lt;/registration&gt;</PRE>
+
+<H2 class="dtH2">命令行接口 </H2>
+
+<P>如果喜欢使用“命令提示符”窗口，则可以调用 Rundll32.exe 程序来创建类型库。</P>
+
+<P class="labelproc"><B>从命令提示符创建类型库 </B>
+
+<UL type="disc">
+	<LI>可以使用下面的语法调用 Rundll32.exe：
+<PRE class="code">rundll32.exe <I>path</I>\scrobj.dll,GenerateTypeLib <I>options</I></PRE>
+
+<P>其中： 
+
+<UL type="disc">
+	<LI><I>path&nbsp;&nbsp;&nbsp;</I>代表 Scrobj.dll 在计算机中的位置。</li>
+
+	<LI><I>options&nbsp;&nbsp;&nbsp;</I>为一组以 -<I>flag</I>:<I>value</I> 的格式来指定类型库的信息的标志和值。可以以任何顺序指定这些选项。支持如下标记来动态创建脚本部件类型库，这些标记的值见前一节的描述。<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=100%>-name:<I>Name</I></TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=100%>-file:<I>Path</I></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=100%>-doc:\"<I>Doc</I>\"</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=100%>-guid:<I>GUID</I></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=100%>-major:MajorVersion</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=100%>-minor:MinorVersion</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=100%>-URL:AddURL</TD>
+</TR>
+</table></div>
+</li>
+</UL>
+</li>
+</UL>
+
+<P>例如，下面的命令将从 MyComponent.wsc 这个脚本部件创建一个称为 MyComponent.tlb 的类型库（为清楚起见，该命令分成多行显示）：</P>
+
+<PRE class="code">rundll32.exe c:\winnt\system32\scrobj.dll,GenerateTypeLib 
+&nbsp;&nbsp;&nbsp;-name:MyComponentTLib -file:d:\components\MyComponent.tlb 
+&nbsp;&nbsp;&nbsp;-doc:\"Sample component typelib\" 
+&nbsp;&nbsp;&nbsp;-guid:{a1e1e3e0-a252-11d1-9fa1-00a0c90fffc0} -major:1 -minor:0 
+&nbsp;&nbsp;&nbsp;-URL:d:\components\MyComponent.wsc</PRE>
+
+<H2 class="dtH2">类型库疑难解答 </H2>
+
+<P>生成类型库的过程可能因为各种原因而失败。所得到的错误信息可能不足以在所有情形下都能确定问题的所在。如果不能生成类型库，请查看下面可能导致失败的原因清单。
+
+<UL type="disc">
+	<LI>如果属性是按函数定义的，则 <B>get</B> 和 <B>put</B> 函数的参数个数和名称必须一致。详细信息请参阅<A HREF="letexppro.htm">说明属性</A>。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>可以定义一个 <B>get</B> 和 <B>put</B> 属性函数的参数个数不相同的脚本部件，只是不能为该脚本部件创建一个类型库。</BLOCKQUOTE>
+</li>
+
+	<LI>如果说明了事件，则不能在脚本部件中多次使用相同的派遣标识符 (<I>dispid</I>) 。此外，也不能使用负数的 dispid，除非其属于一个特定的范围。详细信息请参阅<A HREF="letexpmth.htm">说明方法</A>。</li>
+
+	<LI>脚本部件中元素的 ID 属性必须是唯一的。如果您通过多个脚本部件生成类型库，它们在类型库中的 ID 必须一致。</li>
+</UL>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letfilecont.htm">脚本部件文件的内容</A> | <A HREF="letcreatereg.htm">创建注册信息</A> | <A HREF="letckerror.htm">检查脚本部件文件中的错误</A> | <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>GetTempName 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsmthgettempname"></A>GetTempName 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回一个随机产生的临时文件或文件夹名，有助于执行那些需要临时文件或文件夹的操作。</P>
+
+<PRE class="syntax"><I>object</I>.GetTempName ( ); </PRE>
+
+<P>可选的 <I>object</I> 应为 <B>FileSystemObject</B> 的名称。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P><B>GetTempName</B> 方法并不创建文件。它只提供一个临时文件名，可以通过 <B>CreateTextFile</B> 来创建文件。</P>
+
+<P>下面的例子说明了 <B>GetTempName</B> 方法的用法。</P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>var fso, tempfile;
+fso = new ActiveXObject("Scripting.FileSystemObject");
+
+function CreateTempFile()
+{
+   var tfolder, tfile, tname, fname, TemporaryFolder = 2;
+   tfolder = fso.GetSpecialFolder(TemporaryFolder);
+   tname = fso.GetTempName();
+   tfile = tfolder.CreateTextFile(tname);
+   return(tfile);
+}
+tempfile = CreateTempFile();
+tempfile.writeline("Hello World");
+tempfile.close();
+<SPAN class="lang">[VBScript]
+</SPAN>Dim fso, tempfile
+Set fso = CreateObject("Scripting.FileSystemObject")
+
+Function CreateTempFile 
+   Dim tfolder, tname, tfile
+   Const TemporaryFolder = 2
+   Set tfolder = fso.GetSpecialFolder(TemporaryFolder)
+   tname = <code><b class="cfe">fso.GetTempName</b></code>    
+   Set tfile = tfolder.CreateTextFile(tname)
+   Set CreateTempFile = tfile
+End Function
+
+Set tempfile = CreateTempFile
+tempfile.WriteLine "Hello World"
+tempfile.Close</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsmthgetabsolutepathname.htm">GetAbsolutePathName 方法</A> | <A HREF="jsmthgetbasename.htm">GetBaseName 方法</A> | <A HREF="jsmthgetdrive.htm">GetDrive 方法</A> | <A HREF="jsmthgetdrivename.htm">GetDriveName 方法</A> | <A HREF="jsmthgetextensionname.htm">GetExtensionName 方法</A> | <A HREF="jsmthgetfile.htm">GetFile 方法</A> | <A HREF="jsmthgetfilename.htm">GetFileName 方法</A> | <A HREF="jsmthgetfileversion.htm">GetFileVersion 方法</A> | <A HREF="jsmthgetfolder.htm">GetFolder 方法</A> | <A HREF="jsmthgetparentfoldername.htm">GetParentFolderName 方法</A> | <A HREF="jsmthgetspecialfolder.htm">GetSpecialFolder 方法</A><BR>
+应用于：<A HREF="jsobjfilesystem.htm">FileSystemObject 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

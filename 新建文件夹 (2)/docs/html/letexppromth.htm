@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>在 Behavior 脚本部件中说明属性和方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letexppromth"></A>在 Behavior 脚本部件中说明属性和方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>Behavior 脚本部件可以用一种与 Automation 脚本部件类似的方法来说明自定义属性和方法。Behavior 脚本部件的属性和方法将可用的属性和方法扩展到包含页面内的各个元素。例如，可以创建一个操作脚本部件，当鼠标移动到某个元素上时，就更改该元素的颜色。通过在脚本部件中定义一个属性，就可以在该文档中获得一个自定义属性，例如可以叫做 <B>hiliteColor</B>，这样 Web 页面制作者就可以设置用什么颜色来高亮显示文本。</P>
+
+<P>通过说明一个与已经为元素定义的同名属性或方法，可以用一个操作来覆盖该元素的缺省操作。</P>
+
+<P>属性和方法在 <A HREF="letelepublic.htm">&lt;public&gt;</A> 元素内定义，与用来指定 Behavior 处理程序的 <A HREF="leteleimplements.htm">&lt;implements&gt;</A> 元素是分开的。详细信息请参阅<A HREF="letexppro.htm">说明属性</A>和<A HREF="letexpmth.htm">说明方法</A>。</P>
+
+<H2 class="dtH2">说明属性</H2>
+
+<P>属性在所有脚本部件中都是在 <A HREF="letelepublic.htm">&lt;public&gt;</A> 元素中说明的。下面的脚本部件片段演示的 Behavior 脚本部件说明了自定义属性 <B>hiliteColor</B>。如果包含页面没有特别设置该属性的值，则其缺省值设置为 “red” 。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>CDATA 项是必需的，以使 &lt;script&gt; 元素中的脚本成为不透明的。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;public&gt;
+&nbsp;&nbsp;&nbsp;&lt;property name="hiliteColor"/&gt;
+&lt;/public&gt;
+
+&lt;implements type="Behavior"&gt;
+&nbsp;&nbsp;&nbsp;&lt;attach for="window" event="onload" handler="event_onload"&gt;
+&lt;/implements&gt;
+
+&lt;script language="JScript"&gt;
+&lt;![CDATA[
+&nbsp;&nbsp;&nbsp;var hiliteColor;
+&nbsp;&nbsp;&nbsp;function event_onload(){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Initialize the properties.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (hiliteColor == null){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hiliteColor = "red";}
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;// Further script here.
+]]&gt;
+&lt;/script&gt;</PRE>
+
+<H2 class="dtH2">说明方法</H2>
+
+<P>在 Behavior 脚本部件中说明方法与在 Automation 脚本部件中一样。详细信息请参阅<A HREF="letexpmth.htm">说明方法</A>。在 Behavior 脚本部件中，在脚本部件中说明的方法扩大了包含文档的元素已经可用的方法。</P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letexpcustom.htm">在 Behavior 脚本部件中说明自定义事件</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

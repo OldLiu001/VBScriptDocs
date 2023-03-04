@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>length 属性 (arguments)</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsprolengtharguments"></A>length 属性 (arguments)</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回调用程序传递给函数的实际参数数目。</P>
+
+<PRE class="syntax">[<I>function</I>.]<B>arguments</B>.<B>length</B></PRE>
+
+<P>可选项 <I>function</I> 参数是当前正在执行的 <B>Function</B> 对象的名称。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>当 <B>Function </B>对象开始执行时，脚本引擎将 <B>arguments </B>对象的 <B>length</B> 属性初始化为传递给该函数的实际参数数目。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的例子演示了 <B>arguments </B>对象的 <B>length</B> 属性的用法。要完全理解示例，请向该函数传递更多的参数：</P>
+
+<PRE class="code">function ArgTest(a, b){
+   var i, s = "The ArgTest function expected ";
+   var numargs = <code><b class="cfe">arguments.length</b></code>;
+   var expargs = ArgTest.length;
+   if (expargs &lt; 2)
+      s += expargs + " argument. ";
+   else
+      s += expargs + " arguments. ";
+   if (numargs &lt; 2)
+      s += numargs + " was passed.";
+   else
+      s += numargs + " were passed.";
+   return(s);
+}</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 5.5</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsproarguments.htm">arguments 属性</A> | <A HREF="js56jsprolengtharray.htm">length 属性 (Array)</A> | <A HREF="js56jsprolengthstring.htm">length 属性 (String)</A></P>
+
+<P>应用于：<A HREF="js56jsobjarguments.htm">arguments 对象</A> | <A HREF="js56jsobjfunction.htm">Function 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

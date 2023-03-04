@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>IsArray 函数</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsfctisarray"></A>IsArray 函数</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回 Boolean 值指明某变量是否为数组。</P>
+
+<PRE class="syntax"><B>IsArray(</B>varname<B>)</B></PRE>
+
+<P><B>varname</B> 参数可以是任意变量。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>如果变量是数组，<B>IsArray</B> 函数返回 <B>True</B>；否则，函数返回 <B>False</B>。当变量中包含有数组时，使用 <B>IsArray</B> 函数很有效。</P>
+
+<P>下面的示例利用 <B>IsArray</B> 函数验证 MyVariable 是否为一数组：</P>
+
+<PRE class="code">Dim MyVariable
+Dim MyArray(3)
+MyArray(0) = "Sunday"
+MyArray(1) = "Monday"
+MyArray(2) = "Tuesday"
+MyVariable = <code><b class="cfe">IsArray(</b></code>MyArray<code><b class="cfe">)</b></code> ' MyVariable 包含 "True"。</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsfctisdate.htm">IsDate 函数</A> | <A HREF="vsfctisempty.htm">IsEmpty 函数</A> | <A HREF="vsfctisnull.htm">IsNull 函数</A> | <A HREF="vsfctisnumeric.htm">IsNumeric 函数</A> | <A HREF="vsfctisobject.htm">IsObject 函数</A> | <A HREF="vsfctvartype.htm">VarType 函数</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

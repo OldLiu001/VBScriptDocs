@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>&lt;runtime&gt; 元素</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wslrfruntimeelement"></A>&lt;runtime&gt; 元素</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>将某个脚本的一系列运行时参数组合起来。</P>
+
+<PRE class="syntax"><B>&lt;runtime&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;</B>&lt;named attributes etc. /&gt;
+<B>&nbsp;&nbsp;&nbsp;&nbsp;</B>&lt;unnamed attributes etc. /&gt;
+<B>&nbsp;&nbsp;&nbsp;&nbsp;</B>&lt;example&gt;Example Text&lt;/example&gt;
+<B>&nbsp;&nbsp;&nbsp;&nbsp;�
+&lt;/runtime&gt;</B></PRE>
+
+<H4 class="dtH4">说明</H4>
+
+<P>ShowUsage 方法使用由 &lt;runtime&gt; 元素括起来的信息，以便显示脚本的运行时参数。</P>
+
+<P>由于 &lt;runtime&gt; 元素括在一对 job 标记中，因此所定义的运行时参数只适用于该作业。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;使用 5.6 版，&lt;runtime&gt; 元素中所括的数据只用于自我说明，以及为 ShowUsage 所显示的数据设置格式。&lt;runtime&gt; 元素不对它所包含的参数强制实施值集合（即命令行中丢失“必需的”参数不会导致错误）。如果 &lt;runtime&gt; 元素包括在 .wsf 文件中，则用 "/?" 参数运行脚本将会显示用法并退出。</BLOCKQUOTE>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的脚本将演示 &lt;runtime&gt; 元素的用法：</P>
+
+<PRE class="code">&lt;job&gt;
+<B>&lt;runtime&gt;</B>
+&lt;named
+name="server"
+helpstring="The server to run the script on"
+type="string"
+required="true"
+<B>        </B>/&gt;
+<B>&lt;/runtime&gt;</B>
+&lt;script language="JScript"&gt;
+if (!WScript.Arguments.Named.Exists("server"))
+  {
+WScript.Arguments.ShowUsage();
+  }
+// ... 此处是一些脚本
+&lt;/script&gt;
+&lt;/job&gt;</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wslrfshowusagemethod.htm">ShowUsage 方法</A> | <A HREF="wslrfnamedelement.htm">&lt;named&gt; 元素</A> | <A HREF="wsconunnamedelement.htm">&lt;unnamed&gt; 元素</A> | <A HREF="wslrfdescriptionelement.htm">&lt;description&gt; 元素</A> | <A HREF="wslrfexampleelement.htm">&lt;example&gt; 元素</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

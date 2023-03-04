@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Array 对象</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsobjarray"></A>Array 对象</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>提供对创建任何数据类型的数组的支持。</P>
+
+<PRE class="syntax"><I>arrayObj</I><B> = new Array()</B>
+<I>arrayObj</I><B> = new Array(</B>[<I>size</I>]<B>)</B>
+<I>arrayObj</I> = <B>new Array(</B>[<I>element0</I>[, <I>element1</I>[, ...[, <I>elementN</I>]]]]<B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>arrayObj</I></DT>
+
+<DD>必选项。要赋值为 <B>Array</B> 对象的变量名。</dd>
+
+<DT>size</DT>
+
+<DD>可选项。可选项数组的大小。由于数组的下标是从零开始，创建的元素的下标将从零到 <I>size</I> -1。</dd>
+
+<DT><I>element0,...,elementN</I></DT>
+
+<DD>可选项。要放到数组中的元素。这将创建具有 <I>n</I> + 1 个元素的长度为 n + 1 的数组。使用该语法时必须有一个以上元素。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>创建数组后，能够用 [&nbsp;] 符号访问数组单个元素，例如： </P>
+
+<PRE class="code">var my_array = <code><b class="cfe">new Array()</b></code>;
+for (i = 0; i &lt; 10; i++)
+   {
+   my_array[i] = i;
+   }
+x = my_array[4];</PRE>
+
+<P>由于 Microsoft JScript 中的数组的下标是从零开始的，前面例子中最后一条语句访问数组的第五个元素。该元素中保存的值是 4。</P>
+
+<P>如果只向 <B>Array</B> 的构造函数传递了一个参数，而该参数是数字，则它必须是无符号 32 位整数（大约 40 亿）。该值成为数组的大小。如果该值为数值，但小于 0 或不为整数，发生运行时错误。</P>
+
+<P>如果传递给 <B>Array</B> 构造函数的是单个值并且不是数值，设置 <B>length</B> 属性为 1，而且唯一的元素值成为单个的传入的参数。</P>
+
+<P>请注意 JScript 数组为解析数组，也就是尽管可以分配多个元素给一个数组，但实际上只有包含数据的元素才存在。这减少了数组使用的内存数量。</P>
+
+<H4 class="dtH4">属性</H4>
+
+<P><A HREF="js56jsproconstructor.htm">constructor 属性</A> | <A HREF="js56jsprolengtharray.htm">length 属性</A> | <A HREF="js56jsproprototype.htm">prototype 属性</A></P>
+
+
+
+<H4 class="dtH4"><A NAME="js56jsobjarraymeth"></A>方法</H4>
+
+<P><A HREF="js56jsmthconcatarray.htm">concat 方法</A> | <A HREF="js56jsmthjoin.htm">join 方法</A> | <A HREF="js56jsmthpop.htm">pop 方法</A> | <A HREF="js56jsmthpush.htm">push 方法</A> | <A HREF="js56jsmthreverse.htm">reverse 方法</A> | <A HREF="js56jsmthshift.htm">shift 方法</A> | <A HREF="js56jsmthslicearray.htm">slice 方法</A> | <A HREF="js56jsmthsort.htm">sort 方法</A> | <A HREF="js56jsmthsplice.htm">splice 方法</A> | <A HREF="js56jsmthtolocalestring.htm">toLocaleString 方法</A> | <A HREF="js56jsmthtostring.htm">toString 方法</A> | <A HREF="js56jsmthunshift.htm">unshift 方法</A> | <A HREF="js56jsmthvalueof.htm">valueOf 方法</A></P>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 2</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsoprnew.htm">new 运算符</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

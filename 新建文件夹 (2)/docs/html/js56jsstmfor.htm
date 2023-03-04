@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>for 语句</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsstmfor"></A>for 语句</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>只要指定条件为 true 都执行语句块。</P>
+
+<PRE class="syntax"><B>for</B> (<I>initialization</I>; <I>test</I>; <I>increment</I>)
+   <I>statements</I> </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>initialization</I></DT>
+
+<DD>必选项。一个表达式。该表达式只在执行循环前被执行一次。</dd>
+
+<DT><I>test</I></DT>
+
+<DD>必选项。一个 Boolean 表达式。如果 <I>test</I> 是 <B>true</B>，则 <I>statement</I> 被执行。如果 <I>test</I> 是 <B>false</B>，则循环结束。</dd>
+
+<DT><I>increment</I></DT>
+
+<DD>必选项。一个表达式。在每次经过循环的最后执行该递增表达式。</dd>
+
+<DT><I>statements</I></DT>
+
+<DD>可选项。<I>test</I> 是 <B>true</B> 时，要执行的一个或多个语句。可以是复合语句。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>循环要执行确定的次数，通常使用 <B>for</B> 循环。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的例子示范了一个 <B>for</B> 循环。</P>
+
+<PRE class="code">/* 在开始时 i 被设为 0，并在每次重复的最后被增加 1。
+在循环重复前，
+如果 i 不小于 10，则循环结束。*/
+var myarray = new Array();
+<code><b class="cfe">for</b></code> (i = 0; i &lt; 10; i++) {
+   myarray[i] = i;
+}</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsstmforin.htm">for...in 语句</A> | <A HREF="js56jsstmwhile.htm">while 语句</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>WSH 5.6 新增功能</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wserrwhatsnew"></A>WSH 5.6 的新增功能</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>在这个最新版本的 Windows 脚本宿主（5.6 版）中，说明了若干方面的功能：
+
+<UL type="disc">
+	<LI><B>改进了参数处理</B> &#0151; 处理和记录命令行参数更为简单。简化了脚本与其他命令行脚本的集成过程，更容易创建可以为用户提供帮助信息的脚本。请参考下表中有关 WSH 语言功能的信息，以熟悉这一新功能。<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=31%>要了解的信息</TH>
+<TH width=69%>请参阅</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>将脚本开关组合到一起。</TD>
+<TD width=69%><A HREF="wslrfruntimeelement.htm">&lt;runtime&gt; 元素</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>定义脚本的命名开关。</TD>
+<TD width=69%><A HREF="wslrfnamedelement.htm">&lt;named&gt; 元素</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>定义脚本的未命名开关。</TD>
+<TD width=69%><A HREF="wsconunnamedelement.htm">&lt;unnamed&gt; 元素</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>使脚本具有自我说明性。</TD>
+<TD width=69%><A HREF="wslrfexampleelement.htm">&lt;example&gt; 元素</A>
+<P><A HREF="wslrfdescriptionelement.htm">&lt;description&gt; 元素</A></P>
+</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>与衍生的过程共享当前过程的环境（IOW、WSH）。</TD>
+<TD width=69%><A HREF="wslrfexecmethod.htm">Exec 方法</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>通过编程方式访问标准流。</TD>
+<TD width=69%><A HREF="wslrfexecmethod.htm">Exec 方法</A>
+<P><A HREF="wslrfscriptexecobject.htm">WshScriptExec 对象</A></P>
+</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>通过编程方式访问环境变量。</TD>
+<TD width=69%><A HREF="wsproenvironment.htm">Environment 属性</A>
+<P><A HREF="wsobjwshenvironment.htm">WshEnvironment 对象</A></P>
+
+<P><A HREF="wsmthexpandenvironmentstrings.htm">ExpandEnvironmentStrings 方法</A></P>
+
+<P><A HREF="wsmthremove.htm">Remove 方法</A></P>
+</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>确定衍生的脚本过程当前是否在运行。</TD>
+<TD width=69%><A HREF="wslrfstatusproperty.htm">Status 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>访问衍生的脚本过程的 StdIn 输入流。</TD>
+<TD width=69%><A HREF="wslrfstdinproperty.htm">StdIn 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>访问衍生的脚本过程的 StdOut 输出流。</TD>
+<TD width=69%><A HREF="wslrfstdoutproperty.htm">StdOut 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>访问衍生的脚本过程的 StdErr 输出流。</TD>
+<TD class="fig" width=69%><A HREF="wslrfstderrproperty.htm">StdErr 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>终止衍生的脚本过程。</TD>
+<TD width=69%><A HREF="wslrfterminatemethod.htm">Terminate 方法 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>访问命名的命令行脚本参数。</TD>
+<TD width=69%><A HREF="wslrfnamedobject.htm">WshNamed 对象</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>确定某个特定键值是否存在于 WshNamed 对象中。</TD>
+<TD width=69%><A HREF="wslrfexistsmethod.htm">Exists 方法</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>确定 WshNamed 或 WshUnnamed 对象中的开关数。</TD>
+<TD width=69%><A HREF="wslrfcountmethod.htm">Count 方法</A></TD>
+</TR>
+</table></div>
+</li>
+
+	<LI><B>可以远程运行脚本 </B>&#0151; 可以将脚本下载到若干台远程计算机系统上，并同时运行它们。运行远程脚本时，可以查看其进程。脚本运行完后，可以确保它运行正确与否或者可以确定过早终止的原因。有一个用于创建远程 WSH 对象的新发送对象，即 Controller 对象。此外，还有一个用于表示脚本运行实例的新对象，即 Remote WSH 对象。<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=48%>要了解的信息</TH>
+<TH width=52%>请参阅</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>创建远程脚本对象 &#0151; 远程 WSH 界面。</TD>
+<TD width=52%><A HREF="wslrfcontrollerobject.htm">WshController 对象</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>创建远程脚本对象 &#0151; 使用远程 WSH 界面。</TD>
+<TD width=52%><A HREF="wslrfcreatescriptmethod.htm">CreateScript 方法</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>创建远程脚本对象 &#0151; 获得句柄。</TD>
+<TD width=52%><A HREF="wslrfremote_wshobject.htm">WshRemote 对象</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>启动远程脚本过程。</TD>
+<TD width=52%><A HREF="wslrfexecutemethod.htm">Execute 方法</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>确定远程脚本当前是否在运行。</TD>
+<TD width=52%><A HREF="wslrfstatuspropertyremote.htm">Status 属性 (WshRemote)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>确定远程脚本为何终止。</TD>
+<TD width=52%><A HREF="wslrfdescriptionproperty.htm">Description 属性 (WshRemoteError)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>对远程脚本中导致脚本终止的语句进行标识。</TD>
+<TD width=52%><A HREF="wslrflineproperty.htm">Line 属性 (WshRemoteError)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>远程脚本终止后访问错误信息。</TD>
+<TD width=52%><A HREF="wslrfremote_wsh_errorobject.htm">WshRemoteError 对象</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>标识代码行中有错误的字符。</TD>
+<TD width=52%><A HREF="wslrfcharacterproperty.htm">Character 属性</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>标识表示脚本错误的错误编号。</TD>
+<TD width=52%><A HREF="wslrfnumberproperty.htm">Number 属性</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>标识脚本错误的来源。</TD>
+<TD width=52%><A HREF="wslrfsourceproperty.htm">Source 属性</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>标识导致错误的源代码行。</TD>
+<TD width=52%><A HREF="wslrfsourcetextproperty.htm">SourceText 属性</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>处理远程对象事件。</TD>
+<TD width=52%><A HREF="wslrfstartevent.htm">Start 事件</A>
+<P><A HREF="wslrfendevent.htm">End 事件</A></P>
+
+<P><A HREF="wslrferrorevent.htm">Error 事件</A></P>
+</TD>
+</TR>
+</table></div>
+</li>
+
+	<LI><B>启动新过程时，可以将它们视为对象</B> &#0151; 确定衍生过程的状态，并访问它们的标准 I/O 流。<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=48%>要了解的信息</TH>
+<TH width=52%>请参阅</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>衍生一个过程。</TD>
+<TD width=52%><A HREF="wslrfexecmethod.htm">Exec 方法</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>访问表示运行过程的对象。</TD>
+<TD width=52%><A HREF="wslrfscriptexecobject.htm">WshScriptExec 对象</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>访问过程的状态信息。</TD>
+<TD width=52%><A HREF="wslrfstatusproperty.htm">Status 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>访问标准 I/O 流。</TD>
+<TD width=52%><A HREF="wslrfstdoutproperty.htm">StdOut 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>&nbsp;</TD>
+<TD width=52%><A HREF="wslrfstdinproperty.htm">StdIn 属性 (WshScriptExec)</A></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>&nbsp;</TD>
+<TD width=52%><A HREF="wslrfstderrproperty.htm">StdErr 属性 (WshScriptExec)</A></TD>
+</TR>
+</table></div>
+</li>
+
+	<LI><B>可以访问当前的工作目录</B> <B>&#0151;</B> 可以确定/修改活动过程的当前工作目录。<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=48%>要了解的信息</TH>
+<TH width=52%>请参阅</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>访问活动目录的信息。</TD>
+<TD width=52%><A HREF="wslrfcurrentdirectory.htm">CurrentDirectory 属性</A></TD>
+</TR>
+</table></div>
+</li>
+
+	<LI><B>已对脚本所特有的安全性问题进行了说明</B> &#0151; 一个新的安全模型使分发和运行脚本更为安全。<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=48%>要了解的信息</TH>
+<TH width=52%>请参阅</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=48%>脚本签名及验证。</TD>
+<TD width=52%><A HREF="wsconsecuritywindowsscripthost.htm">安全和 Windows 脚本宿主</A></TD>
+</TR>
+</table></div>
+</li>
+</UL>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

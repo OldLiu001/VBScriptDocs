@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>LogEvent 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsmthlogevent"></A>LogEvent 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>将事件项添加到日志文件中。</P>
+
+<PRE class="syntax"><I>object</I><B>.LogEvent</B>(<I>intType</I>, <I>strMessage</I> [,<I>strTarget</I>]) </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>WshShell 对象。</dd>
+
+<DT><I>intType</I></DT>
+
+<DD>表示事件类型的整数值。</dd>
+
+<DT><I>strMessage</I></DT>
+
+<DD>包含日志项文本的字符串值。</dd>
+
+<DT><I>strTarget</I></DT>
+
+<DD>可选。表示存储事件日志的计算机系统（默认情况下，是本地计算机系统）名称的字符串值。只适用于 Windows NT/2000。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>LogEvent 方法返回一个布尔值（如果事件记录成功，则返回 true，否则返回 false）。在 Windows NT/2000 中，事件记录在 Windows NT 事件日志中。在 Windows 9x/Me 中，事件记录在 WSH.log（位于 Windows 目录中）中。有六种事件类型。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=32%>类型</TH>
+<TH width=68%>值</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>0</TD>
+<TD width=68%>SUCCESS</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>1</TD>
+<TD width=68%>ERROR</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>2</TD>
+<TD width=68%>WARNING</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>4</TD>
+<TD width=68%>INFORMATION</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>8</TD>
+<TD width=68%>AUDIT_SUCCESS</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>16</TD>
+<TD width=68%>AUDIT_FAILURE</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的代码记录“成功”或“错误”，这取决于 runLoginScript() 函数的输出。</P>
+<div class=filtered><span class="lang">[VBScript]</span>
+
+<PRE class="code">Set WshShell = WScript.CreateObject("WScript.Shell")
+rc = runLoginScript()      'Returns true if logon succeeds.
+
+if rc then
+   WshShell.<code><b class="cfe">LogEvent</b></code> 0, "Logon Script Completed Successfully"
+else
+   WshShell.<code><b class="cfe">LogEvent</b></code> 1, "Logon Script failed"
+end if</PRE>
+</div><!-- [end] -->
+<div class=filtered><span class="lang">[JScript]</span>
+
+<PRE class="code">var WshShell = WScript.CreateObject("WScript.Shell");
+var rc = runLoginScript();
+
+if (rc) 
+   WshShell.<code><b class="cfe">LogEvent</b></code>(0, "Logon Script Completed Successfully");
+else
+   WshShell.<code><b class="cfe">LogEvent</b></code>(1, "Logon Script failed");</PRE>
+</div><!-- [end] -->
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsobjwshshell.htm">WshShell 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

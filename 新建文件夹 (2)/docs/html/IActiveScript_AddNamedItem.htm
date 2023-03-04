@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScript::AddNamedItem</title>
+<META NAME="msdnID" CONTENT="_638915">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScript_AddNamedItem">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript::AddNamedItem">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript">
+<meta NAME="MS-HKWD" CONTENT="AddNamedItem">
+<META NAME="Description" CONTENT="IActiveScript::AddNamedItem">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScript::AddNamedItem;IActiveScript;AddNamedItem">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScript::AddNamedItem</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScript.htm">Previous</a><br>
+    <A HREF="IActiveScript_AddTypeLib.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT AddNamedItem(
+    LPCOLESTR pstrName,  // address of item name
+    DWORD dwFlags        // item flags
+);
+</code></PRE></FONT>
+
+<P>Adds the name of a root-level item to the scripting engine's name space. A root-level item is an object with properties and methods, an event source, or all three.
+
+<UL>
+<LI>Returns one of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>S_OK
+ </FONT></TD><TD><FONT SIZE=2>Success.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_INVALIDARG
+ </FONT></TD><TD><FONT SIZE=2>An argument was invalid.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_POINTER
+ </FONT></TD><TD><FONT SIZE=2>An invalid pointer was specified.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_UNEXPECTED
+ </FONT></TD><TD><FONT SIZE=2>The call was not expected (for example, the scripting engine has not yet been loaded or initialized).
+</FONT></TD></TR></TABLE>
+</UL>
+<DL><DT><I>pstrName</I>
+ </DT><DD>[in] Address of a buffer that contains the name of the item as viewed from the script. The name must be unique and persistable. 
+</DD><DT><I>dwFlags</I>
+ </DT><DD>[in] Flags associated with an item. Can be a combination of these values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTITEM_CODEONLY
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the named item represents a code-only object, and that the host has no <b>IUnknown</b> to be associated with this code-only object. The host only has a name for this object. In object-oriented languages such as C++, this flag would create a class. Not all languages support this flag.</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTITEM_GLOBALMEMBERS
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the item is a collection of global properties and methods associated with the script. Normally, a scripting engine would ignore the object name (other than for the purpose of using it as a cookie for the <A HREF="IActiveScriptSite_GetItemInfo.htm#IActiveScriptSite__G">IActiveScriptSite::GetItemInfo</A> method, or for resolving explicit scoping) and expose its members as global variables and methods. This allows the host to extend the library (run-time functions and so on) available to the script. It is left to the scripting engine to deal with name conflicts (for example, when two SCRIPTITEM_GLOBALMEMBERS items have methods of the same name), although an error should not be returned because of this situation.</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTITEM_ISPERSISTENT
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the item should be saved if the scripting engine is saved. Similarly, setting this flag indicates that a transition back to the initialized state should retain the item's name and type information (the scripting engine must, however, release all pointers to interfaces on the actual object).</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTITEM_ISSOURCE
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the item sources events that the script can sink. Child objects (properties of the object that are in themselves objects) can also source events to the script. This is not recursive, but it provides a convenient mechanism for the common case, for example, of creating a container and all of its member controls. </FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTITEM_ISVISIBLE
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the item's name is available in the name space of the script, allowing access to the properties, methods, and events of the item. By convention the properties of the item include the item's children; therefore, all child object properties and methods (and their children, recursively) will be accessible.</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTITEM_NOCODE
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the item is simply a name being added to the script's name space, and should not be treated as an item for which code should be associated. For example, without this flag being set, VBScript will create a separate module for the named item, and C++ might create a separate wrapper class for the named item.
+</FONT></TD></TR></TABLE>
+</DD></DL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

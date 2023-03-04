@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>0...n 属性</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jspro0n"></A>0...<I>n</I> 属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回一个 <B>arguments </B>对象中的各个参数的实际值，相应的值是由一个正在执行的函数的 <B>arguments</B> 属性返回的。</P>
+
+<PRE class="syntax">[<B><I>function</I>.</B>]<B>arguments[</B>[0|1|2|...|<I>n</I>]<B>]</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>function</I></DT>
+
+<DD>可选项。当前正在执行的 <B>Function </B>对象的名称。</dd>
+
+<DT><I>0, 1, 2, …, n</I></DT>
+
+<DD>必选项。0 到 <I>n</I> 范围内的非负整数，其中 0 代表第一个参数而 <I>n</I> 代表最后一个参数。最后参数 <I>n</I> 的值为 <B>arguments.length-1</B>。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>0...n 属性所返回的值就是传递给正在执行的函数的实际值。尽管实际上并不是一个参数数组，您还是可以按照与访问数组元素的方法相同的方式访问组成 <B>arguments </B>对象的各个参数。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的例子演示了 <B>arguments </B>对象的 <B>0...<I>n </I></B>属性的用法。要完全理解以下例子，请向该函数传递一个或多个参数：</P>
+
+<PRE class="code">function ArgTest(){
+   var s = "";
+   s += "The individual arguments are: "
+   for (n=0; n&lt; arguments.length; n++){
+      s += <code><b class="cfe">ArgTest.arguments[n]</b></code>;
+      s += " ";
+   }
+   return(s);
+}
+print(ArgTest(1, 2, "hello", new Date()));</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 5.5</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P>应用于：<A HREF="js56jsobjarguments.htm">arguments 对象</A> | <A HREF="js56jsobjfunction.htm">Function 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

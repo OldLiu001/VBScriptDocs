@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>CreateScript 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wslrfcreatescriptmethod"></A>CreateScript 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>创建 WshRemote 对象。</P>
+
+<PRE class="syntax"><I>object</I>.<B>CreateScript(</B><I>CommandLine</I>,[<I>MachineName</I>])</PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>WshController 对象。</dd>
+
+<DT><I>Commandline</I></DT>
+
+<DD>必需。表示脚本的路径和开关的字符串值（仿佛是从命令提示符处键入的一样）。脚本的路径看上去应象从控制器计算机系统（而不是要运行脚本的计算机系统）看到的那样。</dd>
+
+<DT><I>MachineName</I></DT>
+
+<DD>可选。表示远程计算机系统（要运行远程脚本的计算机）名称的字符串值。它是按照统一命名规则 (UNC) 规定的。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>CreateScript 方法返回 WshRemote 对象实例的句柄。脚本名中的路径部分未必是本地脚本 &#0151; 它可以引用网络共享上的脚本。这使您能坐在一个计算机系统旁，从另一个计算机系统检索脚本，然后在第三个计算机系统上运行它。如果未提供计算机名，远程脚本对象将在控制器计算机系统上运行（这是默认设置）。如果提供了计算机名，则远程脚本对象将运行于命名计算机系统之上。CreateScript 方法建立与远程计算机系统之间的连接，并对其进行设置以运行脚本，但是在您调用 WshRemote 对象的 Execute 方法之前，实际上不会启动脚本。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的示例演示 WshController 对象的 CreateScript 方法如何用于创建 WshRemote 对象（远程脚本的实例）。</P>
+<div class=filtered><span class="lang">[VBScript]</span>
+
+<PRE class="code">Dim Controller, RemoteScript
+Set Controller = WScript.CreateObject("WSHController")
+Set RemoteScript = Controller.<code><b class="cfe">CreateScript</b></code>("test.js", "remoteserver")
+WScript.ConnectObject RemoteScript, "remote_"
+RemoteScript.Execute
+
+Do While RemoteScript.Status &lt;&gt; 2 
+    WScript.Sleep 100
+Loop
+
+WScript.DisconnectObject RemoteScript
+
+Sub remote_Error
+    Dim theError
+    Set theError = RemoteScript.Error
+    WScript.Echo "Error " &amp; theError.Number &amp; " - Line: " &amp; theError.Line &amp; ", Char: " &amp; theError.Character &amp; vbCrLf &amp; "Description: " &amp; theError.Description
+    WScript.Quit -1
+End Sub</PRE>
+</div><!-- [end] -->
+<div class=filtered><span class="lang">[JScript]</span>
+
+<PRE class="code">var Controller = WScript.CreateObject("WSHController");
+var RemoteScript = Controller.<code><b class="cfe">CreateScript</b></code>("test.js", "remoteserver");
+WScript.ConnectObject(RemoteScript, "remote_");
+RemoteScript.Execute();
+
+while (RemoteScript.Status != 2) {
+    WScript.Sleep(100);
+}
+
+WScript.DisconnectObject(RemoteScript);
+
+function remote_Error()
+{
+    var theError = RemoteScript.Error;
+    WScript.Echo("Error " + theError.Number + " - Line: " + theError.Line + ", Char: " + theError.Character + "\nDescription: " + theError.Description);
+    WScript.Quit(-1);
+}</PRE>
+</div><!-- [end] -->
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsmthcreateobject.htm">CreateObject 方法</A> | <A HREF="#wslrfcreatescriptmethod">CreateScript 方法</A> | <A HREF="wslrfremote_wshobject.htm">WshRemote 对象</A> | <A HREF="wslrfexecutemethod.htm">Execute 方法</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

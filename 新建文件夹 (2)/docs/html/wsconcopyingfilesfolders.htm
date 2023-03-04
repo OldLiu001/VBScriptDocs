@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>复制文件和文件夹</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+<DIV STYLE="display:none;">
+<OBJECT ID="hhobj_1" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="js56jsmthCreateFolder">
+</OBJECT>
+<OBJECT ID="hhobj_2" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="jsobjFileSystem">
+</OBJECT>
+<OBJECT ID="hhobj_3" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="jsmthCopyFile">
+</OBJECT>
+<OBJECT ID="hhobj_4" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="jsmthCopyFolder">
+</OBJECT>
+<OBJECT ID="hhobj_5" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="js56jsmthCreateFolder">
+</OBJECT>
+<OBJECT ID="hhobj_6" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="jsmthMoveFolder">
+</OBJECT>
+</DIV>
+
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsconcopyingfilesfolders"></A>复制文件和文件夹</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>文件系统的操纵（如复制文件和文件夹）需要用到文件系统对象 (FSO)。下面的脚本将演示如何使用 FSO 来复制文件和文件夹。</P>
+
+<H2 class="dtH2">复制文件</H2>
+
+<P>下面的脚本将演示如何将文件从一个本地文件夹复制到另一个本地文件夹中。首先，脚本将创建一个文件系统对象。CopyFile 方法（文件系统对象的一个方法）执行文件复制操作。CopyFile 方法采用两个参数，即源文件和目标文件。</P>
+
+<PRE class="code">// JScript。
+var FSO = WScript.CreateObject("Scripting.FileSystemObject");
+FSO.<code><b class="cfe">CopyFile</b></code>("c:\\COMPlusLog.txt"，"c:\\x\\");
+
+' VBScript。
+Dim FSO
+Set FSO = CreateObject("Scripting.FileSystemObject")
+FSO.<code><b class="cfe">CopyFile</b></code> "c:\COMPlusLog.txt"，"c:\x\"</PRE>
+
+<H2 class="dtH2">复制文件夹</H2>
+
+<P>下面的脚本将演示如何将一个本地文件夹中的内容复制到本地计算机上的另一个文件夹中。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;目标文件夹必须已经存在，该方法才能成功。有关如何用 WSH 创建目录的信息，请参阅 <A HREF="JavaScript:hhobj_1.Click()">CreateFolder 方法</A>。</BLOCKQUOTE>
+
+<P>首先，脚本将创建一个文件系统对象。CopyFolder 方法（文件系统对象的一个方法）执行文件夹复制操作。CopyFolder 方法采用两个参数，即源文件夹和目标文件夹。</P>
+
+<PRE class="code">// JScript。
+var FSO = WScript.CreateObject("Scripting.FileSystemObject");
+FSO.<code><b class="cfe">CopyFolder</b></code>("c:\\x"，"c:\\y");
+
+' VBScript。
+Dim FSO
+Set FSO = CreateObject("Scripting.FileSystemObject")
+FSO.<code><b class="cfe">CopyFolder</b></code> "c:\x"，"c:\y"</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsconexecutingfilemanagementoperationsprogrammatically.htm">执行文件管理操作</A> | <A HREF="JavaScript:hhobj_2.Click()">FileSystemObject</A> | <A HREF="JavaScript:hhobj_3.Click()">CopyFile 方法</A> | <A HREF="JavaScript:hhobj_4.Click()">CopyFolder 方法</A> | <A HREF="JavaScript:hhobj_5.Click()">CreateFolder 方法</A> | <A HREF="JavaScript:hhobj_6.Click()">MoveFolder 方法</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

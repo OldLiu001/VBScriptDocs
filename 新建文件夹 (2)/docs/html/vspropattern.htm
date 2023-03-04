@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Pattern 属性</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vspropattern"></A>Pattern 属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>设置或返回被搜索的正则表达式模式。</P>
+
+<PRE class="syntax"><I>object</I><B>.Pattern</B> [= "<I>searchstring</I>"]</PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。总是一个 <B>RegExp</B> 对象变量。</dd>
+
+<DT><I>searchstring</I></DT>
+
+<DD>可选项的。被搜索的正则字符串表达式。它可能包含<B>设置</B>部分表格中的各种正则表达式字符。</dd>
+</DL>
+
+<H4 class="dtH4">设置</H4>
+
+<P>在书写正则表达式的模式时使用了特殊的字符和序列。下表描述了可以使用的字符和序列，并给出了实例。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=14%>字符</TH>
+<TH width=86%>描述</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>\ </B></TD>
+<TD width=86%>将下一个字符标记为特殊字符或字面值。例如"n"与字符"n"匹配。"\n"与换行符匹配。序列"\\"与"\"匹配，"\("与"("匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>^ </B></TD>
+<TD width=86%>匹配输入的开始位置。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>$ </B></TD>
+<TD width=86%>匹配输入的结尾。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>* </B></TD>
+<TD width=86%>匹配前一个字符零次或几次。例如，"zo*"可以匹配"z"、"zoo"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>+ </B></TD>
+<TD width=86%>匹配前一个字符一次或多次。例如，"zo+"可以匹配"zoo",但不匹配"z"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>? </B></TD>
+<TD width=86%>匹配前一个字符零次或一次。例如，"a?ve?"可以匹配"never"中的"ve"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>.</TD>
+<TD width=86%>匹配换行符以外的任何字符。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>(</B>pattern<B>)</B> </TD>
+<TD width=86%>与模式匹配并记住匹配。匹配的子字符串可以从作为结果的 <B>Matches</B> 集合中使用 Item <B>[0]...[n]</B>取得。如果要匹配括号字符(和 )，可使用"\(" 或 "\)"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>x<B>|</B>y</TD>
+<TD width=86%>匹配 <I>x</I> 或 <I>y</I>。例如 "z|wood" 可匹配 "z" 或 "wood"。"(z|w)oo" 匹配 "zoo" 或 "wood"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>{<I>n</I>}</TD>
+<TD width=86%><I>n</I> 为非负的整数。匹配恰好<I>n</I>次。例如，"o{2}" 不能与 "Bob 中的 "o" 匹配，但是可以与"foooood"中的前两个o匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>{<I>n</I>,} </TD>
+<TD width=86%><I>n</I> 为非负的整数。匹配至少<I>n</I>次。例如，"o{2,}"不匹配"Bob"中的"o"，但是匹配"foooood"中所有的o。"o{1,}"等价于"o+"。"o{0,}"等价于"o*"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>{</B><I>n</I><B>,</B><I>m</I><B>}</B> </TD>
+<TD width=86%><I>m</I> 和 <I>n</I> 为非负的整数。匹配至少 <I>n</I> 次，至多 <I>m</I> 次。例如，"o{1,3}" 匹配 "fooooood"中前三个o。"o{0,1}"等价于"o?"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>[</B><I>xyz</I><B>]</B> </TD>
+<TD width=86%>一个字符集。与括号中字符的其中之一匹配。例如，"[abc]" 匹配"plain"中的"a"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>[^</B><I>xyz</I><B>]</B> </TD>
+<TD width=86%>一个否定的字符集。匹配不在此括号中的任何字符。例如，"[^abc]" 可以匹配"plain"中的"p".</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>[</B><I>a-z</I><B>]</B> </TD>
+<TD width=86%>表示某个范围内的字符。与指定区间内的任何字符匹配。例如，"[a-z]"匹配"a"与"z"之间的任何一个小写字母字符。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>[^</B><I>m-z</I><B>]</B> </TD>
+<TD width=86%>否定的字符区间。与不在指定区间内的字符匹配。例如，"[m-z]"与不在"m"到"z"之间的任何字符匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\b </TD>
+<TD width=86%>与单词的边界匹配，即单词与空格之间的位置。例如，"er\b" 与"never"中的"er"匹配，但是不匹配"verb"中的"er"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\B </TD>
+<TD width=86%>与非单词边界匹配。"ea*r\B"与"never early"中的"ear"匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\d </TD>
+<TD width=86%>与一个数字字符匹配。等价于[0-9]。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\D </TD>
+<TD width=86%>与非数字的字符匹配。等价于[^0-9]。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\f </TD>
+<TD width=86%>与分页符匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\n </TD>
+<TD width=86%>与换行符字符匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\r </TD>
+<TD width=86%>与回车字符匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\s </TD>
+<TD width=86%>与任何白字符匹配，包括空格、制表符、分页符等。等价于"[&nbsp;\f\n\r\t\v]"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\S </TD>
+<TD width=86%>与任何非空白的字符匹配。等价于"[^&nbsp;\f\n\r\t\v]"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\t </TD>
+<TD width=86%>与制表符匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\v </TD>
+<TD width=86%>与垂直制表符匹配。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\w </TD>
+<TD width=86%>与任何单词字符匹配，包括下划线。等价于"[A-Za-z0-9_]"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\W </TD>
+<TD width=86%>与任何非单词字符匹配。等价于"[^A-Za-z0-9_]"。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>\</B>num </TD>
+<TD width=86%>匹配 <I>num</I>个，其中 <I>num</I> 为一个正整数。引用回到记住的匹配。例如，"(.)\1"匹配两个连续的相同的字符。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%><B>\</B><I>n</I></TD>
+<TD width=86%>匹配 <I>n</I>，其中<I>n</I> 是一个八进制换码值。八进制换码值必须是 1, 2 或 3 个数字长。例如，"\11" 和 "\011" 都与一个制表符匹配。"\0011"等价于"\001" 与 "1"。八进制换码值不得超过 256。否则，只有前两个字符被视为表达式的一部分。允许在正则表达式中使用ASCII码。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>\x<I>n</I></TD>
+<TD width=86%>匹配<I>n</I>，其中<I>n</I>是一个十六进制的换码值。十六进制换码值必须恰好为两个数字长。例如，"\x41"匹配"A"。"\x041"等价于"\x04" 和 "1"。允许在正则表达式中使用 ASCII 码。</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">说明</H4>
+
+<P>下面的代码说明了 <B>Pattern</B> 属性的用法： </P>
+
+<PRE class="code">Function RegExpTest(patrn, strng)
+   Dim regEx,Match,Matches   '建立变量。
+   Set regEx = New RegExp   '建立一般表达式。
+   <code><b class="cfe">regEx.Pattern=</b></code> patrn   '设置模式。
+   regEx.IgnoreCase = True   '设置是否区分大小写。
+   regEx.Global = True   '设置全局可用性。
+   Set Matches=regEx.Execute(string)   '执行搜索。
+   For each match in matches   '重复匹配集合
+      RetStr=RetStr &amp;"Match found at position "
+      RetStr=RetStr&amp;Match.FirstIndex&amp;".Match Value is '"
+      RetStr=RetStr&amp;Match.Value&amp;"'."&amp;vbCRLF
+   Next
+   RegExpTest=RetStr
+End Function
+MsgBox(RegExpTest("is.", "IS1 is2 IS3 is4"))</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 2</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsproglobal.htm">Global 属性</A> | <A HREF="vsproignorecase.htm">IgnoreCase 属性</A></P>
+
+<P>应用于：<A HREF="vsobjregexp.htm">RegExp 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

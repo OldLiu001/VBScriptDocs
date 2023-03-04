@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>hasOwnProperty 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsmthhasownproperty"></A>hasOwnProperty 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回一个布尔值，指出一个对象是否具有指定名称的属性。</P>
+
+<PRE class="syntax"><I>object.</I><B>hasOwnProperty(</B><I>proName</I><B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。一个对象的实例。</dd>
+
+<DT><I>proName</I></DT>
+
+<DD>必选项。一个属性名称的字符串值。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>如果 <I>object</I> 具有指定名称的属性，那么 <B>hasOwnProperty </B>方法返回 <B>true</B>；反之则返回 <B>false</B>。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>在下例中，所有的 <B>String </B>对象共享一个公用 split 方法。下面的代码将输出 <B>false</B> 和 <B>true</B>。</P>
+
+<PRE class="code">var s = new String("JScript");
+print(<code><b class="cfe">s.hasOwnProperty(</b></code>"split"<code><b class="cfe">)</b></code>);
+print(<code><b class="cfe">String.prototype.hasOwnProperty(</b></code>"split"<code><b class="cfe">)</b></code>);</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 5.5</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsoprin.htm">in 运算符</A></P>
+
+<P>应用于：<A HREF="js56jsobjobject.htm">Object 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

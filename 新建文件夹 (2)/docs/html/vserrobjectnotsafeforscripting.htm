@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>脚本对象不安全</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vserrobjectnotsafeforscripting"></A>脚本对象不安全</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>试图使用未被标识为脚本安全的对象。对象创建是否安全由主机决定。总的来说，允许不信任脚本进行有害操作（例如操作硬盘）的对象是不安全的。</P>
+
+<P>例如，使用作为客户端的Microsoft Internet Explorer 运行<B> FileScriptingObject </B>是不安全的，但是可以在带有Windows Script Host的本地机器使用该对象。</P>
+
+<P class="labelproc"><B>要纠正该错误</B>
+
+<UL type="disc">
+	<LI>确保在使用一个安全的对象。</li>
+
+	<LI>与对象开发者联系看是否为安全版本。</li>
+
+	<LI>阅读对象文档发现该对象是否安全。</li>
+</UL>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

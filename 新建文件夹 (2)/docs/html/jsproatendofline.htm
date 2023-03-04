@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>AtEndOfLine 属性 (FileSystemObject)</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsproatendofline"></A>AtEndOfLine 属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>如果文件指针正好位于 <B>TextStream</B> 文件中的行尾符之前，则返回<B>true</B>，否则返回 <B>false</B>。只读。</P>
+
+<PRE class="syntax"><I>object</I>.AtEndOfLine</PRE>
+
+<P><I>object</I> 总是 <B>TextStream</B> 对象的名称。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P><B>AtEndOfLine</B> 属性只能应用于打开用来读取的<B>TextStream</B> 文件；否则将产生错误。</P>
+
+<P>下面的代码演示了<B>AtEndOfLine</B> 属性的用法：</P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>function GetALine(filespec)
+{
+   var fso, a, s, ForReading;
+   ForReading = 1, s = "";
+   fso = new ActiveXObject("Scripting.FileSystemObject");
+   a = fso.OpenTextFile(filespec, ForReading, false);
+   while (!a<code><b class="cfe">.AtEndOfLine</b></code>)
+   {
+      s += a.Read(1);
+   }
+   a.Close( );
+   return(s);
+}
+<SPAN class="lang">[VBScript]
+</SPAN>Function ReadEntireFile(filespec)
+   Const ForReading = 1
+   Dim fso, theFile, retstring
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   Set theFile = fso.OpenTextFile(filespec, ForReading, False)
+   Do While theFile<code><b class="cfe">.AtEndOfLine</b></code> &lt;&gt; True
+      retstring = theFile.Read(1)
+   Loop
+   theFile.Close
+   ReadEntireFile = retstring
+End Function</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsproatendofstream.htm">AtEndOfStream 属性</A></P>
+
+<P>应用于：<A HREF="jsobjtextstream.htm">TextStream 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

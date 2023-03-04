@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>脚本部件文件的内容</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letfilecont"></A>脚本部件文件的内容</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>Windows&reg; 脚本部件文件采用 XML (可扩展标记语言)来编写，这种文件与 HTML 文件很相似，但包含了用于定义脚本部件及其操作的特有元素。用来定义脚本部件的元素不是 HTML 标记，而是专门用于脚本部件定义的 XML 元素。</P>
+
+<P>一个基本的脚本部件文件包含这些元素： 
+
+<UL type="disc">
+	<LI><B>&lt;component&gt; 和 &lt;package&gt; 元素</B>&nbsp;&nbsp;&nbsp;&nbsp;&lt;component&gt; 元素包含的是一个完整的脚本部件定义。在同一个 .wsc 文件中可以出现多个 &lt;component&gt; 元素，但这些元素应包含在一个 &lt;package&gt; 元素内。</li>
+
+	<LI><B>&lt;registration&gt; 元素</B>&nbsp;&nbsp;&nbsp;包括用来将脚本部件注册为 COM 部件的信息。如果宿主应用程序 （如 Microsoft&reg; Internet Explorer 5.0）在创建该脚本部件的实例时没有直接使用 Windows 注册表，则该元素不是必需的。</li>
+
+	<LI><B>&lt;public&gt; 元素</B>&nbsp;&nbsp;&nbsp;包含脚本部件所说明的属性、方法和事件的定义。这些定义指向定义在独立的 &lt;script&gt; 块中的变量或函数。</li>
+
+	<LI><B>&lt;implements&gt;</B> <B>元素</B>&nbsp;&nbsp;&nbsp;给脚本部件指定 COM 接口处理程序，这将确定该脚本部件属于哪种 COM 部件类型。例如，通过指定 &lt;implements type=ASP&gt;，就可以实现 ASP 接口处理程序，并因此在脚本部件中可以访问 ASP 对象模型。
+<P>&lt;public&gt; 元素即指定了脚本部件将实现 COM Automation 接口处理程序。因此，对 Automation 处理程序无需创建 &lt;implements&gt; 元素。
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>脚本部件运行库包括用于 Automation （使用 &lt;public&gt; 元素说明的）、用于 ASP 以及用于 Internet Explorer 5.0 DHTML Behavior 的接口处理程序。其他接口处理程序可以作为外部 DLL 获得。关于附加的接口处理程序和脚本部件的详细信息，请参阅 Microsoft Scripting Technologies Web 站点。</BLOCKQUOTE>
+</li>
+
+	<LI><B>&lt;script&gt; 元素</B>&nbsp;&nbsp;&nbsp;包含用来实现脚本部件逻辑的脚本，这取决于所创建的 COM 部件类型。例如，如果要创建的是 COM Automation 部件，则可以在 &lt;public&gt; 元素中声明属性、方法和事件，然后用一个或多个 &lt;script&gt; 元素编写脚本来定义这些内容。.</li>
+
+	<LI><B>&lt;object&gt; 元素&nbsp;&nbsp;&nbsp;</B>包含脚本中所使用的某个对象的信息，如另一个 COM 部件的信息。</li>
+
+	<LI><B>&lt;resource&gt; 元素</B>&nbsp;&nbsp;&nbsp;包含不应被硬编码到脚本部件代码中的值。资源元素可能包括在各个版本间可能更改的信息，可能需要翻译的字符串以及其他值。</li>
+
+	<LI><B>&lt;reference&gt; 元素</B>&nbsp;&nbsp;&nbsp;引用在脚本中需要使用的类型库。</li>
+
+	<LI><B>&lt;comment&gt; 元素&nbsp;&nbsp;&nbsp;</B>包含在分析和执行该脚本部件时将被忽略的文字。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>如果希望所创建的 .wsc 文件的 XML 遵守 XML 标准，您可以指定脚本部件的 XML 语法分析器检查 XML 语法。例如，如果今后可能会使用 XML 编辑器来编辑该文件，那么这种要求是很有用的。不过，这通常是不受关注的。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+</li>
+</UL>
+
+
+
+<H2 class="dtH2"><A NAME="scriptletssmscskeletonscript_componentfi"></A>脚本部件文件的框架</H2>
+
+<P>下面的示例演示了一个脚本部件文件的结构。</P>
+
+<PRE class="code">&lt;?XML version="1.0"?&gt;
+&lt;package&gt;
+&lt;?component error="true" debug="true"?&gt;
+
+   &lt;comment&gt;
+      本框架演示了脚本部件的各种元素
+      在 .wsc 文件中是如何安置的。
+   &lt;/comment&gt;
+
+&lt;component id="MyScriptlet"&gt;
+   &lt;registration
+      progid="<I>progID</I>"
+      description="<I>description</I>"
+      version="<I>version</I>"
+      clsid="<I>{00000000-0000-0000-000000000000}</I>"/&gt;
+
+   &lt;reference object="<I>progID</I>"&gt;
+
+   &lt;public&gt;
+      &lt;property name="<I>propertyname</I>"/&gt;
+      &lt;method name="<I>methodname</I>"/&gt;
+      &lt;event name="<I>eventname</I>"/&gt;
+   &lt;/public&gt;
+
+   &lt;implements type=<I>COMhandlerName</I> id=<I>internalName</I>&gt;
+      (interface-specific definitions here)
+   &lt;/implements&gt;
+
+   &lt;script language="VBScript"&gt;
+      &lt;![CDATA[
+      dim <I>propertyname</I>
+      Function <I>methodname</I>()
+      ' Script here.
+      End Function
+      ]]&gt;
+   &lt;/script&gt;
+
+   &lt;script language="JScript"&gt;
+      &lt;![CDATA[
+      function get_<I>propertyname</I>()
+      { // Script here.
+      }
+      function put_<I>propertyname</I>(<I>newValue</I>)
+      { // Script here.
+         fireEvent(<I>eventname</I>)
+      }
+      ]]&gt;
+   &lt;/script&gt;
+
+   &lt;object id="<I>objID</I>" classid="<I>clsid:00000000-0000-0000-000000000000</I>"&gt;
+   &lt;resource ID="<I>resourceID1</I>"&gt;<I>string or number here</I>&lt;/resource&gt;
+   &lt;resource ID="<I>resourceID2</I>"&gt;<I>string or number here</I>&lt;/resource&gt;
+&lt;/component&gt;
+&lt;/package&gt;</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>在 XML 中，您可以指定没有内容的元素（只有属性），如上面示例中的 &lt;property&gt; 和 &lt;method&gt; 元素，方法是用 /&gt;来结束该元素。</BLOCKQUOTE>
+
+<P>请注意：
+
+<UL type="disc">
+	<LI>在开始处的 <A HREF="letelexml.htm">&lt;?XML&nbsp;?&gt;</A> 声明说明这是一个 XML 文件，将遵守 XML 协议。该声明是可选的；如果遗漏该声明，则在创建该脚本部件的元素时可以使用稍微宽松一些的语法。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</li>
+
+	<LI>在本示例中 <A HREF="letelepackage.htm">&lt;package&gt;</A> 元素是可选的，因为该文件只包含一个 <A HREF="letelescriptlet.htm">&lt;component&gt;</A> 元素。</li>
+
+	<LI><A HREF="leteleqscriptlet.htm">&lt;?component?&gt;</A> 处理指令包括用来指定错误检查选项的特性。详细信息请参阅<A HREF="letckerror.htm">检查脚本部件文件中的错误</A>。如果没有包括该元素，则缺省选项是所有都不选中。</li>
+
+	<LI><A HREF="letelecomment.htm">&lt;comment&gt;</A> 元素可以出现在脚本部件中的任何位置。</li>
+
+	<LI>在所有情况下 <A HREF="leteleregistration.htm">&lt;registration&gt;</A> 元素都不是必需的。例如，如果脚本部件实现的是 Internet Explorer 5.0 中的 DHTML Behavior 接口处理程序，则不需要进行注册，因为 Internet Explorer 直接在页面上按照所检测的操作进行实例化。有关注册要求的详细信息，请参阅所要实现的接口处理程序的有关文档，此外也要注意使用该脚本部件将是哪种主机。</li>
+
+	<LI><A HREF="letelereference.htm">&lt;reference&gt;</A> 元素允许您在脚本部件中包括一个类型库，以便在脚本中使用这个库的常数。</li>
+
+	<LI><A HREF="letelepublic.htm">&lt;public&gt;</A> 元素内包括了 <A HREF="leteleproperty.htm">&lt;property&gt;</A>、<A HREF="letelemethod.htm">&lt;method&gt;</A> 和 <A HREF="leteleevent.htm">&lt;event&gt;</A> 元素。相应的定义这些内容的脚本位于脚本部件文件的后面。</li>
+
+	<LI><A HREF="leteleimplements.htm">&lt;implements&gt;</A> 元素可以用来获得非缺省的 COM 接口。例如，您可以通过下述方式用 &lt;implements&gt; 的 type 来说明 ASP 接口：
+<PRE class="code">&lt;implements type="ASP" id="iASP"&gt;</PRE>
+
+<P>在 &lt;implements&gt; 元素中出现的确切元素取决于您所要实现的接口类型。
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>此处显示的 &lt;implements&gt; 元素有一个 id 属性。不过，该属性是可选的，除非必须区分对象或变量。详细信息请参阅 <A HREF="leteleimplements.htm">&lt;implements&gt;</A> 元素。</BLOCKQUOTE>
+</li>
+
+	<LI>在这个框架文件中有两个脚本元素，一个用于 VBScript，一个用于 JScript。如果您只使用一种脚本语言，则不需多个<A HREF="letelescript.htm">&lt;script&gt;</A> 元素。由于文件的开始有 &lt;?XML&nbsp;?&gt; 声明，因此必需要有一个 CDATA 项来使 &lt;script&gt; 元素中的脚本不透明。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</li>
+
+	<LI><A HREF="leteleobject.htm">&lt;object&gt;</A> 元素创建指向该脚本部件的脚本中所使用的对象的引用。</li>
+</UL>
+
+<P>在创建该框架后，再根据所要实现的接口处理程序，来填充这些元素以定义该脚本部件的功能。</P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letckerror.htm">检查脚本部件文件中的错误</A> | <A HREF="letcreatetypelib.htm">创建脚本部件类型库</A> | <A HREF="letcreatereg.htm">创建注册信息</A> | <A HREF="letexpevt.htm">说明事件</A> | <A HREF="letexpmth.htm">说明方法</A> | <A HREF="letexppro.htm">说明属性</A> | <A HREF="letimplasp.htm">实现 ASP 脚本部件</A> | <A HREF="letimpldhtml.htm">实现 DHTML Behavior 脚本部件</A> | <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A> | <A HREF="letusingwiz.htm">使用脚本部件向导</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

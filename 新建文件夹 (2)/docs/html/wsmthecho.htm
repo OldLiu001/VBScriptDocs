@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Echo 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsmthecho"></A>Echo 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>将文本输出到消息框中或命令控制台窗口。</P>
+
+<PRE class="syntax"><I>object</I>.<B>Echo</B> [<I>Arg1</I>] [,<I>Arg2</I>] [,<I>Arg3</I>] ... </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>WScript 对象。</dd>
+
+<DT><I>Arg1、Arg2、Arg3 ...</I></DT>
+
+<DD>可选。表示要显示的项的列表的字符串值。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>Echo 方法的运行方式取决于使用的 WSH 引擎。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=34%>WSH 引擎</TH>
+<TH width=66%>文本输出</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=34%>Wscript.exe</TD>
+<TD width=66%>图形消息框</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=34%>Cscript.exe</TD>
+<TD width=66%>命令控制台窗口</TD>
+</TR>
+</table></div>
+
+<P>显示的各项之间用空白字符隔开。如果使用 CScript.exe，则各项之间用换行符隔开。如果未向 Echo 方法提供任何作为参数的项，则输出一个空行。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的示例使用 Echo 方法显示当前的域名、计算机名和用户名，并显示驱动器和打印机的网络映射信息。</P>
+
+<PRE class="code">&lt;package&gt;
+&lt;job id="vbs"&gt;
+&gt;&lt;script language="VBScript"&gt;
+Set WshNetwork = WScript.CreateObject("WScript.Network")
+Set oDrives = WshNetwork.EnumNetworkDrives
+Set oPrinters = WshNetwork.EnumPrinterConnections
+WScript.<code><b class="cfe">Echo</b></code> "Domain = " &amp; WshNetwork.UserDomain
+WScript.<code><b class="cfe">Echo</b></code> "Computer Name = " &amp; WshNetwork.ComputerName
+WScript.<code><b class="cfe">Echo</b></code> "User Name = " &amp; WshNetwork.UserName
+WScript.<code><b class="cfe">Echo</b></code> 
+WScript.<code><b class="cfe">Echo</b></code> "Network drive mappings:"
+For i = 0 to oDrives.Count - 1 Step 2
+WScript.<code><b class="cfe">Echo</b></code> "Drive " &amp; oDrives.Item(i) &amp; " = " &amp; oDrives.Item(i+1)
+Next
+WScript.<code><b class="cfe">Echo</b></code> 
+WScript.<code><b class="cfe">Echo</b></code> "Network printer mappings:"
+For i = 0 to oPrinters.Count - 1 Step 2
+WScript.<code><b class="cfe">Echo</b></code> "Port " &amp; oPrinters.Item(i) &amp; " = " &amp; oPrinters.Item(i+1)
+Next
+&lt;/script&gt;
+&lt;/job&gt;
+
+&lt;job id="js"&gt;
+&lt;script language="JScript"&gt;
+var WshNetwork = WScript.CreateObject("WScript.Network");
+var oDrives = WshNetwork.EnumNetworkDrives();
+var oPrinters = WshNetwork.EnumPrinterConnections();
+WScript.<code><b class="cfe">Echo</b></code>("Domain = " + WshNetwork.UserDomain);
+WScript.<code><b class="cfe">Echo</b></code>("Computer Name = " + WshNetwork.ComputerName);
+WScript.<code><b class="cfe">Echo</b></code>("User Name = " + WshNetwork.UserName);
+WScript.<code><b class="cfe">Echo</b></code>();
+WScript.<code><b class="cfe">Echo</b></code>("Network drive mappings:");
+for(i=0; i&lt;oDrives.Count(); i+=2){
+WScript.<code><b class="cfe">Echo</b></code>("Drive " + oDrives.Item(i) + " = " + oDrives.Item(i+1));
+         }
+WScript.<B>Echo</B>();
+WScript.<code><b class="cfe">Echo</b></code>("Network printer mappings:");
+for(i=0; i&lt;oPrinters.Count(); i+=2){
+WScript.<code><b class="cfe">Echo</b></code>("Port " + oPrinters.Item(i) + " = " + oPrinters.Item(i+1));
+         }
+&lt;/script&gt;
+&lt;/job&gt;
+&lt;/package&gt;</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsrunningyourscripts.htm">运行脚本</A> | <A HREF="wsobjwscript.htm">WScript 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

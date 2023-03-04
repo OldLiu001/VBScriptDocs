@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>&lt;unnamed&gt; 元素</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsconunnamedelement"></A>&lt;unnamed&gt; 元素</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>对脚本的未命名参数进行说明。</P>
+
+<PRE class="syntax"><B>&lt;unnamed
+</B>&nbsp;&nbsp;&nbsp;<B>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</B>=&nbsp;<I>unnamedname</I>
+&nbsp;&nbsp;&nbsp;<B>helpstring&nbsp;</B>=&nbsp;<I>helpstring</I>
+&nbsp;&nbsp;&nbsp;<B>many&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</B>=&nbsp;<I>boolean</I>
+&nbsp;&nbsp;&nbsp;<B>required&nbsp;&nbsp;&nbsp;</B>=&nbsp;<I>boolean or integer</I>
+<B>/&gt;</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>name</I></DT>
+
+<DD>用于在用法中表示该参数的字符串。该值不用在别处。</dd>
+
+<DT><I>helpstring</I></DT>
+
+<DD>表示有关参数帮助说明的字符串。WSH 运行时使用 ShowUsage<B> </B>方法或 /? 参数提供帮助说明。</dd>
+
+<DT><I>many</I></DT>
+
+<DD>可选。布尔值。如果为 true，则该参数重复的次数可以比由所需的属性指定的次数多。否则，所需的属性正好表示使用所需参数的次数。有关详细信息，请参阅下面的示例。</dd>
+
+<DT><I>required</I></DT>
+
+<DD>可选。指明该参数在命令行中出现次数的整数值。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>"&lt;unnamed&gt;" 元素是用一对 runtime 标记括起来的。</P>
+
+<P>名为 <code class="ce">server</code> 的参数在命令行提供一个 <code class="ce">/server</code><I> </I>参数，在 WSHNamed 参数集中提供名为 <code class="ce">server</code> 的参数。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;未命名元素的名称属性只用于显示。</BLOCKQUOTE>
+
+<P>当设置“必需”属性时，布尔值将被转换成整数；"true" 变成 1，而 "false" 变成 0。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面是两个有关各种属性如何影响未命名元素的用法的示例。首先，是一个简单的示例：</P>
+
+<PRE class="code">&lt;runtime&gt;
+&lt;unnamed
+  name="filename"
+  helpstring="The file to process"
+  many="false"
+  required="true"
+&lt;/&gt;
+&lt;/runtime&gt;</PRE>
+
+<P>此代码将生成以下结果：</P>
+
+<PRE class="code">用法：example.wsf 文件名</PRE>
+
+<P>选项：</P>
+
+<P>文件名：要处理的文件</P>
+
+<P>将它改为：</P>
+
+<PRE class="code">&lt;runtime&gt;
+&lt;unnamed
+  name="filename"
+  helpstring="The files to process"
+  many="false"
+  required="3"
+&lt;/ &gt;
+&lt;/runtime&gt;</PRE>
+
+<P>则输出变为：</P>
+
+<P>用法：example.wsf 文件名1 文件名2 文件名3</P>
+
+<P>选项：</P>
+
+<P>文件名：要处理的文件</P>
+
+<P>许多开关将显示省略号，以表示您可以输入多于指定数量的文件。如果该示例改为：</P>
+
+<PRE class="code">&lt;runtime&gt;
+&lt;unnamed
+  name="filename"
+  helpstring="The file(s) to process"
+  many="true"
+  required="1"
+&lt;/&gt;
+&lt;/runtime&gt;</PRE>
+
+<P>则输出变为：</P>
+
+<P>用法：example.wsf 文件名1 [文件名2...]</P>
+
+<P>选项：</P>
+
+<P>文件名：要处理的文件。</P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wslrfshowusagemethod.htm">ShowUsage 方法</A> | <A HREF="wslrfruntimeelement.htm">&lt;runtime&gt; 元素</A> | <A HREF="wslrfnamedelement.htm">&lt;named&gt; 元素</A> | <A HREF="wslrfdescriptionelement.htm">&lt;description&gt; 元素</A> | <A HREF="wslrfexampleelement.htm">&lt;example&gt; 元素</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

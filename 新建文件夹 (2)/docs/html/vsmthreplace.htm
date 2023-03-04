@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Replace 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsmthreplace"></A>Replace 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>替换在正则表达式查找中找到的文本。</P>
+
+<PRE class="syntax">object<B>.Replace(</B>string1, string2<B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。总是一个 <B>RegExp</B> 对象的名称。</dd>
+
+<DT><I>string1</I></DT>
+
+<DD>必选项。<I>string1</I> 是将要进行文本替换的字符串。</dd>
+
+<DT><I>string2</I></DT>
+
+<DD>必选项。<I>string2</I> 是替换文本字符串。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>被替换的文本的实际模式是通过 <B>RegExp</B> 对象的 <B>Pattern</B> 属性设置的。</P>
+
+<P><B>Replace</B> 方法返回 <I>string1</I> 的副本，其中的 <B>RegExp.Pattern</B> 文本已经被替换为 <I>string2</I>。如果没有找到匹配的文本，将返回原来的 <I>string1</I> 的副本。</P>
+
+<P>下面的例子说明了 <B>Replace</B> 方法的用法。</P>
+
+<PRE class="code">Function ReplaceTest(patrn, replStr)
+  Dim regEx, str1               ' 建立变量。
+  str1 = "The quick brown fox jumped over the lazy dog."
+  Set regEx = New RegExp               ' 建立正则表达式。
+  regEx.Pattern = patrn               ' 设置模式。
+  regEx.IgnoreCase = True               ' 设置是否区分大小写。
+  ReplaceTest =<code><b class="cfe"> regEx.Replace(</b></code>str1<code><b class="cfe">,</b></code> replStr<code><b class="cfe">)</b></code>         ' 作替换。
+End Function
+
+MsgBox(ReplaceTest("fox", "cat"))      ' 将 'fox' 替换为 'cat'。</PRE>
+
+<P>；另外，<B>Replace</B> 方法在模式中替换 subexpressions 。下面对以前示例中函数的调用，替换了原字符串中的所有字对： </P>
+
+<PRE class="code">MsgBox(ReplaceText("(\S+)(\s+)(\S+)", "$3$2$1"))   ' 交换词对.</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 5</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsmthexecute.htm">Execute 方法</A> | <A HREF="vsmthtest.htm">Test 方法</A></P>
+
+<P>应用于：<A HREF="vsobjregexp.htm">RegExp 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

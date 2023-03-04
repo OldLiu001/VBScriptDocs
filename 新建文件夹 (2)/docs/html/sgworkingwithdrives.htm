@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>处理驱动器和文件夹</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="sgworkingwithdrives"></A>处理驱动器和文件夹</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>使用 <B>FileSystemObject</B> (FSO) 对象模型，可以有计划地处理驱动器和文件夹，就像在 Windows 资源管理器中交互式地处理它们一样。可以复制和移动文件夹，获取有关驱动器和文件夹的信息，等等。</P>
+
+<H2 class="dtH2">获取有关驱动器的信息</H2>
+
+<P>可以用 <B>Drive</B> 对象来获得有关各种驱动器的信息，这些驱动器是实物地或通过网络连接到系统上的。它的属性可以用来获得下面的信息内容：
+
+<UL type="disc">
+	<LI>驱动器的总容量，以字节为单位（<B>TotalSize</B> 属性） </li>
+
+	<LI>驱动器的可用空间是多少，以字节为单位（<B>AvailableSpace</B> 或 <B>FreeSpace</B> 属性） </li>
+
+	<LI>哪个号被赋给了该驱动器（<B>DriveLetter</B> 属性） </li>
+
+	<LI>驱动器的类型是什么，如可移动的、固定的、网络的、CD-ROM 或 RAM 磁盘（<B>DriveType</B> 属性） </li>
+
+	<LI>驱动器的序列号（SerialNumber 属性） </li>
+
+	<LI>驱动器使用的文件系统类型，如 FAT、FAT32、NTFS 等等（<B>FileSystem</B> 属性） </li>
+
+	<LI>驱动器是否可以使用（<B>IsReady</B> 属性） </li>
+
+	<LI>共享和/或卷的名字（ShareName 和 VolumeName 属性） </li>
+
+	<LI>驱动器的路径或根文件夹（<B>Path</B> 和 <B>RootFolder</B> 属性） </li>
+</UL>
+
+<P>请考察<A HREF="sgfsosample.htm#driveinfo">示例代码</A>，来领会如何在 <B>FileSystemObject</B> 中使用这些属性。</P>
+
+<H4 class="dtH4">Drive 对象的用法示例</H4>
+
+<P>使用 <B>Drive</B> 对象来收集有关驱动器的信息。在下面的代码中，没有对实际的 <B>Drive</B> 对象的引用；相反，使用 <B>GetDrive</B> 方法来获得现有 <B>Drive</B> 对象的引用（在这个例子中就是 drv）。</P>
+
+<P>下面示例示范了如何使用 <B>Drive</B> 对象： </P>
+
+<PRE class="code"><SPAN class="lang">[VBScript]
+</SPAN>Sub ShowDriveInfo(drvPath)
+   Dim fso, drv, s
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   Set drv = fso.GetDrive(fso.GetDriveName(drvPath))
+   s = "Drive " &amp; UCase(drvPath) &amp; " - "
+   s = s &amp; drv.VolumeName &amp; "&lt;br&gt;"
+   s = s &amp; "Total Space: " &amp; FormatNumber(drv.TotalSize / 1024, 0)
+   s = s &amp; " Kb" &amp; "&lt;br&gt;"
+   s = s &amp; "Free Space: " &amp; FormatNumber(drv.FreeSpace / 1024, 0)
+   s = s &amp; " Kb" &amp; "&lt;br&gt;"
+   Response.Write s
+End Sub
+<SPAN class="lang">[JScript]
+</SPAN>function ShowDriveInfo1(drvPath)
+{
+   var fso, drv, s ="";
+   fso = new ActiveXObject("Scripting.FileSystemObject");
+   drv = fso.GetDrive(fso.GetDriveName(drvPath));
+   s += "Drive " + drvPath.toUpperCase()+ " - ";
+   s += drv.VolumeName + "&lt;br&gt;";
+   s += "Total Space: " + drv.TotalSize / 1024;
+   s += " Kb" + "&lt;br&gt;"; 
+   s += "Free Space: " + drv.FreeSpace / 1024;
+   s += " Kb" + "&lt;br&gt;";
+   Response.Write(s);
+}</PRE>
+
+<H2 class="dtH2">处理文件夹</H2>
+
+<P>在下面的表中，描述了普通的文件夹任务和执行它们的方法。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=39%>任务</TH>
+<TH width=61%>方法</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>创建文件夹。</TD>
+<TD width=61%>FileSystemObject.CreateFolder</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>删除文件夹。</TD>
+<TD width=61%>Folder.Delete 或 FileSystemObject.DeleteFolder</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>移动文件夹。</TD>
+<TD width=61%>Folder.Move 或 FileSystemObject.MoveFolder</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>复制文件夹。</TD>
+<TD width=61%>Folder.Copy 或 FileSystemObject.CopyFolder</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>检索文件夹的名字。</TD>
+<TD width=61%>Folder.Name</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>如果文件夹在驱动器上存在，则找出它。</TD>
+<TD width=61%>FileSystemObject.FolderExists</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>获得现有 <B>Folder</B> 对象的实例。</TD>
+<TD width=61%>FileSystemObject.GetFolder</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>找出文件夹的父文件夹名。</TD>
+<TD width=61%>FileSystemObject.GetParentFolderName</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=39%>找出系统文件夹的路径。</TD>
+<TD width=61%>FileSystemObject.GetSpecialFolder</TD>
+</TR>
+</table></div>
+
+<P>请考察<A HREF="sgfsosample.htm#folderinfo">示例代码</A>，来看看在 <B>FileSystemObject</B> 中使用了多少种这些的方法和属性。</P>
+
+<P>下面的示例示范了如何使用 <B>Folder</B> 和 <B>FileSystemObject</B> 对象，来操作文件夹和获得有关它们的信息：</P>
+
+<PRE class="code"><SPAN class="lang">[VBScript]
+</SPAN>Sub ShowFolderInfo()
+   Dim fso, fldr, s
+   ' 获取 FileSystemObject 的一个实例。
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   ' 获取驱动器对象。
+   Set fldr = fso.GetFolder("c:")
+   ' 打印父文件夹名。
+   Response.Write "Parent folder name is: " &amp; fldr &amp; "&lt;br&gt;"
+   ' 打印驱动器名。
+   Response.Write "Contained on drive " &amp; fldr.Drive &amp; "&lt;br&gt;"
+   ' 打印根文件名。
+   If fldr.IsRootFolder = True Then
+      Response.Write "This is the root folder." &amp; ""&lt;br&gt;"&lt;br&gt;"
+   Else
+      Response.Write "This folder isn't a root folder." &amp; "&lt;br&gt;&lt;br&gt;" 
+   End If
+   ' 用 FileSystemObject 对象新建文件夹。
+   fso.CreateFolder ("C:\Bogus")
+   Response.Write "Created folder C:\Bogus" &amp; "&lt;br&gt;"
+   ' 打印文件夹的基本名。
+   Response.Write "Basename = " &amp; fso.GetBaseName("c:\bogus") &amp; "&lt;br&gt;"
+   ' 删除新建文件夹。
+   fso.DeleteFolder ("C:\Bogus")
+   Response.Write "Deleted folder C:\Bogus" &amp; "&lt;br&gt;"
+End Sub
+<SPAN class="lang">[JScript]</SPAN>
+function ShowFolderInfo()
+{
+   var fso, fldr, s = "";
+   // 获取 FileSystemObject 的一个实例。
+   fso = new ActiveXObject("Scripting.FileSystemObject");
+   // 获取驱动器名。
+   fldr = fso.GetFolder("c:");
+   // 打印父文件夹名。
+   Response.Write("Parent folder name is: " + fldr + "&lt;br&gt;");
+   // 打印驱动器名。
+   Response.Write("Contained on drive " + fldr.Drive + "&lt;br&gt;");
+   // 打印根文件名。
+   if (fldr.IsRootFolder)
+     Response.Write("This is the root folder.");
+   else
+     Response.Write("This folder isn't a root folder.");
+   Response.Write("&lt;br&gt;&lt;br&gt;");
+   // 用 FileSystemObject 对象新建文件夹。
+   fso.CreateFolder ("C:\\Bogus");
+   Response.Write("Created folder C:\\Bogus" + "&lt;br&gt;");
+   // 打印文件夹的基本名。
+   Response.Write("Basename = " + fso.GetBaseName("c:\\bogus") + "&lt;br&gt;");
+   // 删除新建的文件夹。
+   fso.DeleteFolder ("C:\\Bogus");
+   Response.Write("Deleted folder C:\\Bogus" + "&lt;br&gt;");
+}</PRE>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

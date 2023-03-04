@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>setMilliseconds 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsmthsetmilliseconds"></A>setMilliseconds 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>设置 <B>Date</B> 对象中用本地时间表示的毫秒值。</P>
+
+<PRE class="syntax"><I>dateObj.</I><B>setMilliseconds(</B><I>numMilli</I><B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>dateObj</I></DT>
+
+<DD>必选项。任意 <B>Date</B> 对象。</dd>
+
+<DT><I>numMilli</I></DT>
+
+<DD>必选项。是一个等于毫秒值的数值。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>要设置用全球标准时间 (UTC) 表示的毫秒值，请使用 <B>setUTCMilliseconds</B> 方法。</P>
+
+<P>如果 <I>numMilli</I> 的值大于 999 或者是负数，所保存的秒钟数 (以及分钟，小时，等等，如果需要的话) 将增加适当的数量。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面这个例子说明了 <B>setMilliseconds</B> 方法的用法： </P>
+
+<PRE class="code">function SetMSecDemo(nmsec){
+   var d, s;                    // 声明变量。
+   var sep = ":";               // 初始化分隔符。
+   d = new Date();              // 创建 Date 对象。
+   <code><b class="cfe">d.setMilliseconds(</b></code>nmsec<code><b class="cfe">)</b></code>;    // 设置毫秒数。
+   s = "Current setting is ";
+   s += d.toLocaleString() + sep + d.getMilliseconds();
+   return(s);                   // 返回新的日期设置。
+}</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 3</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsobjdate.htm#js56jsobjdatemeth">Date 对象的方法</A> | <A HREF="js56jsmthgetmilliseconds.htm">getMilliseconds 方法</A> | <A HREF="js56jsmthgetutcmilliseconds.htm">getUTCMilliseconds 方法</A> | <A HREF="js56jsmthsetutcmilliseconds.htm">setUTCMilliseconds 方法</A></P>
+
+<P>应用于：<A HREF="js56jsobjdate.htm">Date 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

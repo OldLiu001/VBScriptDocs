@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML xmlns:MSHelp="http://msdn.microsoft.com/mshelp" DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>IDispatchEx::GetNextDispID</TITLE>
+<xml>
+<MSHelp:TOCTitle Title="IDispatchEx::GetNextDispID"/>
+<MSHelp:RLTitle Title="IDispatchEx::GetNextDispID"/>
+<MSHelp:Keyword Index="A" Term="lrfIDispatchExGetNextDispID"/>
+<MSHelp:Keyword Index="A" Term="lrfIDispatchExGetNextDispID"/>
+<MSHelp:Attr Name="DevLang" Value="JScript"/>
+<MSHelp:Attr Name="DevLangVers" Value="kbJScript"/>
+<MSHelp:Attr Name="DevLang" Value="VBScript"/>
+<MSHelp:Attr Name="DevLangVers" Value="kbVBScript"/>
+<MSHelp:Attr Name="DocSet" Value="PSDK"/>
+<MSHelp:Attr Name="Product" Value="VS"/>
+<MSHelp:Attr Name="ProductVers" Value="kbVS"/>
+<MSHelp:Attr Name="TargetOS" Value="WinCE"/>
+<MSHelp:Attr Name="TargetOSVers" Value="kbWinCE"/>
+<MSHelp:Attr Name="TargetOSVers" Value="kbWinOS"/>
+<MSHelp:Attr Name="Technology" Value="IE"/>
+<MSHelp:Attr Name="TechnologyVers" Value="kbIE"/>
+<MSHelp:Attr Name="TopicType" Value="kbSyntax"/>
+<MSHelp:Attr Name="TargetOS" Value="Windows"/>
+<MSHelp:Attr Name="Locale" Value="kbEnglish"/>
+</xml>
+<META name="rtfFileName" content="idispatchex.rtf">
+<!--CSS_START-->
+<SCRIPT SRC="ms-help:/../commoner/scripts/dtuelink.js"></SCRIPT>
+<!--CSS_END--><META NAME="msdnID" CONTENT="_686664">
+</HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY"><div id="scrollyes">Microsoft&nbsp;Windows&nbsp;Script&nbsp;Interfaces
+<H1 class="dtH1"><A NAME="lrfidispatchexgetnextdispid"></A>IDispatchEx::GetNextDispID</H1>
+
+<P>Enumerates the members of the object.</P>
+
+<PRE class="syntax"><B>HRESULT GetNextDispID(</B>
+<B>   DWORD</B> <I>grfdex</I>,
+   <B>DISPID</B> <I>id</I>,
+   <B>DISPID *</B><I>pid</I>
+<B>)</B>;</PRE>
+
+<P>Returns one of the following values:</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TD width=50%><B>S_OK</B></TD>
+<TD width=50%>Success.</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><B>S_FALSE</B></TD>
+<TD width=50%>Enumeration is done.</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">Parameters</H4>
+
+<DL>
+<DT>grfdex </DT>
+
+<DD>Determines which set of items will be enumerated. This can be a combination of the following values:
+
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=50%>Value</TH>
+<TH width=50%>Meaning</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><B>fdexEnumDefault</B></TD>
+<TD width=50%>Requests that the object enumerates the default elements. The object is allowed to enumerate any set of elements.</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><B>fdexEnumAll</B></TD>
+<TD width=50%>Requests that the object enumerates all of the elements. The object is allowed to enumerate any set of elements.</TD>
+</TR>
+</table></div>
+
+</dd>
+
+<DT><I>id</I></DT>
+
+<DD>Identifies the current member. <B>GetNextDispID</B> will retrieve the item in the enumeration after this one. Uses <B>GetDispID</B> or a previous call to <B>GetNextDispID</B> to obtain this identifier. Uses the <B>DISPID_STARTENUM</B> value to obtain the first identifier of the first item.</dd>
+
+<DT><I>pid</I></DT>
+
+<DD>Address of a <B>DISPID</B> variable that receives the identifier of the next item in the enumeration.</dd>
+</DL>
+
+<P>If a member is deleted by <B>DeleteMemberByName</B> or <B>DeleteMemberByDispID</B>, the <B>DISPID</B> needs to remain valid for <B>GetNextDispID</B>.</P>
+
+<H4 class="dtH4">Example </H4>
+
+<PRE class="code">HRESULT hr;
+   BSTR bstrName;
+   DISPID dispid;
+   IDispatch *pdex;
+
+   // Assign to pdex
+   hr = pdex-&gt;<code><b class="cfe">GetNextDispID(</b></code>fdexEnumAll, DISPID_STARTENUM, &amp;dispid<code><b class="cfe">)</b></code>;
+   while (hr != S_FALSE)
+   {
+      pdex-&gt;GetMemberName(dispid, &amp;bstrName);
+      if (!wcscmp(bstrName, OLESTR("Bar")))
+      return TRUE;
+      SysFreeString(bstrName);
+
+      hr = pdexObj-&gt;GetNextDispID(fdexEnumAll, dispid, &amp;dispid);
+   }</PRE>
+
+<H4 class="dtH4">See Also</H4>
+
+<P><A HREF="jslrfidispatchex.htm">IDispatchEx Interface</A> | <A HREF="lrfidispatchexgetdispid.htm">IDispatchEx::GetDispID</A> | <A HREF="#lrfidispatchexgetnextdispid">IDispatchEx::GetNextDispID</A> | <A HREF="lrfidispatchexdeletememberbyname.htm">IDispatchEx::DeleteMemberByName</A> | <A HREF="lrfidispatchexdeletememberbydispid.htm">IDispatchEx::DeleteMemberByDispID</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p><MSHelp:link keywords="vxmscCopyright" TABINDEX="0">&copy; 2001 Microsoft Corporation. All rights reserved.</MSHelp:link></p><p>Build: 9309.1546 
+</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>IsEmpty 函数</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsfctisempty"></A>IsEmpty 函数</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回 Boolean 值指明变量是否已初始化。</P>
+
+<PRE class="syntax"><B>IsEmpty(</B>expression<B>)</B></PRE>
+
+<P><B>expression</B> 参数可以是任意表达式。然而，由于 <B>IsEmpty</B> 用于判断一个变量是否已初始化，故 <B>expression</B> 参数经常是一个变量名。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>如果变量未初始化或显式地设置为 Empty，则函数 <B>IsEmpty</B> 返回 <B>True</B>；否则函数返回 <B>False</B>。如果 <B>expression</B> 包含一个以上的变量，总返回 <B>False</B>。</P>
+
+<P>下面的示例利用 <B>IsEmpty</B> 函数决定变量是否能被初始化：</P>
+
+<PRE class="code">Dim MyVar, MyCheck
+MyCheck = <code><b class="cfe">IsEmpty(</b></code>MyVar<code><b class="cfe">)</b></code>   ' 返回 True。
+MyVar = Null   ' 赋为 Null。
+MyCheck = <code><b class="cfe">IsEmpty(</b></code>MyVar<code><b class="cfe">)</b></code>   ' 返回 False。
+MyVar = Empty   ' 赋为 Empty。
+MyCheck = <code><b class="cfe">IsEmpty(</b></code>MyVar<code><b class="cfe">)</b></code>   ' 返回 True。</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsfctisarray.htm">IsArray 函数</A> | <A HREF="vsfctisdate.htm">IsDate 函数</A> | <A HREF="vsfctisnull.htm">IsNull 函数</A> | <A HREF="vsfctisnumeric.htm">IsNumeric 函数</A> | <A HREF="vsfctisobject.htm">IsObject 函数</A> | <A HREF="vsfctvartype.htm">VarType 函数</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

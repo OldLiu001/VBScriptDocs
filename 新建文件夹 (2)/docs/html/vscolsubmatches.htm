@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>SubMatches 集合</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vscolsubmatches"></A>SubMatches 集合</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>正则表达式子匹配字符串的集合。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P><B>SubMatches</B> 集合包含了单个的子匹配字符串，只能用 <B>RegExp</B> 对象的 <B>Execute</B> 方法创建。<B>SubMatches</B> 集合的属性是只读的。</P>
+
+<P>运行一个正则表达式时，当圆括号中捕捉到子表达式时可以有零个或多个子匹配。<B>SubMatches</B> 集合中的每一项是由正则表达式找到并捕获的的字符串。</P>
+
+<P>下面的代码演示了如何从一个正则表达式获得一个 <B>SubMatches</B> 集合以及如何它的专有成员：</P>
+
+<PRE class="code">Function SubMatchTest(inpStr)
+  Dim oRe, oMatch, oMatches
+  Set oRe = New RegExp
+  ' 查找一个电子邮件地址（不是一个理想的 RegExp）
+  oRe.Pattern = "(\w+)@(\w+)\.(\w+)"
+  ' 得到 Matches 集合
+  Set oMatches = oRe.Execute(inpStr)
+  ' 得到 Matches 集合中的第一项
+  Set oMatch = oMatches(0)
+  ' 创建结果字符串。
+  ' Match 对象是完整匹配 &#0151; dragon@xyzzy.com
+  retStr = "电子邮件地址是： " &amp; oMatch &amp; vbNewline
+  ' 得到地址的子匹配部分。
+  retStr = retStr &amp; "电子邮件别名是： " &amp; oMatch.SubMatches(0)  ' dragon
+  retStr = retStr &amp; vbNewline
+  retStr = retStr &amp; "组织是： " &amp; oMatch. SubMatches(1)' xyzzy
+  SubMatchTest = retStr
+End Function
+
+MsgBox(SubMatchTest("请写信到 dragon@xyzzy.com 。谢谢！"))</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 5.5</A> </P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsstmforeach.htm">For Each...Next 语句</A> | <A HREF="vsobjmatch.htm">Match 对象</A> | <A HREF="vscolmatches.htm">Matches 集合</A> |<A HREF="vsobjregexp.htm">RegExp 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

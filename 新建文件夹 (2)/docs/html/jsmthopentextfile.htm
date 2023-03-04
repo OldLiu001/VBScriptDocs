@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>OpenTextFile 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsmthopentextfile"></A>OpenTextFile 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>打开指定的文件并返回一个 <B>TextStream</B> 对象，可以通过这个对象对文件进行读、写或追加。</P>
+
+<PRE class="syntax">object<B>.OpenTextFile(</B>filename[<B>,</B> iomode[<B>,</B> create[<B>,</B> format]]]<B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。<I>object</I> 应为 <B>FileSystemObject</B> 的名称。</dd>
+
+<DT><I>filename</I></DT>
+
+<DD>必选项。指明要打开文件的字符串表达式。</dd>
+
+<DT><I>iomode</I></DT>
+
+<DD>可选项。可以是三个常数之一：ForReading 、 ForWriting 或 ForAppending 。</dd>
+
+<DT><I>create</I></DT>
+
+<DD>可选项。Boolean 值，指明当指定的 <I>filename</I> 不存在时是否创建新文件。如果创建新文件则值为 <B>True</B> ，如果不创建则为 <B>False</B> 。如果忽略，则不创建新文件。</dd>
+
+<DT><I>format</I></DT>
+
+<DD>可选项。使用<B>三态</B>值中的一个来指明打开文件的格式。如果忽略，那么文件将以 ASCII 格式打开。</dd>
+</DL>
+
+<H4 class="dtH4">设置</H4>
+
+<P><I>iomode</I> 参数可以是下列设置中的任一种：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=19%>常数</TH>
+<TH width=8%>值</TH>
+<TH width=73%>描述</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=19%>ForReading</TD>
+<TD width=8%>1</TD>
+<TD width=73%>以只读方式打开文件。不能写这个文件。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=19%>ForWriting</TD>
+<TD width=8%>2</TD>
+<TD width=73%>以写方式打开文件</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=19%>ForAppending</TD>
+<TD width=8%>8</TD>
+<TD width=73%>打开文件并从文件末尾开始写。</TD>
+</TR>
+</table></div>
+
+<P><I>format</I> 参数可以是下列设置中的任一种：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=42%>值</TH>
+<TH width=58%>描述</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=42%>TristateTrue</TD>
+<TD width=58%>以 Unicode 格式打开文件。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=42%>TristateFalse</TD>
+<TD width=58%>以 ASCII 格式打开文件。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=42%>TristateUseDefault</TD>
+<TD width=58%>使用系统默认值打开文件。</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">说明</H4>
+
+<P>下面的代码说明了如何使用 <B>OpenTextFile</B> 方法打开文件并追加文本： </P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>var fs, a, ForAppending;
+ForAppending = 8;
+fs = new ActiveXObject("Scripting.FileSystemObject");
+a = fs<code><b class="cfe">.OpenTextFile(</b></code>"c:\\testfile.txt"<code><b class="cfe">,</b></code> ForAppending<code><b class="cfe">,</b></code> false<code><b class="cfe">)</b></code>;
+...
+a.Close();
+<SPAN class="lang">[VBScript]
+</SPAN>Sub OpenTextFileTest
+   Const ForReading = 1, ForWriting = 2, ForAppending = 8
+   Dim fso, f
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   Set f = <code><b class="cfe">fso.OpenTextFile(</b></code>"c:\testfile.txt"<code><b class="cfe">,</b></code> ForWriting<code><b class="cfe">,</b></code> True<code><b class="cfe">)</b></code>
+   f.Write "Hello world!"
+   f.Close
+End Sub</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsmthcreatetextfile.htm">CreateTextFile 方法</A> | <A HREF="jsmthopenastextstream.htm">OpenAsTextStream 方法</A><BR>
+应用于：<A HREF="jsobjfilesystem.htm">FileSystemObject 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

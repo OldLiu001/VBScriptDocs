@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>在浏览器中显示信息</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsconwriteclear"></A>在浏览器中显示信息</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>Microsoft JScript 提供了两种方式来在浏览器中直接显示数据。可以使用<B>write(&nbsp;)</B> 和 <B>writeln(&nbsp;)</B>，这两个函数是<B>document</B> 对象的方法。也可以在浏览器中以表格的方式显示信息，以及用警告、提示和确认消息框来显示信息。</P>
+
+<H2 class="dtH2">使用document.write(&nbsp;) 和 document.writeln(&nbsp;)</H2>
+
+<P>显示信息最常用的方式是 document 对象的 <B>write(&nbsp;)</B> 方法。该方法用一个字符串作为其参数，并在浏览器中显示。该字符串可以是普通文本或 HTML。</P>
+
+<P>字符串可以用单引号或双引号引起来。这样可以引用那些包含引号或撇号的内容。</P>
+
+<PRE class="code">document.write("Pi is approximately equal to " + Math.PI);
+document.write( );</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>下面的简单函数可以避免在浏览器中显示信息时不得不键入 "document.write"。该函数不能告知要显示的信息是否未定义，而是发布给命令 "w();"，该命令将显示一个空行。</BLOCKQUOTE>
+
+<PRE class="code">function w(m) { // 编写函数。
+m = "" + m + ""; //  确保变量 m 是一个字符串。
+if ("undefined" != m) { // 判别是否为空或其它未定义的项。
+   document.write(m);
+   }
+document.write("&lt;br&gt;");
+}
+
+w('&lt;IMG SRC="horse.gif"&gt;');
+w();
+w("This is an engraving of a horse.");
+w();</PRE>
+
+<P><B>writeln(&nbsp;) </B>方法与 <B>write(&nbsp;)</B> 方法几乎一样，差别仅在于是前者将在所提供的任何字符串后添加一个换行符。在 HTML 中，这通常只会在后面产生一个空格；不过如果使用了 &lt;PRE&gt; 和 &lt;XMP&gt; 标识，这个换行符会被解释，且在浏览器中显示。</P>
+
+<P>在调用 <B>write(&nbsp;)</B> 方法时，如果该文档不处于在调用 <B>write(&nbsp;)</B> 方法时的打开和分析的过程中，该方法将打开并清除该文档，所以它可能是有危险的。该示例显示了一个每隔一分钟就显示时间的脚本，但是在第一次显示后由于它从过程中将自己清除，因此会导致失败。</P>
+
+<PRE class="code">&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;SCRIPT LANGUAGE="JScript"&gt;
+function singOut()  {
+var theMoment = new Date();
+var theHour = theMoment.getHours();
+var theMinute = theMoment.getMinutes();
+var theDisplacement = (theMoment.getTimezoneOffset() / 60);
+theHour -= theDisplacement;
+if (theHour &gt; 23)  {
+theHour -= 24
+}
+document.write(theHour + " hours, " + theMinute + " minutes, Coordinated Universal Time.");
+window.setTimeout("singOut();", 60000);
+}
+&lt;/SCRIPT&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;SCRIPT&gt;
+singOut();
+&lt;/SCRIPT&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;</PRE>
+
+<P>如果使用 window 对象的 <B>alert()</B> 方法而不是 <B>document.write()</B>，则该脚本可以运行。</P>
+
+<PRE class="code">window.alert(theHour + " hours, " + theMinute + " minutes, Coordinated Universal Time.");
+window.setTimeout("singOut();", 60000);
+}</PRE>
+
+<H2 class="dtH2">清除当前文档</H2>
+
+<P><B>document</B> 对象的 <B>clear()</B> 方法将清空当前文档。该方法也将清除您的脚本（随文档的其他部分一起），因此要特别注意该方法的使用方式及在什么时候使用该方法。</P>
+
+<PRE class="code">document.clear();</PRE>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

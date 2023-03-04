@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML xmlns:MSHelp="http://msdn.microsoft.com/mshelp" DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>IDispatchEx Interface</TITLE>
+<xml>
+<MSHelp:TOCTitle Title="IDispatchEx Interface"/>
+<MSHelp:RLTitle Title="IDispatchEx Interface"/>
+<MSHelp:Keyword Index="A" Term="jslrfIDispatchEx"/>
+<MSHelp:Keyword Index="A" Term="jslrfIDispatchEx"/>
+<MSHelp:Attr Name="DevLang" Value="JScript"/>
+<MSHelp:Attr Name="DevLangVers" Value="kbJScript"/>
+<MSHelp:Attr Name="DevLang" Value="VBScript"/>
+<MSHelp:Attr Name="DevLangVers" Value="kbVBScript"/>
+<MSHelp:Attr Name="DocSet" Value="PSDK"/>
+<MSHelp:Attr Name="Product" Value="VS"/>
+<MSHelp:Attr Name="ProductVers" Value="kbVS"/>
+<MSHelp:Attr Name="TargetOS" Value="WinCE"/>
+<MSHelp:Attr Name="TargetOSVers" Value="kbWinCE"/>
+<MSHelp:Attr Name="TargetOSVers" Value="kbWinOS"/>
+<MSHelp:Attr Name="Technology" Value="IE"/>
+<MSHelp:Attr Name="TechnologyVers" Value="kbIE"/>
+<MSHelp:Attr Name="TopicType" Value="kbSyntax"/>
+<MSHelp:Attr Name="TargetOS" Value="Windows"/>
+<MSHelp:Attr Name="Locale" Value="kbEnglish"/>
+</xml>
+<META name="rtfFileName" content="idispatchex.rtf">
+<!--CSS_START-->
+<SCRIPT SRC="ms-help:/../commoner/scripts/dtuelink.js"></SCRIPT>
+<!--CSS_END--><META NAME="msdnID" CONTENT="_686656">
+</HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY"><div id="scrollyes">Microsoft&nbsp;Windows&nbsp;Script&nbsp;Interfaces
+<H1 class="dtH1"><A NAME="jslrfidispatchex"></A>IDispatchEx Interface</H1>
+
+<P><B>IDispatchEx</B>, an extension of the <B>IDispatch</B> interface, supports features appropriate for dynamic languages such as scripting languages. This section describes the <B>IDispatchEx</B> interface itself, the differences between <B>IDispatch</B> and <B>IDispatchEx</B>, and the rationale for the extensions. It is expected that readers are familiar with <B>IDispatch</B> and have access to the <B>IDispatch</B> documentation.</P>
+
+<H4 class="dtH4">Remarks</H4>
+
+<P><B>IDispatch</B> was developed essentially for Microsoft&reg; Visual Basic&reg;. The primary limitation of <B>IDispatch</B> is that it assumes that objects are static. In other words, since objects do not change during run time, type information can fully describe them at compile time. Dynamic run-time models that are found in scripting languages such as Visual Basic Scripting Edition (VBScript) and JScript and object models such as Dynamic HTML require a more flexible interface.</P>
+
+<P><B>IDispatchEx</B> was developed to provide all the services of <B>IDispatch</B> as well as some extensions that are appropriate for more dynamic late-bound languages such as scripting languages. The additional features of <B>IDispatchEx</B> beyond those provided by <B>IDispatch</B> are:
+
+<UL type="disc">
+	<LI>Add new members to an object ("expando") &#0151; use <B>GetDispID</B> with the <B>fdexNameEnsure</B> flag.</li>
+
+	<LI>Delete members of an object &#0151; use <B>DeleteMemberByName</B> or <B>DeleteMemberByDispID</B>.</li>
+
+	<LI>Case-sensitive dispatch operations &#0151; use <B>fdexNameCaseSensitive</B> or <B>fdexNameCaseInsensitive</B>.</li>
+
+	<LI>Search for member with implicit name &#0151; use <B>fdexNameImplicit</B>.</li>
+
+	<LI>Enumerate <B>DISPID</B>s of an object &#0151; use <B>GetNextDispID</B>.</li>
+
+	<LI>Map from <B>DISPID</B> to element name &#0151; use <B>GetMemberName</B>.</li>
+
+	<LI>Obtain properties of object members &#0151; use <B>GetMemberProperties</B>.</li>
+
+	<LI>Method invocation with <B>this</B> pointer &#0151; use <B>InvokeEx</B> with <B>DISPATCH_METHOD</B>.</li>
+
+	<LI>Allow browsers that support the concept of name spaces to obtain the name space parent of an object &#0151; use <B>GetNameSpaceParent</B>.</li>
+</UL>
+
+<P>Objects that support <B>IDispatchEx</B> might also support <B>IDispatch</B> for backward compatibility. The dynamic nature of objects that support <B>IDispatchEx</B> has a few implications for the <B>IDispatch</B> interface of those objects. For example, <B>IDispatch</B> makes the following assumption:</P>
+
+<BLOCKQUOTE class="dtBlock">
+The member and parameter <B>DISPIDs</B> must remain constant for the lifetime of the object. This allows a client to obtain <B>DISPIDs</B> once and cache them for later use.</BLOCKQUOTE>
+
+<P>Since <B>IDispatchEx</B> allows the addition and deletion of members, the set of valid <B>DISPIDs</B> does not remain constant. However, <B>IDispatchEx</B> requires that the mapping between DISPID and member name remain constant. This means that if a member is deleted: 
+
+<UL type="disc">
+	<LI>The <B>DISPID</B> cannot be reused until a member with the same name is created.</li>
+
+	<LI>The <B>DISPID</B> must remain valid for <B>GetNextDispID</B>.</li>
+
+	<LI>The <B>DISPID</B> must be accepted gracefully by any of the <B>IDispatch/IDispatchEx</B> methods &#0151; they must recognize the member as deleted and return an appropriate error code (usually <B>DISP_E_MEMBERNOTFOUND</B> or <B>S_FALSE</B>).</li>
+</UL>
+
+<H4 class="dtH4">Examples</H4>
+
+<P>This JScript code in the function test() does the following:
+
+<UL type="disc">
+	<LI>Creates a new object by calling the <B>Object</B> constructor and assigns a pointer to the new object to the variable Obj.</li>
+
+	<LI>Creates a new element named Elem in the object and assigns to this element a pointer to the function cat.</li>
+
+	<LI>Calls this function. Since it is being called as a method, the <B>this</B> pointer refers to the object Obj. The function adds a new element, Bar, to the object.</li>
+</UL>
+
+<P>The full HTML code is:</P>
+
+<PRE class="code">   &lt;HTML&gt;
+   &lt;BODY&gt;
+   &lt;SCRIPT LANGUAGE="JScript"&gt;
+   function cat()
+   {
+      // Create new element and assign the value 10
+      this.Bar = 10;
+   }
+
+   function test()
+   {
+      // Construct new object
+      Obj = new Object();
+
+      // Create new element and assign function pointer
+      Obj.Elem = cat;
+
+      // Call Elem method ("this" == Obj)
+      Obj.Elem();
+
+      // Obj.Bar now exists
+   }
+   test();
+   &lt;/SCRIPT&gt;
+   &lt;/BODY&gt;
+   &lt;/HTML&gt;</PRE>
+
+<P>A control placed on this same Web page could obtain a dispatch pointer to the script engines from the browser. The control could then implement the function test():</P>
+
+<PRE class="code">   &lt;HTML&gt;
+   &lt;BODY&gt;
+   &lt;SCRIPT LANGUAGE="JScript"&gt;
+   function cat()
+   {
+      // Create new element and assign the value 10
+      this.Bar = 10;
+   }
+   &lt;/SCRIPT&gt;
+   &lt;OBJECT ID="test" &lt;CLASSID="CLSID:9417DB5D-FA2A-11D0-8CB3-00C04FC2B085"&gt;&gt;
+   &lt;/OBJECT&gt;
+   &lt;/BODY&gt;
+   &lt;/HTML&gt;</PRE>
+
+<P>Code from the control, test, does the same thing as the JScript function <B>test()</B>. Note that these dispatch calls are made into the running JScript engine and change the state of the engine:
+
+<UL type="disc">
+	<LI>Obtains the dispatch pointer to the cat function using <B>GetDispID()</B>.</li>
+
+	<LI>Obtains the dispatch pointer to the Object function using <B>GetDispID()</B>.</li>
+
+	<LI>Constructs an object by calling the Object function with <B>InvokeEx()</B> and obtains a dispatch pointer to the newly constructed object.</li>
+
+	<LI>Creates a new element, Elem, in the object using <B>GetDispID()</B> with the <I>fdexNameEnsure</I> flag.</li>
+
+	<LI>Puts the dispatch pointer to cat in the element using <B>InvokeEx()</B>.</li>
+
+	<LI>Calls the dispatch pointer to cat as a method by calling <B>InvokeEx()</B> and passing in the dispatch pointer to the constructed object as the <B>this</B> pointer.</li>
+
+	<LI>The cat method creates a new element, Bar, on the current <B>this</B> object.</li>
+
+	<LI>Verifies that the new element, Bar, was created in the constructed object by enumerating through the elements using <B>GetNextDispID</B>().</li>
+</UL>
+
+<P>The code for the test control:</P>
+
+<PRE class="code">   BOOL test(IDispatchEx *pdexScript)
+   {
+      HRESULT hr;
+      VARIANT var;
+      BSTR bstrName;
+      DISPID dispid, putid;
+      IDispatchEx *pdexObj;
+      IDispatch   *pdispObj, *pdispCat;
+      DISPPARAMS dispparams, dispparamsNoArgs = {NULL, NULL, 0, 0};
+
+      // Get dispatch pointer for "cat"
+      bstrName = SysAllocString(OLESTR("cat"));
+      pdexScript-&gt;GetDispID(bstrName, 0, &amp;dispid);
+      SysFreeString(bstrName);
+      pdexScript-&gt;InvokeEx(dispid, LOCALE_USER_DEFAULT, 
+         DISPATCH_PROPERTYGET, &amp;dispparamsNoArgs, 
+         &amp;var, NULL, NULL);
+      pdispCat = var.pdispVal;
+
+      // Create object by calling "Object" constructor
+      bstrName = SysAllocString(OLESTR("Object"));
+      pdexScript-&gt;GetDispID(bstrName, 0, &amp;dispid);
+      SysFreeString(bstrName);
+      pdexScript-&gt;InvokeEx(dispid, LOCALE_USER_DEFAULT, 
+         DISPATCH_CONSTRUCT, &amp;dispparamsNoArgs, 
+         &amp;var, NULL, NULL);
+      pdispObj = var.pdispVal;
+      pdispObj-&gt;QueryInterface(IID_IDispatchEx, (void **)&amp;pdexObj);
+
+      // Create new element in object
+      bstrName = SysAllocString(OLESTR("Elem"));
+      pdexObj-&gt;GetDispID(bstrName, fdexNameEnsure, &amp;dispid);
+      SysFreeString(bstrName);
+
+      // Assign "cat" dispatch pointer to element
+      putid = DISPID_PROPERTYPUT;
+      var.vt = VT_DISPATCH;
+      var.pdispVal = pdispCat;
+      dispparams.rgvarg = &amp;var;
+      dispparams.rgdispidNamedArgs = &amp;putid;
+      dispparams.cArgs = 1;
+      dispparams.cNamedArgs = 1;
+      pdexObj-&gt;InvokeEx(dispid, LOCALE_USER_DEFAULT, 
+         DISPATCH_PROPERTYPUTREF, &amp;dispparams,
+         NULL, NULL, NULL);
+
+      // Invoke method with "this" pointer
+      putid = DISPID_THIS;
+      var.vt = VT_DISPATCH;
+      var.pdispVal = pdispObj;
+      dispparams.rgvarg = &amp;var;
+      dispparams.rgdispidNamedArgs = &amp;putid;
+      dispparams.cArgs = 1;
+      dispparams.cNamedArgs = 1;
+      pdexObj-&gt;InvokeEx(dispid, LOCALE_USER_DEFAULT,
+         DISPATCH_METHOD, &amp;dispparams,
+      NULL, NULL, NULL);
+
+      // Confirm that new element "Bar" is in object
+      hr = pdexObj-&gt;GetNextDispID(fdexEnumAll, DISPID_STARTENUM, &amp;dispid);
+      while (hr != S_FALSE)
+      {
+         pdexObj-&gt;GetMemberName(dispid, &amp;bstrName);
+         if (!wcscmp(bstrName, OLESTR("Bar")))
+            return TRUE;
+         SysFreeString(bstrName);
+         hr = pdexObj-&gt;GetNextDispID(fdexEnumAll, dispid, &amp;dispid);
+      }
+      return FALSE;
+   }</PRE>
+
+<H4 class="dtH4">Methods</H4>
+
+<P><A HREF="lrfidispatchexmethods.htm">IDispatchEx Methods</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p><MSHelp:link keywords="vxmscCopyright" TABINDEX="0">&copy; 2001 Microsoft Corporation. All rights reserved.</MSHelp:link></p><p>Build: 9309.1546 
+</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

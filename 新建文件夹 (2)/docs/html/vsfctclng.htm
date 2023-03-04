@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>CLng 函数</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsfctclng"></A>CLng 函数</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回表达式，此表达式已被转换为 <B>Long</B> 子类型的 <B>Variant</B>。</P>
+
+<PRE class="syntax"><B>CLng(</B>expression<B>)</B></PRE>
+
+<P><B>expression</B> 参数是任意有效的表达式。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>通常，您可以使用子类型数据转换函数书写代码，以显示某些操作的结果应当被表达为特定的数据类型，而非默认的数据类型。例如，在出现货币运算、单精度或双精度算术运算的情况下，使用 <B>CInt</B> 或 <B>CLng</B> 函数强制进行整数运算。</P>
+
+<P><B>CLng</B> 函数用于进行从其他数据类型到 <B>Long</B> 子类型的的国际公认的格式转换。例如，对十进制分隔符和千位分隔符的识别取决于系统的区域设置。</P>
+
+<P>如果 <B>expression</B> 取值不在 Long子类型的允许范围内，则会出现错误。</P>
+
+<P>下面的示例利用 <B>CLng</B> 函数把值转换为 Long: </P>
+
+<PRE class="code">Dim MyVal1, MyVal2, MyLong1, MyLong2
+MyVal1 = 25427.45: MyVal2 = 25427.55   ' MyVal1, MyVal2 是双精度值。
+MyLong1 = <code><b class="cfe">CLng(</b></code>MyVal1<code><b class="cfe">)</b></code>   ' MyLong1 25427。
+MyLong2 = <code><b class="cfe">CLng(</b></code>MyVal2<code><b class="cfe">)</b></code>   ' MyLong2 包含 25428 。</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<B><b class="le">注意</b>&nbsp;&nbsp;&nbsp;CLng</B> 不同于 <B>Fix</B> 和 <B>Int</B> 函数删除小数部分， 而是采用四舍五入的方式。当小数部分正好等于 0.5 时， <B>CLng</B> 函数总是将其四舍五入为最接近该数的偶数。如， 0.5 四舍五入为 0, 以及 1.5 四舍五入为 2 。</BLOCKQUOTE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsfctcbool.htm">CBool 函数</A> | <A HREF="vsfctcbyte.htm">CByte 函数</A> | <A HREF="vsfctccur.htm">CCur 函数</A> | <A HREF="vsfctcdate.htm">CDate 函数</A> | <A HREF="vsfctcdbl.htm">CDbl 函数</A> | <A HREF="vsfctcint.htm">CInt 函数</A> | <A HREF="vsfctcsng.htm">CSng 函数</A> | <A HREF="vsfctcstr.htm">CStr 函数</A> | <A HREF="vsfctint.htm">Int、Fix 函数</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

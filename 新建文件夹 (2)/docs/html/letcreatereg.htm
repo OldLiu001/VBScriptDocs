@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>创建注册信息</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letcreatereg"></A>创建注册信息</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>如果宿主应用程序需要，您可以使用 Regsvr32.exe 之类的程序将 Windows&reg; 脚本部件注册为 COM 部件。注册操作将把有关 COM 部件的信息放在一个公共位置（在 Windows 中，注册信息存储在 Windows 注册表中）。通过读取注册信息，应用程序可以找到并载入该 COM 部件。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>并不是在每种情况下都需要进行注册。例如，如果脚本部件实现的是 Internet Explorer 5.0 中的 DHTML Behavior 接口处理程序，则该脚本部件就不需要注册，因为 Internet Explorer 将按照在页面上所检测到的操作进行注册。关于使用 Behavior 的详细信息，请参阅 Microsoft Site Builder Network (SBN) Web 站点上的关于使用 DHTML Behavior 主题。如果宿主应用程序支持名字(monikers)，那么不必进行注册就可以创建一个脚本部件的实例。</BLOCKQUOTE>
+
+<P>在指定注册时，最重要的信息有： 
+
+<UL type="disc">
+	<LI>程序 ID (prog ID)，这是宿主应用程序在创建脚本部件的实例时所使用的名称。例如，如果脚本部件的程序 ID 是 Component.MyComponent，则您可以使用下述语句在 Microsoft&reg; Visual Basic&reg; 中创建该脚本部件的一个实例：
+<PRE class="code">Set Component = CreateObject("Component.MyComponent")</PRE>
+</li>
+
+	<LI>类 ID，这是一个唯一标识脚本部件的 GUID （全局唯一的 ID）。您可以使用诸如 Uuidgen.exe 的程序生成一个 GUID。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>如果使用脚本部件向导创建了一个脚本部件，该向导将自动创建一个程序 ID 和类 ID。详细信息请参阅<A HREF="letusingwiz.htm">使用脚本部件向导</A>。</BLOCKQUOTE>
+</li>
+</UL>
+
+<P>注册信息还包括一个描述和版本号。</P>
+
+<P>在注册脚本部件时，注册程序可以为其创建一个类 ID。不过，该程序强烈建议您自己为该脚本部件提供一个类 ID，以确保该脚本部件在其注册的所有计算机上具有相同的类 ID。如果与存储类 ID 的开发工具一起使用该脚本部件，则让注册程序来创建类 ID 还有可能导致问题。如果注册过程每次创建一个新的类 ID，则与应用程序所存储的 ID 会不匹配。</P>
+
+<P class="labelproc"><B>要为脚本部件创建注册信息 </B>
+
+<UL type="disc">
+	<LI>可以按照下述示例来创建一个至少包含一个程序 ID，以及可选的类 ID、描述以及版本号的 <A HREF="leteleregistration.htm">&lt;registration&gt;</A> 元素：
+<PRE class="code">&lt;registration
+description="My Test Component"
+progid="Component.TestScript"
+version="1"
+classid="{2154c700-9253-11d1-a3ac-0aa0044eb5f}"/&gt;</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>&lt;registration&gt; 元素中的注册属性的顺序可以任意。</BLOCKQUOTE>
+</li>
+</UL>
+
+<H2 class="dtH2">在注册期间运行脚本</H2>
+
+<P>脚本部件的 &lt;registration&gt; 元素还允许您包括在注册和取消注册时将执行的脚本。例如，您可以在脚本部件完成注册后发布一个消息。</P>
+
+<P class="labelproc"><B>要在注册和取消注册期间运行脚本 </B>
+
+<UL type="disc">
+	<LI>在 <A HREF="leteleregistration.htm">&lt;registration&gt;</A> 元素中可以包括一个 <A HREF="letelescript.htm">&lt;script&gt;</A> 元素。要在注册期间运行脚本，请写上 <B>register(&nbsp;)</B> 函数。要在取消该脚本部件的注册时运行脚本，请包括一个 <B>unregister(&nbsp;)</B> 函数。
+<P>下述示例演示了在注册脚本部件或取消其注册时如何发布消息。
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>CDATA 项是必需的，以使 &lt;script&gt; 元素中的脚本成为不透明的。详细信息请参阅 <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;registration
+&nbsp;&nbsp;&nbsp;description="My Test Component"
+&nbsp;&nbsp;&nbsp;progid="Component.TestScript"
+&nbsp;&nbsp;&nbsp;version="1"
+&nbsp;&nbsp;&nbsp;classid="{2154c700-9253-11d1-a3ac-0aa0044eb5f}"&gt;
+
+&nbsp;&nbsp;&nbsp;&lt;script language="VBScript"&gt;
+&nbsp;&nbsp;&nbsp;&lt;![CDATA[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function register()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "Component 'My Test Component' registered."
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Function
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function unregister()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "Component 'My Test Component' unregistered."
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Function
+&nbsp;&nbsp;&nbsp;]]&gt;
+&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+&lt;/registration&gt;</PRE>
+</li>
+</UL>
+
+<H2 class="dtH2">远程访问注册</H2>
+
+<P>如果将脚本部件部署在一个分布式环境中，则可以指定允许远程实例化该脚本部件。例如，您可能创建了一个在服务器上运行，但需要从客户端的代码来调用的脚本部件。如果客户端和服务器端的机器都正确配置了 DCOM，则这种方式是可行的，因为 DCOM 提供了将对象指针从服务器传给客户端的机制。</P>
+
+<P class="labelproc"><B>为远程访问注册脚本部件 </B>
+
+<UL type="disc">
+	<LI>可以在 <A HREF="leteleregistration.htm">&lt;registration&gt;</A> 元素中包括远程属性，如下述示例所示：
+<PRE class="code">&lt;registration
+&nbsp;&nbsp;&nbsp;description="My Test Component"
+&nbsp;&nbsp;&nbsp;progid="Component.TestScript"
+&nbsp;&nbsp;&nbsp;version="1"
+&nbsp;&nbsp;&nbsp;classid="{2154c700-9253-11d1-a3ac-0aa0044eb5f}"
+&nbsp;&nbsp;&nbsp;remotable=true/&gt;</PRE>
+</li>
+</UL>
+
+<P>关于远程创建脚本部件的实例的详细信息，请参阅<A HREF="letusingapp.htm">在应用程序中使用脚本部件</A>。</P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letfilecont.htm">脚本部件文件的内容</A> | <A HREF="letusingwiz.htm">使用脚本部件文件向导</A> | <A HREF="letcreatetypelib.htm">创建脚本部件类型库</A> | <A HREF="letckerror.htm">检查脚本部件文件中的错误</A> | <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>DriveExists 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsmthdriveexists"></A>DriveExists 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>如果指定的驱动器存在则返回 <B>True</B> ；如果不存在则返回 <B>False</B>。</P>
+
+<PRE class="syntax"><I>object</I>.<B>DriveExists(</B><I>drivespec</I><B>)</B> </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。应为 FileSystemObject 的名称。</dd>
+
+<DT><I>drivespec</I></DT>
+
+<DD>必选项。驱动器号或完整的路径说明。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>对于可移动媒体的驱动器， 即使没有媒体 <B>DriveExists</B> 方法也返回 <B>true</B>。可以使用 <B>Drive</B> 对象的 <B>IsReady</B> 属性来决定驱动器是否就绪。</P>
+
+<P>下面的例子说明了 <B>DriveExists</B> 方法的用法。</P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>function ReportDriveStatus(drv)
+{
+   var fso, s = "";
+   fso = new ActiveXObject("Scripting.FileSystemObject");
+   if (fso.DriveExists(drv))
+      s += "Drive " + drv + " exists.";
+   else 
+      s += "Drive " + drv + " doesn't exist.";
+   return(s);
+}
+<SPAN class="lang">[VBScript]
+</SPAN>Function ReportDriveStatus(drv)
+   Dim fso, msg
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   If fso.DriveExists(drv) Then
+      msg = ("Drive " &amp; UCase(drv) &amp; " exists.")
+   Else
+      msg = ("Drive " &amp; UCase(drv) &amp; " doesn't exist.")
+   End If
+   ReportDriveStatus = msg
+End Function</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsobjdrive.htm">Drive Object</A> | <A HREF="jscoldrives.htm">Drives Collection</A> | <A HREF="jsmthfileexists.htm">FileExists 方法</A> | <A HREF="jsmthfolderexists.htm">FolderExists 方法</A> | <A HREF="jsmthgetdrive.htm">GetDrive 方法</A> | <A HREF="jsmthgetdrivename.htm">GetDriveName 方法</A> | <A HREF="jsproisready.htm">IsReady 属性</A><BR>
+应用于：<A HREF="jsobjfilesystem.htm">FileSystemObject 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

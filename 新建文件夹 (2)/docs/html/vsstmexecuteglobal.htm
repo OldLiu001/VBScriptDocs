@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>ExecuteGlobal 语句</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsstmexecuteglobal"></A>ExecuteGlobal 语句</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>执行一个功多个在脚本全局名字空间中指定的语句。</P>
+
+<PRE class="syntax"><B>ExecuteGlobal</B> <I>statement</I> </PRE>
+
+<P><I>statement</I> 参数是一个包含一个或多个可执行语句的字符串表达式。在<I>statement</I> 参数中可以包含多条语句, 使用冒号将其分开。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>在 VBScript 中, <I>x = y</I> 有两种解释方法。第一种方法是作为一条赋值语句, 将 <I>y</I> 的值赋给 <I>x</I>。第二种方法是作为一个表达式，用于测试 <I>x</I> 和 <I>y</I> 是否具有相同的值。如果它们相等,则结果为 <B>True</B>; 如果他们不相等,其结果为 <B>False</B>.<B>ExecuteGlobal</B> 语句总是使用第一种方法,而 <B>Eval</B> 方法总是使用第二种方法。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>在 Microsoft&reg; JScript&trade; 中, 赋值与比较之间不存在混消，因为赋值运算符(=) 不同于比较运算符。</BLOCKQUOTE>
+
+<P>在脚本的全局名字空间中，<B>ExecuteGlobal</B> 中的所有语句都有是可执行的。因此，允许您将代码添加到程序中，以便于任何过程能够对其进行访问。例如,一个 VBScript <B>Class</B> 语句在运行时可以执行。随之函数创造此类的一个新实例。</P>
+
+<P>在运行时添加过程和类是非常有用的,但是也可能导致在运行时覆盖已有的全局变量和函数。因为这可能导致非常严重的程序问题,因此，当使用 <B>ExecuteGlobal</B> 语句时一定得非常谨慎。如果您无需访问过程之外的变量或函数,最好使用<B>Execute</B> 语句，因为它只影响主调函数的名字空间。</P>
+
+<P>下面的例子解释了 <B>ExecuteGlobal</B> 语句的用法。</P>
+
+<PRE class="code">Dim X         ' 声明 X 为全局变量。
+X = "Global"      ' 给全局变量 X 赋值。
+Sub Proc1   ' 声明过程。
+  Dim X      ' 在局部变量中声明 X。
+  X = "Local"   ' 给局部变量 X 赋值。
+         ' 此处的可执行语句
+         ' 创建一个过程, 当被调用时, 打印 X。
+         ' 此处将打印全局变量 X 的值，因为 Proc2
+         ' 继承了全局变量中的一切。
+  ExecuteGlobal "Sub Proc2: 打印 X: End Sub"
+  Print Eval("X")   ' 打印局部 X。
+  Proc2      ' 在全局作用区域中调用 Proc2 
+             ' 将打印 "Global" 。
+End Sub
+Proc2        ' 此行将导致错误 
+             ' 因为 Proc2 在 Proc1 之外是不可用的。
+Proc1         ' 调用 Proc1。
+  Execute "Sub Proc2: 打印 X: End Sub"
+Proc2         ' 此行调用成功，因为 Proc2
+         ' 在全局作用区域中是可用的。</PRE>
+
+<P>下面的例子演示了 <B>ExecuteGlobal</B> 语句可以被重写，因此您无需将下面的整个过程都包括在引用标记之内。</P>
+
+<PRE class="code">S = "Sub Proc2" &amp; vbCrLf
+S = S &amp; "  Print X" &amp; vbCrLf 
+S = S &amp; "End Sub"
+ExecuteGlobal S</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 1</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

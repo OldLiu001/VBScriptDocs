@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>运行脚本需要包括的内容</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wstbsshouldyouincludefileextensiontorunscript"></A>运行脚本需要包括的内容</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>通过键入脚本名称运行脚本时所要键入的信息取决于所运行的 Windows 版本和脚本的运行方式。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=33%>WSH 可执行文件</TH>
+<TH width=33%>Windows 版本</TH>
+<TH width=34%>包括</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=33%>命令提示符</TD>
+<TD width=33%>Windows NT 或 2000</TD>
+<TD width=34%>指定不带文件扩展名的脚本名称。例如：<code class="ce">myScript。</code>
+<P><B>注意</B>&nbsp;&nbsp;&nbsp;如果指定 WSH 可执行文件的名称，还须包括脚本文件的扩展名。例如：<code class="ce">cscript myScript.wsf</code>。</P>
+</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=33%>命令提示符</TD>
+<TD width=33%>Windows 9<I>x</I> 或 Millennium</TD>
+<TD width=34%>指定脚本文件的扩展名，并在脚本名称之前冠以 WSH 可执行文件的名称。
+<P>例如：<code class="ce">cscript myScript.wsf。</code></P>
+</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=33%>“打开”对话框的“运行”命令</TD>
+<TD width=33%>Windows NT、2000、9<I>x </I>或 Millennium</TD>
+<TD width=34%>指定脚本文件的扩展名。</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsrunwscript.htm">用 WScript.exe 运行脚本</A> | <A HREF="wsruncscript.htm">用 CScript.exe 运行脚本</A> | <A HREF="wsdraganddrop.htm">拖放支持</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>在应用程序中使用脚本部件</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letusingapp"></A>在应用程序中使用脚本部件</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>在创建 Windows&reg; 脚本部件后，就可以象任何 COM 部件一样，通过从宿主应用程序调用来使用该脚本部件。宿主应用程序可以是 Microsoft&reg; Visual Basic&reg;、C++、Microsoft&reg; Internet Explorer 或者其他应用程序。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>为 DHTML Behavior 所编写的脚本部件与传统的 COM 对象的实例化有所不同。详细信息请参阅 Microsoft Site Builder Network (SBN) Web 站点上的“使用 DHTML Behavior”。</BLOCKQUOTE>
+
+<P>根据宿主应用程序、所使用的脚本部件类型，以及部署该脚本部件的位置，在创建脚本部件的实例时会有各种选项。不过，其中最主要的差别是在本地（即与应用程序在同一个计算机上）还是远程（在别的计算机上）创建脚本部件的实例。</P>
+
+<P>不管是哪种情况，都有一些是需要牢记的。如果创建了脚本部件的实例，又使用该实例更改了 .wsc 文件，也不会更新该部件的这个实例。要更新，必须创建该脚本部件的一个新实例。</P>
+
+<P>所能使用的所有属性和方法就是在脚本部件文件的 &lt;public&gt; 元素和脚本中所定义的。如果所用的环境支持语句完善，例如 Visual Basic，则在生成并使用类型库时将能够看到脚本部件的属性和方法。详细信息请参阅<A HREF="letcreatetypelib.htm">创建脚本部件类型库</A>。</P>
+
+<P>如果创建脚本部件的实例失败，可能是由于脚本部件文件中的语法或运行时错误造成的。任何 XML 元素（包括 <A HREF="leteleregistration.htm">&lt;registration&gt;</A> 元素）的语法分析错误都会导致实例化操作失败。在开发脚本部件文件时，可以按照<A HREF="letckerror.htm">检查脚本部件文件中的错误</A>所描述的，在 <A HREF="leteleqscriptlet.htm">&lt;?component?&gt;</A> 处理指令中设置错误检查选项。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<B><b class="le">提示</b>&nbsp;&nbsp;&nbsp;</B>为了让宿主应用程序方便地了解脚本部件所说明的 COM 接口，脚本部件运行时程序可以生成一个类型库，其中包含了有关该脚本部件中可用的属性、方法和事件的信息。详细信息请参阅<A HREF="letcreatetypelib.htm">创建脚本部件类型库</A>。</BLOCKQUOTE>
+
+
+
+<H2 class="dtH2"><A NAME="script_componentsmisccreatinglocalinstan"></A>创建脚本部件的本地实例</H2>
+
+<P>如果脚本部件与宿主应用程序安装在同一个计算机上，则可以按照<A HREF="letregs.htm">注册脚本部件</A>所描述的，将脚本部件注册为该计算机的部件。然后就可以使用宿主应用程序的标准方法来创建对象实例，如 <B>CreateObject</B> 函数。例如，假设已注册了一个程序 ID 为 component.MyComponent 的脚本部件，如果要在 Visual Basic 中创建该脚本部件的一个实例，则可以使用下面这条语句：</P>
+
+<PRE class="code">Set oComponent = CreateObject("Component.MyComponent")</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>如果宿主应用程序是 Visual Basic，并且要处理由脚本部件激活的事件，则必须用一个包括 <B>WithEvents</B> 关键字的 <B>Dim</B> 语句早期绑定该对象，如下所示： </BLOCKQUOTE>
+
+<PRE class="code">Dim WithEvents scMyComponent As MyComponent
+Private Sub Command1_Click()
+&nbsp;&nbsp;&nbsp;Set scMyComponent=CreateObject("MyComponent")
+End Sub</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>详细信息请参阅<A HREF="lethandevents.htm">在宿主应用程序中处理脚本部件的事件</A>。如果不想给脚本部件事件编写处理程序，则这是不必要的。</BLOCKQUOTE>
+
+<P>在 Web 页面上，可以使用 &lt;OBJECT&gt; 标记来创建脚本部件的实例。您必须知道该脚本部件的类 ID，并在 &lt;OBJECT&gt; 标记中包括这个类 ID，如下例所示：</P>
+
+<PRE class="code">&lt;OBJECT
+&nbsp;&nbsp;&nbsp;ID="oComponent"
+&nbsp;&nbsp;&nbsp;CLASSID="clsid:855c8606-49ba-11d2-a428-00c04f8ec80b"&gt;
+&lt;/OBJECT&gt;</PRE>
+
+<P>如果脚本部件不是在本地计算机上注册的，您可以使用该脚本部件的别名来创建其实例。在诸如 <B>GetObject</B> 的函数中支持别名。本地计算机上必须注册有脚本部件运行时程序 Scrobj.dll。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>由于安全性方面的原因，Microsoft&reg; Internet Explorer 上的脚本部件不支持 <B>GetObject</B> 函数。</BLOCKQUOTE>
+
+<P>例如，下面演示了如何调用 Visual Basic 的 <B>GetObject</B> 函数来创建未注册的脚本部件的实例：</P>
+
+<PRE class="code">Set oComponent = GetObject("script:c:\COM\MyComponent.wsc")</PRE>
+
+<P>如果别名所引用的 .wsc 文件包含多个脚本部件，可以用散列符号(#)作为分隔符，在文件名后加上具体的脚本部件的名字来指定要实例化的脚本部件。下面的代码将创建一个 ID 为 “math”，包含在 MyComponent.wsc 文件中的脚本部件的实例：</P>
+
+<PRE class="code">Set oComponent = GetObject("script:c:\COM\MyComponent.wsc#math")</PRE>
+
+<P>使用 URL 别名可以创建位于别的计算机（如 Web 服务器）上的脚本部件的实例。应使用完整的 URL (带 http 协议) 来表示脚本部件的位置，如下例所示：</P>
+
+<PRE class="code">Set oComponent = GetObject("script:http://myserver/MyComponent.wsc")</PRE>
+
+<P>Internet Explorer 5.0 支持使用 DHTML Behavior 语法来创建脚本部件的实例，该方法与传统的实例化对象的语法有些不同，并且能确保脚本部件不能访问可能不太安全的系统对象。相应的示例请参阅 Microsoft Site Builder Network (SBN) Web 站点上的使用 DHTML Behavior。</P>
+
+
+
+<H2 class="dtH2"><A NAME="script_componentsmisccreatingremoteinsta"></A>创建脚本部件的远程实例</H2>
+
+<P>如果脚本部件的 &lt;registration&gt; 元素的远程属性已设置为 “true”，则可以使用分布式 COM (DCOM) 从别的计算机上远程实例化该脚本部件。</P>
+
+<P>两个计算机都必须安装了基本的 DCOM。如果计算机使用的下述软件之一，则已经正确配置了 DCOM： 
+
+<UL type="disc">
+	<LI>Windows NT 4.0</li>
+
+	<LI>Windows 95，且运行 Internet Explorer 4.0</li>
+
+	<LI>Windows 95，且带有 OEM Service Release 2 (OSR2) 或更新版本。详细信息请参阅 Microsoft&reg; Web 站点上的 Windows 95 OSR2 页面。</li>
+
+	<LI>Windows 95，且带有 DCOM for Windows 95, 1.2 版。详细信息请参阅 Microsoft&reg; Web 站点上的 DCOM for Windows 95 页面。</li>
+</UL>
+
+<P>脚本部件本身必须按照下面的要求部署： 
+
+<UL type="disc">
+	<LI>对本地计算机，在实例化该脚本部件时，既不需要脚本部件的文件 (.wsc 文件)，也不需要脚本部件运行时程序 (Scrobj.dll)。不过，在本地 Windows 注册表中必须有 DCOM 所需的远程脚本部件引用。详细信息请参阅<A HREF="letregs.htm">注册脚本部件</A>。</li>
+
+	<LI>对远程计算机，需要脚本部件以及脚本部件运行时程序。两者都要注册。</li>
+</UL>
+
+<P>在创建远程脚本部件的实例时，在应用程序内它将象一个本地对象一样工作；您可以正常地调用其方法以及获取和设置其属性。不过，该远程脚本部件的脚本是在远程机器上运行的，并访问该计算机的资源（在许可的任何安全性限制之内）。本地计算机上的宿主应用程序和远程机器上的脚本部件之间的通信由 DCOM 自动处理的，因而是不可见的。</P>
+
+<P>要创建脚本部件的远程实例，可以调用 <B>CreateObject</B> 方法，并将远程计算机的名称作为一个参数传递给该方法。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>使用 <B>CreateObject</B> 来实例化远程脚本部件的能力要求 Visual Basic 6.0 或更新版本，或者 VBScript 5.0 或更新版本。</BLOCKQUOTE>
+
+<P>下面的 Visual Basic 示例演示了如何远程实例化在名为“myserver”的计算机上的脚本部件：</P>
+
+<PRE class="code">Set newS = CreateObject("Component.MyComponent", "myserver")</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>在首次实例化一个远程脚本部件时，由于 DCOM 要建立两个计算机之间的通信，因而可能会有些延迟。</BLOCKQUOTE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letcreatereg.htm">创建注册信息</A> | <A HREF="letcreates.htm">创建脚本部件</A> | <A HREF="lethow.htm">脚本部件是如何运作的</A> | <A HREF="letintro.htm">脚本部件简介</A> | <A HREF="letregs.htm">注册脚本部件</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

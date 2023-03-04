@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Write 方法 (FileSystemObject)</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsmthwrite"></A>Write 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>将给定的字符串写入到一个 <B>TextStream</B> 文件。</P>
+
+<PRE class="syntax">object<B>.Write(</B>string<B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。总是一个 <B>TextStream</B> 对象的名称。</dd>
+
+<DT><I>string</I></DT>
+
+<DD>必选项。要写入文件的文本。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>给定的字符串在写入该文件时不会在字符串之间插入空格或字符。可以使用 <B>WriteLine</B> 方法来写入一个换行符或以换行符结束的字符串。</P>
+
+<P>下面的示例演示了<B>Write</B> 方法的用法：</P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>function WriteDemo()
+{
+   var fso, f, r
+   var ForReading = 1, ForWriting = 2;
+   fso = new ActiveXObject("Scripting.FileSystemObject")
+   f = fso.OpenTextFile("c:\\testfile.txt", ForWriting, true)
+   <code><b class="cfe">f.Write(</b></code>"Hello world!"<code><b class="cfe">)</b></code>;
+   f.Close();
+   f = fso.OpenTextFile("c:\\testfile.txt", ForReading);
+   r = f.ReadLine();
+   return(r);
+}
+<SPAN class="lang">[VBScript]
+</SPAN>Function WriteToFile
+   Const ForReading = 1, ForWriting = 2
+   Dim fso, f
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   Set f = fso.OpenTextFile("c:\testfile.txt", ForWriting, True)
+   <code><b class="cfe">f.Write</b></code> "Hello world!" 
+   Set f = fso.OpenTextFile("c:\testfile.txt", ForReading)
+   WriteToFile =   f.ReadLine
+End Function</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsmthwriteblanklines.htm">WriteBlankLines 方法</A> | <A HREF="jsmthwriteline.htm">WriteLine 方法</A><BR>
+应用于：<A HREF="jsobjtextstream.htm">TextStream 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

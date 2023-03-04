@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>For...Next 语句</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsstmfor"></A>For...Next 语句</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>以指定次数重复执行一组语句。</P>
+
+<PRE class="syntax"><B>For </B>counter = start To end [Step step]
+[statements]
+[Exit For]
+[statements]
+<B>Next</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>counter</I></DT>
+
+<DD>用做循环计数器的数值变量。这个变量不能是数组元素或用户自定义类型的元素。</dd>
+
+<DT><I>start</I></DT>
+
+<DD>counter 的初值。</dd>
+
+<DT><I>end</I></DT>
+
+<DD>counter 的终值。</dd>
+
+<DT><I>step</I></DT>
+
+<DD><B>counter</B> 的步长。如果没有指定，则 <B>step</B> 的默认值为 1。</dd>
+
+<DT><I>statements</I></DT>
+
+<DD><B>For</B> 和 <B>Next</B> 之间的一条或多条语句，将被执行指定次数。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P><B>step</B> 参数可以是正数或负数。<B>step</B> 参数值决定循环的执行情况，如下所示：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=33%>值</TH>
+<TH width=67%>如果 ... 则循环执行</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=33%>正数或 0 </TD>
+<TD width=67%>counter &lt;= end</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=33%>负数</TD>
+<TD width=67%>counter &gt;= end</TD>
+</TR>
+</table></div>
+
+<P>当循环启动并且所有循环中的语句都执行后，<B>step</B> 值被加到 <B>counter</B> 中。这时，或者循环中的语句再次执行（基于循环开始执行时同样的测试），或者退出循环并从 <B>Next</B> 语句之后的语句继续执行。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>在循环体内改变 <B>counter</B> 的值，将会使程序代码的阅读和调试变得更加困难。</BLOCKQUOTE>
+
+<P><B>Exit For</B> 只能用于 <B>For Each...Next</B> 或 <B>For...Next</B> 结构中，提供另一种退出循环的方法。可在语句中的任意位置放置任意个 <B>Exit For</B> 语句。<B>Exit For </B>经常和条件判断语句一起使用（例如 <B>If...Then</B>），并立即将控制权转移到 <B>Next</B> 之后的语句。</P>
+
+<P>可以将一个 <B>For...Next</B> 循环放置在另一个 <B>For...Next</B> 循环中，组成嵌套循环。每个循环中的 <B>counter</B> 要使用不同的变量名。下面的结构是正确的： </P>
+
+<PRE class="code"><code><b class="cfe">For</b></code> I = 1 <code><b class="cfe">To</b></code> 10
+      <code><b class="cfe">For</b></code> J = 1 <code><b class="cfe">To</b></code> 10
+            <code><b class="cfe">For</b></code> K = 1 <code><b class="cfe">To</b></code> 10
+            <B>. . .</B>
+            <code><b class="cfe">Next</b></code>
+      <code><b class="cfe">Next</b></code>
+Next</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsstmdo.htm">Do...Loop 语句</A> | <A HREF="vsstmexit.htm">Exit 语句</A> | <A HREF="vsstmforeach.htm">For Each...Next 语句</A> | <A HREF="vsstmwhile.htm">While...Wend 语句</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

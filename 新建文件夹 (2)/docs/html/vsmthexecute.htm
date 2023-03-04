@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Execute 方法 (VBScript)</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsmthexecute"></A>Execute 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>对指定的字符串执行正则表达式搜索。</P>
+
+<PRE class="syntax"><I>object</I>.<B>Execute(</B><I>string</I><B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。总是一个 <B>RegExp</B> 对象的名称。</dd>
+
+<DT><I>string</I></DT>
+
+<DD>必选项。要在其上执行正则表达式的文本字符串。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>正则表达式搜索的设计模式是通过 <B>RegExp</B> 对象的 <B>Pattern</B> 来设置的。</P>
+
+<P><B>Execute</B> 方法返回一个 <B>Matches</B> 集合，其中包含了在 <I>string</I> 中找到的每一个匹配的 <B>Match</B> 对象。如果未找到匹配，<B>Execute</B> 将返回空的 <B>Matches</B> 集合。</P>
+
+<P>下面的代码说明了 <B>Execute</B> 方法的用法。</P>
+
+<PRE class="code">Function RegExpTest(patrn, strng)
+  Dim regEx, Match, Matches      ' 创建变量。
+  Set regEx = New RegExp         ' 创建正则表达式。
+  regEx.Pattern = patrn          ' 设置模式。
+  regEx.IgnoreCase = True         ' 设置为不区分大小写。
+  regEx.Global = True         ' 设置全局适用。
+  Set Matches = regEx.Execute(strng)   ' 执行搜索。
+  For Each Match in Matches      ' 对 Matches 集合进行迭代。
+    RetStr = RetStr &amp; "Match found at position "
+    RetStr = RetStr &amp; Match.FirstIndex &amp; ". Match Value is '"
+    RetStr = RetStr &amp; Match.Value &amp; "'." &amp; vbCRLF
+  Next
+  RegExpTest = RetStr
+End Function
+MsgBox(RegExpTest("is.", "IS1 is2 IS3 is4"))</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 5</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsmthreplace.htm">Replace 方法</A> | <A HREF="vsmthtest.htm">Test 方法</A></P>
+
+<P>应用于：<A HREF="vsobjregexp.htm">RegExp 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

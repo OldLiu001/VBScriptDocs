@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>说明属性</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="letexppro"></A>说明属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>可以用两种方式来说明属性： 
+
+<UL type="disc">
+	<LI><B>作为简单值</B>&nbsp;&nbsp;&nbsp;该属性是一个简单的全局变量，脚本部件的用户可以读写这个变量。由于这个值是以全局量存储的，因此可以在 Windows&reg; 脚本部件文件的各个脚本中使用这个变量。</li>
+
+	<LI><B>作为函数</B>&nbsp;&nbsp;&nbsp;使用一个函数来定义该属性。这样就使您可以计算属性的值，并控制属性是否为只读、可读写、或者是只写的。</li>
+</UL>
+
+<P>还可以将属性标记为脚本部件的缺省值。</P>
+
+<P class="labelproc"><B>要作为简单值来说明一个属性 </B>
+
+<OL type="1">
+	<LI>创建一个 <A HREF="letelepublic.htm">&lt;public&gt;</A> 元素，将其作为 <A HREF="letelescriptlet.htm">&lt;component&gt;</A> 元素的子元素。</li>
+
+	<LI>在 &lt;public&gt; 元素中，包含一个指定用来存储属性值的变量的 <A HREF="leteleproperty.htm">&lt;property&gt;</A> 元素。</li>
+
+	<LI>要初始化一个简单属性的值，请在 <A HREF="letelescript.htm">&lt;script&gt;</A> 元素中创建一个与 <I>propertyName</I> (或 <I>propertyVariable</I> ，如果指定了这个名字)匹配的名字的全局变量,并给其指定一个值。</li>
+
+	<LI>下面的脚本部件片段演示了两个作为简单值说明的属性 (name and tag)。这两个属性是在 &lt;script&gt; 元素中使用全局变量来初始化的。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>CDATA 项是必需的，以使 &lt;script&gt; 元素中的脚本成为不透明的。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;public&gt;
+&nbsp;&nbsp;&nbsp;&lt;property name="name"/&gt;
+&nbsp;&nbsp;&nbsp;&lt;property name="tag" internalName="tagVar"/&gt;
+&lt;/public&gt;
+
+&lt;script language="VBScript"&gt;
+&nbsp;&nbsp;&nbsp;&lt;![CDATA[
+&nbsp;&nbsp;&nbsp;Dim name
+&nbsp;&nbsp;&nbsp;name = "script component"&nbsp;&nbsp;&nbsp;' Initializes the value of name property.
+&nbsp;&nbsp;&nbsp;Dim tagVar
+&nbsp;&nbsp;&nbsp;tagVar = "10"&nbsp;&nbsp;&nbsp;' Initializes the value of tag property.
+&nbsp;&nbsp;&nbsp;]]&gt;
+&lt;/script&gt;</PRE>
+</li>
+</OL>
+
+<P>使用函数来说明属性与说明方法的方式类似。</P>
+
+<P class="labelproc"><B>要使用函数来说明一个属性</B>
+
+<OL type="1">
+	<LI>在脚本部件文件的 <A HREF="letelepublic.htm">&lt;public&gt;</A> 元素中，包括一个 <A HREF="leteleproperty.htm">&lt;property&gt;</A> 元素，其中可以包含一个 &lt;get&gt; 元素来定义只读函数，一个 &lt;put&gt; 元素来定义写入函数。如果没有定义 &lt;put&gt; 元素，则该属性就是只读的。如果没有包括 &lt;get&gt; 元素，则该属性就是只写的。</li>
+
+	<LI>在 &lt;public&gt; 之外的 <A HREF="letelescript.htm">&lt;script&gt;</A> 元素内编写过程来实现这个函数。设置属性值的函数&nbsp;&#0151; 即 put 函数&nbsp;&#0151; 必须接收一个参数，该属性将被设置为这个值。
+<P>该过程的名称必须与在 &lt;property&gt; 元素中指定的内部名称一致。如果没有指定 internalName 属性，则对于读取函数，函数名称必须是该函数的名字再加上 get_ 前缀，对于写入函数，则应加上 put_ 前缀。
+</li>
+
+	<LI>例如，下面的脚本部件片段是一个说明了三个属性的脚本部件文件示例，这三个属性为： sname、dateOfBirth 以及 age 。dateOfBirth 属性是作为函数定义的，因此它可以包括错误检查。age 属性是计算得到的，因此被定义为只读的。
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>CDATA 项是必需的，使 &lt;script&gt; 元素中的脚本称为不透明的。详细信息请参阅 <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;public&gt;
+&nbsp;&nbsp;&nbsp;&lt;property name="sname"/&gt;
+&nbsp;&nbsp;&nbsp;&lt;property name="age"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;get internalName="readAge"/&gt;
+&nbsp;&nbsp;&nbsp;&lt;/property&gt;
+&nbsp;&nbsp;&nbsp;&lt;property name="dateOfBirth"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;get internalName="readDOB"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;put internalName="writeDOB"/&gt;
+&nbsp;&nbsp;&nbsp;&lt;/property&gt;
+&lt;/public&gt;
+
+&lt;script language="VBScript"&gt;
+&lt;![CDATA[
+Dim sname&nbsp;&nbsp;&nbsp;' 可读写的 sname 属性（非函数）。
+Dim gDOB&nbsp;&nbsp;&nbsp;' 用来存储生日日期的全局变量。
+
+Function readDOB()
+&nbsp;&nbsp;&nbsp;' 取 dateOfBirth 属性的值。
+&nbsp;&nbsp;&nbsp;readDOB = gDOB
+End Function
+
+Function writeDOB(newDOB)
+&nbsp;&nbsp;&nbsp;' 设置 dateOfBirth 属性的值。
+&nbsp;&nbsp;&nbsp;If isDate(gDOB) Then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Error checking
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gDOB = newDOB
+&nbsp;&nbsp;&nbsp;End If
+End Function
+
+Function readAge()
+&nbsp;&nbsp;&nbsp;' 计算只读的 age 属性。
+&nbsp;&nbsp;&nbsp;If isDate(gDOB) Then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dobM = DatePart("m", gDOB)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dobD = DatePart("d", gDOB)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dobY = DatePart("yyyy", gDOB)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;todayY = DatePart("yyyy", Date)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;age = todayY - dobY
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 如果今年还没过生日，则进行调整。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bday = DateValue(dobM &amp; "/" &amp; dobD &amp; "/" &amp; todayY)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If DateDiff("d", bday, DateValue(Date)) &lt; 0 Then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;age = age - 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End If
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;readAge = age
+&nbsp;&nbsp;&nbsp;End If
+End Function
+]]&gt;
+&lt;/script&gt;</PRE>
+</li>
+</OL>
+
+<P>可以给脚本部件指定一个缺省属性，以便宿主应用程序不必显式地写出属性的名字就可以获取或设置该属性的值。例如，如果已声明了一个称为 sname 的属性，并将其标记为缺省的，则可以在 Visual Basic 中用下述任何一种方式来使用该属性：</P>
+
+<PRE class="code">Set component = CreateObject("Component.MyComponent")
+n = component.sname&nbsp;&nbsp;&nbsp;' 显式地获取属性。
+n = component&nbsp;&nbsp;&nbsp;' 按缺省情况获取 sname 的值。</PRE>
+
+<P>要指定缺省属性，请包括一个将特殊的派遣标识符(<I>dispid</I>)指定给该方法的属性。关于 dispid 的详细信息，请参阅<A HREF="letexpevt.htm">说明事件</A>。</P>
+
+<P class="labelproc"><B>要指定一个缺省属性 </B>
+
+<UL type="disc">
+	<LI>在 <A HREF="leteleproperty.htm">&lt;property&gt;</A> 元素中，按下述示例所示包括属性 dispid="0"：
+<PRE class="code">&lt;property name="sname" <B>dispid="0"</B>/&gt;</PRE>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意&nbsp;&nbsp;&nbsp;</b>这个技术可用来指定一个缺省方法或一个缺省属性，但不能同时指定。在脚本部件中只能有一个元素的 dispid 为零。</BLOCKQUOTE>
+</li>
+</UL>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letexpevt.htm">说明事件</A> | <A HREF="letexpmth.htm">说明方法</A> | <A HREF="letfilecont.htm">脚本部件文件的内容</A> | <A HREF="letxml.htm">脚本部件文件和 XML 一致性</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

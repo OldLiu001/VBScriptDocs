@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Count 属性</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsprocount"></A>Count 属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回一个集合或 <B>Dictionary</B> 对象中的项目数。只读属性。</P>
+
+<PRE class="syntax"><I>object</I><B>.Count</B> </PRE>
+
+<P>其中 <I>object</I> 总是“应用于”列表中一个项目的名称。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>下面这段代码说明了 <B>Count</B> 属性的用法：</P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>function CountDemo()
+{
+   var a, d, i, s;                 // 创建一些变量。
+   d = new ActiveXObject("Scripting.Dictionary");   
+   d.Add ("a", "Athens");          // 添加一些关键字和项目。
+   d.Add ("b", "Belgrade");
+   d.Add ("c", "Cairo");
+   a = (new VBArray(d.Keys()));    // 获取关键字。
+   s = "";
+   for (i = 0; i &lt; d.<code><b class="cfe">Count</b></code>; i++)   //遍历 dictionary。
+   {
+      s += a.getItem(i) + " - " + d(a.getItem(i)) + "&lt;br&gt;";
+   }
+   return(s);                      // 返回结果。
+}
+<SPAN class="lang">[VBScript]</SPAN>
+Function ShowKeys
+   Dim a, d, i, s   ' 创建一些变量。
+   Set d = CreateObject("Scripting.Dictionary")
+   d.Add "a", "Athens"   ' 添加一些关键字和项目。
+   d.Add "b", "Belgrade"
+   d.Add "c", "Cairo"
+   a = d.Keys   ' Get the keys.
+   For i = 0 To <code><b class="cfe">d.Count</b></code> -1 ' 遍历数组。
+      s = s &amp; a(i) &amp; "&lt;BR&gt;" ' 创建返回字符串。
+   Next
+   ShowKeys = s
+End Function</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsprocomparemode.htm">CompareMode 属性</A> | <A HREF="jsproitem.htm">Item 属性</A> | <A HREF="jsprokey.htm">Key 属性</A></P>
+
+<P>应用于：<A HREF="jsobjdictionary.htm">Dictionary 对象</A> | <A HREF="jscoldrives.htm">Drives 集合</A> | <A HREF="jscolfiles.htm">Files 集合</A> | <A HREF="jscolfolders.htm">Folders 集合</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

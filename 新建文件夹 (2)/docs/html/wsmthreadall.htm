@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>ReadAll 方法（Windows 脚本宿主）</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+<DIV STYLE="display:none;">
+<OBJECT ID="hhobj_1" TYPE="application/x-oleobject" CLASSID="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+	<PARAM NAME="Command" VALUE="ALink,MENU">
+	<PARAM NAME="DefaultTopic" VALUE="_chm_topic_not_found.htm">
+	<PARAM NAME="Item1" VALUE="">
+	<PARAM NAME="Item2" VALUE="js56jsobjFileSystem">
+</OBJECT>
+</DIV>
+
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wsmthreadall"></A>ReadAll 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>从输入流返回所有的字符。</P>
+
+<PRE class="syntax"><I>object</I>.<B>ReadAll</B> </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>StdIn 文本流对象。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>ReadAll 方法返回一个字符串。StdIn、StdOut 和 StdErr 属性与方法只在用 CScript.exe 主机可执行文件运行脚本时奏效。用 WScript.exe 运行脚本时返回错误。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的代码演示 ReadAll 的用法。</P>
+<div class=filtered><span class="lang">[VBScript]</span>
+
+<PRE class="code">Dim Input
+Input = ""
+
+Do While Not WScript.StdIn.AtEndOfStream
+   Input = Input &amp; WScript.StdIn.<code><b class="cfe">ReadAll</b></code>
+Loop
+WScript.Echo Input</PRE>
+</div><!-- [end] -->
+<div class=filtered><span class="lang">[JScript]</span>
+
+<PRE class="code">var input = "";
+while (!WScript.StdIn.AtEndOfStream)
+{
+   input += WScript.StdIn.<code><b class="cfe">ReadAll</b></code>();
+}
+WScript.Echo(input);</PRE>
+</div><!-- [end] -->
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wsprostdin.htm">StdIn 属性</A> | <A HREF="JavaScript:hhobj_1.Click()">FileSystemObject 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

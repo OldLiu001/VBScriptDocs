@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScript::GetScriptSite</title>
+<META NAME="msdnID" CONTENT="_638921">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScript_GetScriptSite">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript::GetScriptSite">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript">
+<meta NAME="MS-HKWD" CONTENT="GetScriptSite">
+<META NAME="Description" CONTENT="IActiveScript::GetScriptSite">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScript::GetScriptSite;IActiveScript;GetScriptSite">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScript::GetScriptSite</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScript_GetScriptDispatch.htm">Previous</a><br>
+    <A HREF="IActiveScript_GetScriptState.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT GetScriptSite(
+    REFIID iid,           // interface identifier
+    void **ppvSiteObject  // address of host site interface
+);
+</code></PRE></FONT>
+
+<P>Retrieves the site object associated with the Windows Script engine.
+
+<UL>
+<LI>Returns one of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>S_OK
+ </FONT></TD><TD><FONT SIZE=2>Success.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_INVALIDARG
+ </FONT></TD><TD><FONT SIZE=2>An argument was invalid.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_NOINTERFACE
+ </FONT></TD><TD><FONT SIZE=2>The specified interface is not supported.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_POINTER
+ </FONT></TD><TD><FONT SIZE =2>An invalid pointer was specified.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>S_FALSE
+ </FONT></TD><TD><FONT SIZE=2>No site has been set; the <I>ppvSiteObject</I> parameter is set to NULL.
+</FONT></TD></TR></TABLE>
+</UL>
+<DL><DT><I>iid</I>
+ </DT><DD>[in] Identifier of the requested interface.
+</DD><DT><I>ppvSiteObject</I>
+ </DT><DD>[out] Address of the location that receives the interface pointer to the host's site object.
+</DD></DL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

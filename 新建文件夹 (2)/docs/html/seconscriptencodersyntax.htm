@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>脚本编码器语法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="seconscriptencodersyntax"></A>脚本 Encoder 语法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>对脚本源代码进行编码，以便使用户难以查看或修改源代码。</P>
+
+<H4 class="dtH4">语法</H4>
+
+<P><B>SCRENC [/s] [/f] [/xl] [/l</B> defLanguage ] [<B>/e</B> defExtension] 输入文件 输出文件</P>
+
+<P>脚本 Encoder 语法有以下几个组成部分：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=50%>组成部分</TH>
+<TH width=50%>说明</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%>/s</TD>
+<TD width=50%>可选。此开关用于指定脚本 Encoder 在无提示方式下工作，也就是说，不生成任何屏幕输出。如果省略该开关，则默认情况是提供详细的输出。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%>/f</TD>
+<TD width=50%>可选。指定输入文件将要由输出文件覆盖。注意，该选项会破坏原来的输入源文件。如果省略该开关，将不会覆盖输入文件。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%>/xl</TD>
+<TD width=50%>可选。指定不将 <I>@language</I> 指令添加到 .ASP 文件的顶端。如果省略该开关，就会将 <I>@language</I> 指令添加到所有的 .ASP 文件中。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%>/l <I>defLanguage</I></TD>
+<TD width=50%>可选。指定要在编码期间使用的默认脚本语言（JScript&reg; 或 VBScript）。如果进行编码的文件内的脚本块不包含任何语言属性，则假定这些脚本块采用该指定语言。如果省略该开关，Jscript 就是 HTML 页和脚本小程序的默认语言，而 VBScript 是 Active Server Page 的默认语言。对于纯文本文件来说，默认脚本语言由文件扩展名（.js 或 .vbs）来确定。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%>/e <I>defExtension</I></TD>
+<TD width=50%>可选。使输入文件与特定的文件类型相关联。如果不能从输入文件的扩展名中明显知道文件类型（即输入文件的扩展名不是一个可识别的扩展名），但文件内容确实属于可识别的类型，则使用该开关。该选项没有默认设置。如果文件的扩展名不可识别，并且未指定该选项，脚本 Encoder 就会因该文件不可识别而失败。可识别的文件扩展名有：.asa、.asp、.cdx、.htm、.html、.js、.sct 和 .vbs。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><I>inputfile</I></TD>
+<TD width=50%>必需。要进行编码的输入文件名，包括任何与当前目录相关的必需路径信息。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=50%><I>outputfile</I></TD>
+<TD width=50%>必需。要生成的输出文件名，包括任何与当前目录相关的必需路径信息。</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">说明</H4>
+
+<P>脚本 Encoder 可处理四种类型的文件，它们是：
+
+<UL type="disc">
+	<LI>ASP。这种格式由一个文本 Active Server Page 组成，该页包含有效的 HTML 以及 &lt;SCRIPT&gt; ... &lt;/SCRIPT&gt; 标记或 &lt;% ... %&gt; 标记中的嵌入脚本块。使用这种格式的应用程序包括 Microsoft&reg; Internet Information 服务 (IIS)。可识别的文件扩展名有 .asp、.asa 和 .cdx。</li>
+
+	<LI>HTML。这种格式由一个文本文件组成，该文件包含有效的 HTML 和嵌入脚本块。使用这种脚本格式的应用程序包括 Microsoft FrontPage&reg;、Microsoft&reg; Visual InterDev&trade; 和几乎所有的 Web 设计器和浏览器。可识别的文件扩展名有 .htm 和 .html。</li>
+
+	<LI>纯文本。这种格式由一个文本文件组成，该文件只包含周围没有标记的脚本。使用这种脚本格式的应用程序包括 Windows&reg; Scripting Host (WSH) 和 Microsoft&reg; Outlook&reg;。可识别的文件扩展名有 .js 和 .vbs，它们在编码后分别变为 .jse 和 .vbe。</li>
+
+	<LI>脚本小程序。这种格式由一个文本文件组成，该文件内的 &lt;SCRIPT&gt; ... &lt;/SCRIPT&gt; 标记中包含有效的脚本小程序代码。可识别的文件扩展名有 .sct 和 .wsh。</li>
+</UL>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的示例将介绍脚本 Encoder 的用法并简要说明生成的结果：</P>
+
+<P>要对输入文件 test.html 进行编码，并生成输出文件 encode.html，请使用：</P>
+
+<PRE class="code"><code><b class="cfe">screnc</b></code> test.html encode.html</PRE>
+
+<P>要对输入文件 test.html 进行编码，并用已编码的输出文件覆盖输入文件，请使用：</P>
+
+<PRE class="code"><code><b class="cfe">screnc</b></code> /f test.htm</PRE>
+
+<P>要对当前目录中所有的 .ASP 文件进行编码，并将已编码的输出文件放在 c:\temp 中，请使用：</P>
+
+<PRE class="code"><code><b class="cfe">screnc</b></code> *.asp c:\temp</PRE>
+
+<P>要将当前目录中所有的文件都编码为 .ASP 文件，并放在 c:\temp 中，请使用：screnc /e asp *.* c:\temp</P>
+
+<P>要对输入文件 test.htm 进行编码，并生成输出文件 encode.htm，以确保所有不具有指定的语言属性的脚本块都使用 VBScript，请使用：</P>
+
+<PRE class="code"><code><b class="cfe">screnc</b></code> /l vbscript test.htm encode.htm</PRE>
+
+<P>要对当前目录中的所有脚本小程序文件进行编码，并用已编码的文件覆盖它们而不显示任何消息，请使用：</P>
+
+<PRE class="code">screnc /s /f *.sct</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="seconscriptencoderoverview.htm">脚本 Encoder 概述</A> | <A HREF="seusingscriptencoder.htm">使用脚本 Encoder</A> | <A HREF="seconencodingsample.htm">脚本编码示例</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

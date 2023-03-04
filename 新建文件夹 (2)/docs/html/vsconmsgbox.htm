@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>MsgBox 常数</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsconmsgbox"></A>MsgBox 常数</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P><BR>
+下列常数与 <B>MsgBox</B> 函数一起使用，标识在消息框中出现的按钮、图标，并指定默认按钮。另外，还可以指定消息框的样式。因为这些常数在VBScript中被建立，您在使用之前不必定义它们。您可在代码中任意处使用它们以表示说明值。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=27%>常数</TH>
+<TH width=12%>值</TH>
+<TH width=61%>描述</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbOKOnly</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;0</TD>
+<TD width=61%>只显示“确定”按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbOKCancel</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;1</TD>
+<TD width=61%>显示“确定”和“取消”按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbAbortRetryIgnore</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;2</TD>
+<TD width=61%>显示“终止”、“重试”和“忽略”按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbYesNoCancel</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;3</TD>
+<TD width=61%>显示“是”、“否”和“取消”按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbYesNo</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;4</TD>
+<TD width=61%>显示“是”和“否”按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbRetryCancel</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;5</TD>
+<TD width=61%>显示“重试”和“取消”按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbCritical</TD>
+<TD width=12%> 16</TD>
+<TD width=61%>显示“临界消息”图标。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbQuestion</TD>
+<TD width=12%> 32</TD>
+<TD width=61%>显示“警告询问”图标。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbExclamation</TD>
+<TD width=12%> 48</TD>
+<TD width=61%>显示“警告消息”图标。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbInformation</TD>
+<TD width=12%> 64</TD>
+<TD width=61%>显示“提示消息”图标。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbDefaultButton1</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;0</TD>
+<TD width=61%>第一个按钮是默认按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbDefaultButton2</TD>
+<TD width=12%>&nbsp;256</TD>
+<TD width=61%>第二个按钮是默认按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbDefaultButton3</TD>
+<TD width=12%>&nbsp;512</TD>
+<TD width=61%>第三个按钮是默认按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbDefaultButton4</TD>
+<TD width=12%>&nbsp;768</TD>
+<TD width=61%>第四个按钮是默认按钮。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbApplicationModal</TD>
+<TD width=12%>&nbsp;&nbsp;&nbsp;0</TD>
+<TD width=61%>应用程序模式。用户必须响应消息框，才能继续在当前应用程序中工作。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=27%>vbSystemModal</TD>
+<TD width=12%>4096</TD>
+<TD width=61%>系统模式。在 Win16 系统中， 所有应用程序都将中止直到用户响应消息框。在 Win32 系统中， 此常数提供一个应用程序模式信息框并总是保留在您可能正在运行的所有其它程序的顶部。</TD>
+</TR>
+</table></div>
+
+<P>下列常数与 <B>MsgBox</B> 函数一起使用，标识用户选定的按钮。仅当类型库中包含以下常数定义，且在您的工程文件中已经显式引用该类型库后，才允许使用这些常数。对于 VBScript，必须在代码中显式声明这些常数。</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=14%>常数</TH>
+<TH width=10%>值</TH>
+<TH width=76%>描述</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbOK</TD>
+<TD width=10%>1</TD>
+<TD width=76%>“确定”按钮被单击。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbCancel</TD>
+<TD width=10%>2</TD>
+<TD width=76%>“取消”按钮被单击。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbAbort</TD>
+<TD width=10%>3</TD>
+<TD width=76%>“终止”按钮被单击。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbRetry</TD>
+<TD width=10%>4</TD>
+<TD width=76%>“重试”按钮被单击。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbIgnore</TD>
+<TD width=10%>5</TD>
+<TD width=76%>“忽略”按钮被单击。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbYes</TD>
+<TD width=10%>6</TD>
+<TD width=76%>“是”按钮被单击。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=14%>vbNo</TD>
+<TD width=10%>7</TD>
+<TD width=76%>“否”按钮被单击。</TD>
+</TR>
+</table></div>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 2</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsconcolor.htm">颜色常数</A> | <A HREF="vsconcompare.htm">比较常数</A> | <A HREF="vscondatetime.htm">日期和时间常数</A> | <A HREF="vscondateformat.htm">日期格式常数</A> | <A HREF="vsconmisc.htm">其他常数</A> | <A HREF="vsconstring.htm">字符串常数</A> | <A HREF="vscontristate.htm">三态常数</A> | <A HREF="vsconvartype.htm">VarType 常数</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

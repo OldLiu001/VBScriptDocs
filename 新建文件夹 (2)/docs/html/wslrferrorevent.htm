@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Error 事件</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本宿主</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="wslrferrorevent"></A>Error 事件</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>该事件在远程脚本出错时引发。</P>
+
+<PRE class="syntax"><I>Object</I>_<B>Error</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>WshRemote 对象。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>当远程脚本过早终止时，远程脚本对象会引发 Error<B> </B>事件。Error 属性中包含 WshRemoteError 对象（该对象带有有关导致远程脚本过早终止的错误的信息）。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<PRE class="code">var WshController = new ActiveXObject("WSHController");
+var RemoteProc = WshController.CreateScript("foo.wsf", "remotemachine");
+WScript.ConnectObject(RemoteProc, "RemoteProc_");
+var Done = false;
+RemoteProc.Execute();
+while (!Done)
+   WScript.Sleep(100);
+
+function RemoteProc_End()
+{
+   WScript.Echo("The process has ended");
+   Done = true;
+}
+
+function RemoteProc_Error()
+{
+   WScript.Echo("An error has occurred:" + RemoteProc.Error.Description);
+   Done = true;
+}
+
+function RemoteProc_Start()
+{
+   WScript.Echo("The process has started");
+}</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="wslrfcontrollerobject.htm">WshController 对象</A> | <A HREF="wslrfremote_wshobject.htm">WshRemote 对象</A> | <A HREF="wslrfremote_wsh_errorobject.htm">WshRemoteError 对象</A> | <A HREF="wslrfstatuspropertyremote.htm">Status 属性</A> | <A HREF="wslrferrorproperty.htm">Error 属性</A> | <A HREF="wslrfexecutemethod.htm">Execute 方法</A> | <A HREF="wslrfterminatemethod.htm">Terminate 方法</A> | <A HREF="wslrfstartevent.htm">Start 事件</A> | <A HREF="wslrfendevent.htm">End 事件</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

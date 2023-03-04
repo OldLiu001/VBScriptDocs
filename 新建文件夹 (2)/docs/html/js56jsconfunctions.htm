@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>JScript 函数</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsconfunctions"></A>JScript 函数</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>Microsoft Jscript 函数执行操作，也可以返回值。某些时候是计算或比较的结果。函数又被称为“全局方法”。</P>
+
+<P>一个函数中包含有几个操作。这样可使得代码更合理化。可以写一组语句并给其命名，然后通过调用它并传递其需要的信息来运行整组语句。</P>
+
+<P>给函数传递信息可以把信息放在函数名称后面的圆括号中。传递给函数的信息称作参数。某些函数根本不带任何参数，而其他函数带一个或者多个参数。在某些函数中，参数的个数取决于如何使用该函数。</P>
+
+<P>Jscript 支持两种函数：一类是语言内部的函数，另一类是自己创建的。</P>
+
+<H2 class="dtH2">特殊的内部函数</H2>
+
+<P>Jscript 语言包含很多内部函数。某些函数可以操作表达式和特殊字符，而其他函数将字符串转换为数值。一个有用的内部函数是 <A HREF="js56jsmtheval.htm">eval()</A>。该函数可以对以字符串形式表示的任意有效的 Jscript代码求值。<B>eval()</B> 函数有一个参数，该参数就是想要求值的代码。下面给出一个使用本函数的示例。</P>
+
+<PRE class="code">var anExpression = "6 * 9 % 7";
+var total = eval(anExpression); // 将变量 total 赋值为 5。
+var yetAnotherExpression = "6 * (9 % 7)";
+total = eval(yetAnotherExpression) // 将变量 total 赋值为 12。
+// 将一个字符串赋给 totality （注意嵌套引用）
+var totality = eval("'...surrounded by acres of clams.'");</PRE>
+
+<P>有关内部函数的详细信息请参考<A HREF="js56jslrfjscriptlanguagereference.htm">语言参考</A>。</P>
+
+<H2 class="dtH2">创建自己的函数</H2>
+
+<P>在必要的时候，可以创建并使用自己的函数。一个函数的定义中包含了一个函数语句和一个 Jscript 语句块。</P>
+
+<P>下面示例中的 <B>Checktriplet</B> 函数以三角形的边长为参数。通过查看三条边的长度是否可以组成一个毕达哥拉斯三元组（直角三角形斜边长度的平方等于其他两条边长的平方和）来计算该三角形是否为直角三角形。实际测试时 checkTriplet 函数要调用另两个函数中的一个函数。</P>
+
+<P>注意在浮点数测试版本中极小数（“epsilon”）作为测试变量的使用。由于浮点运算的不确定性和舍入误差，除非问题中的三个值均已知为整数，直接测试这三个数是否组成毕达哥拉斯三元组是不可行的。因为直接的测试更为准确，本示例中的代码确定其是否可行，如果可行则使用它。</P>
+
+<PRE class="code">var epsilon = 0.00000000001; // 一些需要测试的极小数字。
+
+// 测试整数的函数。
+function integerCheck(a, b, c) 
+{
+   // 测试。
+   if ( (a*a) == ((b*b) + (c*c)) )   
+      return true;
+
+   return false;
+} // 整数检查函数的结尾。
+
+// 测试浮点数的函数。
+function floatCheck(a, b, c)   
+{
+   // 得到测试数值。
+   var delta = ((a*a) - ((b*b) + (c*c)))
+
+   // 测试需要绝对值
+   delta = Math.abs(delta);
+
+   // 如果差小于 epsilon，那么它相当接近。
+   if (delta &lt; epsilon)   
+      return true;
+
+   return false;
+} // 浮点检查函数的末尾。
+
+
+// 三元检查。
+function checkTriplet(a, b, c)
+{ 
+   // 创建临时变量，用于交换值
+   var d = 0; 
+
+   // 先将最长的移动到位置“a”。
+
+   // 需要的话交换 a 和 b
+   if (b &gt; a)
+   {
+      d = a;
+      a = b;
+      b = d;
+   }
+
+   // 需要的话交换 a 和 c
+   if (c &gt; a)
+   {
+      d = a;
+      a = c;
+      c = d;
+   }
+
+   // 测试全部的 3 个值，看其是否为整数？
+   if (((a % 1) == 0) &amp;&amp; ((b % 1) == 0) &amp;&amp; ((c % 1) == 0))
+   { 
+      // 如果成立，使用精确检查。
+      return integerCheck(a, b, c); 
+   }
+   else
+   {
+      // 如果不成立，取尽可能相近的。
+      return floatCheck(a, b, c); 
+   }
+} // 三元检查函数的末尾。
+
+// 下面的三个语句赋给范例值，用于测试。
+var sideA = 5;
+var sideB = 5;
+var sideC = Math.sqrt(50.001);
+
+// 调用函数。调用后，'result' 中包含了结果。
+var result = checkTriplet(sideA, sideB, sideC);</PRE>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

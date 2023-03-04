@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>lastIndex 属性</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsprolastindex"></A>lastIndex 属性</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回字符位置，它是被查找字符串中下一次成功匹配的开始位置。</P>
+
+<PRE class="syntax"><B>RegExp.lastIndex</B></PRE>
+
+<P>与该属性有关的对象总是全局 <B>RegExp </B>对象。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P><B>lastIndex</B> 属性是基于零的，也就是说，第一个字符的索引是零。其初始值为 -1，不论何时产生一个成功匹配，它的值都被修改。</P>
+
+<P>lastIndex 属性被 RegExp 对象的 exec 和 test 方法，以及 String 对象的 match、replace、和 split 方法修改。</P>
+
+<P>下面的规则应用于 <B>lastIndex</B> 的值： 
+
+<UL type="disc">
+	<LI>如果还没有匹配，则 lastIndex 被设置为 -1. </li>
+
+	<LI>如果 <B>lastIndex</B> 比字符串的长度大，则 <B>test</B> 和 <B>exec</B> 失败，并且 <B>lastIndex</B> 被设置为 -1。</li>
+
+	<LI>如果 <B>lastIndex</B> 等于字符串的长度，且模式与空字符串匹配，则正则表达式匹配。否则，匹配失败并且 <B>lastIndex</B> 被重置为 -1。</li>
+
+	<LI>否则，<B>lastIndex</B> 被设置为紧接最近的匹配的下一个位置。</li>
+</UL>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下例阐明了 <B>lastIndex</B> 属性的用法。该函数重复了查找字符串，并打印出字符串中每一个字的 <B>index</B> 和 <B>lastIndex</B> 值。</P>
+
+<PRE class="code">function RegExpTest(){
+  var ver = Number(ScriptEngineMajorVersion() + "." + ScriptEngineMinorVersion())
+  if (ver &gt;= 5.5){
+    var src = "The rain in Spain falls mainly in the plain.";
+    var re = /\w+/g;
+    var arr;
+    while ((arr = re.exec(src)) != null)
+       print(arr.index + "-" + <code><b class="cfe">arr.lastIndex</b></code> + "\t" + arr);
+  }
+  else{
+    alert("You need a newer version of JScript for this to work");
+  }
+}</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本3</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsobjregexp.htm#js56jsobjregexpprop">RegExp 对象的属性</A> | <A HREF="js56jsgrpregexpsyntax.htm">正则表达式语法</A></P>
+
+<P>应用于：<A HREF="js56jsobjregexp.htm">RegExp 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

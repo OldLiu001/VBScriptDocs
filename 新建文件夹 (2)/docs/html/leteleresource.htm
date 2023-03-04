@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>&lt;resource&gt; 元素（Windows 脚本部件）</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Windows&nbsp;脚本部件</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="leteleresource"></A>&lt;resource&gt; 元素</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>隔离不应硬编码到脚本部件脚本中的文本或数值数据。</P>
+
+<PRE class="syntax"><B>&lt;resource</B> id="<I>resourceID</I>"<B>&gt;</B>
+<B>&nbsp;&nbsp;&nbsp;</B>此处为文本或数值
+<B>&lt;/resource&gt;</B></PRE>
+
+<H4 class="dtH4">值</H4>
+
+<DL>
+<DT><I>resourceID</I></DT>
+
+<DD>在脚本部件内代表该资源的唯一标识符。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>使用 &lt;resource&gt; 元素可以将脚本部件内的字符串或数值隔离开，但又可以在脚本部件的脚本中使用这些资源。例如，资源元素通常用来保存那些可能需要本地化为别的语言的字符串。</P>
+
+<P>要获得某个资源的值，只需调用 <A HREF="letfctgetresource.htm">getResource</A> 函数，并将要使用的资源的 ID 传递给该函数。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的脚本部件片段定义了一个资源（称为 errNonNumeric），并演示了在脚本中如何使用该资源。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<b class="le">注意</b>&nbsp;&nbsp;&nbsp;CDATA 项是必需的，将使 &lt;script&gt; 元素中的脚本成为不透明的。详细信息请参阅<A HREF="letxml.htm">脚本部件文件和 XML 一致性</A>。</BLOCKQUOTE>
+
+<PRE class="code">&lt;public&gt;
+   &lt;method name="random" internalName="getRandomNumber"/&gt;
+&lt;/public&gt;
+&lt;resource id="errNonNumeric"&gt;
+   Non-numeric value passed
+&lt;/resource&gt;
+
+&lt;script language="VBScript"&gt;
+&lt;![CDATA[
+Function getRandomNumber(upperBound)
+   If IsNumeric(upperBound) Then
+      getRandomNumber = Cint(upperBound * Rnd + 1)
+   Else
+      getRandomNumber=getResource("errNonNumeric")
+   End If
+End Function
+]]&gt;
+&lt;/script&gt;</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="letrefcom.htm">引用其他部件</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

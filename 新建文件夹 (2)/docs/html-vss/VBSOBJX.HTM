@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF/DTD HTML//EN">
+<HTML DIR=LTR>
+<HEAD><TITLE>对象示例</title>
+<META NAME=MS-HAID CONTENT="VBSOBJX">
+ 
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=GB2312	GB2312">
+<META NAME="robots" CONTENT="noindex">
+<SCRIPT LANGUAGE="VBScript">
+<!--
+
+' Change the text in the label to the text in the textbox when user clicks cmdChangeIt.
+Sub cmdChangeIt_onClick
+	Dim TheForm
+	Set TheForm = Document.LabelControls
+	lblActiveLbl.Caption = TheForm.txtNewText.Value
+End Sub
+
+' Rotate the label by 45 degrees for each button press.
+Sub cmdRotate_onClick
+	Dim TheForm
+	Set TheForm = Document.LabelControls
+	lblActiveLbl.Angle = (lblActiveLbl.Angle + 45) Mod 360
+End Sub
+
+-->
+</SCRIPT>
+</HEAD>
+<BODY>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=2><!--TOOLBAR_START--> <!--TOOLBAR_EXEMPT--> <!--TOOLBAR_END--> <!-- global default -->
+<H3>对象示例</H3>
+<HR NOSHADE SIZE=1>
+<P>该页需要安装“标签”控件。 <P>
+<TABLE CELLPADDING=3 BORDER=0 CELLSPACING=0>
+<TR> <TD>
+<!-- Insert a label object and set its default values. -->
+<OBJECT
+	classid="clsid:99B42120-6EC7-11CF-A6C7-00AA00A47DD2"
+	id=lblActiveLbl
+	width=250
+	height=250
+	align=left
+	hspace=20
+	vspace=0
+>
+<PARAM NAME="Angle" VALUE="90">
+<PARAM NAME="Alignment" VALUE="4">
+<PARAM NAME="BackStyle" VALUE="0">
+<PARAM NAME="Caption" VALUE="任意标签">
+<PARAM NAME="FontName" VALUE="宋体">
+<PARAM NAME="FontSize" VALUE="20">
+<PARAM NAME="FontBold" VALUE="1">
+<PARAM NAME="FrColor" VALUE="0">
+</OBJECT>
+</TD>
+<TD>
+<FORM NAME="LabelControls" Action="">
+<INPUT TYPE="TEXT" NAME="txtNewText" SIZE=25>
+<INPUT TYPE="BUTTON" NAME="cmdChangeIt" VALUE="更改文本">
+<INPUT TYPE="BUTTON" NAME="cmdRotate" VALUE="旋转标签">
+</FORM>
+</TD></TR></TABLE>
+<hr noshade size=1>
+ 
+</FONT>
+</BODY>
+</HTML>

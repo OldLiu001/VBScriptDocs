@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Error 对象</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsobjerror"></A>Error 对象</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>保存有关错误的信息。</P>
+
+<PRE class="syntax"><I>errorObj</I> = <B>new Error()</B>
+<I>errorObj</I> = <B>new Error(</B>[<I>number</I>]<B>)</B>
+<I>errorObj</I> = <B>new Error(</B>[<I>number</I>[<B>, </B><I>description</I>]]<B>)</B></PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>errorObj</I></DT>
+
+<DD>必需。指派给 <B>Error</B> 对象的变量名。</dd>
+
+<DT><I>number</I></DT>
+
+<DD>可选。指派给错误的数值。如果省略，则为零。</dd>
+
+<DT><I>description</I></DT>
+
+<DD>可选。描述错误的简短字符串。如果省略，则为空字符串。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>每当产生运行时错误，就产生 <B>Error</B> 对象的一个实例以描述错误。该实例有两个固有属性保存错误的描述（<B>description</B> 属性）和错误号（<B>number</B> 属性）。</P>
+
+<P>错误号是 32 位的值。高 16 位字是设备代码，而低字是实际的错误代码。</P>
+
+<P><B>Error</B> 对象也可以用如上所示的语法显式创建，或用 <B>throw</B> 语句抛掉。在两种情况下，都可以添加选择的任何属性，以拓展 <B>Error</B> 对象的能力。</P>
+
+<P>典型地，在 <B>try...catch</B> 语句中创建的局部变量引用隐式创建的 <B>Error</B> 对象。因此，可以按选择的任何方法使用错误号和描述。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面的例子演示了隐式创建 <B>Error</B> 对象的使用：</P>
+
+<PRE class="code">try
+   x = y   // 产生错误。
+catch(e){   // 创建局部变量 e。
+   response.write(<code><b class="cfe">e</b></code>)   // 打印 "[object Error]".
+   response.write(<code><b class="cfe">e</b></code>.number &amp; 0xFFFF)   // 打印 5009。
+   response.write(<code><b class="cfe">e</b></code>.description)   // 打印 "'y' is undefined".
+}</PRE>
+
+<H4 class="dtH4">方法</H4>
+
+<P><B>Error</B> 对象没有方法。</P>
+
+<H4 class="dtH4">属性</H4>
+
+<P><A HREF="js56jsprodescription.htm">description 属性</A> | <A HREF="js56jspronumber.htm">number属性</A></P>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 5</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsoprnew.htm">new 运算符</A> | <A HREF="js56jsstmthrow.htm">throw 语句</A> | <A HREF="js56jsstmtrycatch.htm">try...catch 语句</A> | <A HREF="js56jsstmvar.htm">var 语句</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

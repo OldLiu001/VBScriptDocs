@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>Erase 语句</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>Visual&nbsp;Basic&nbsp;Scripting&nbsp;Edition</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="vsstmerase"></A>Erase 语句</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>重新初始化固定大小数组的元素，并释放动态数组的存储空间。</P>
+
+<PRE class="syntax"><B>Erase</B> array</PRE>
+
+<P><B>array</B> 参数是要清除的数组变量的名称。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>判断数组是固定长度数组（常规）还是动态数组是很重要的，这是因为 <B>Erase</B> 要根据数组的类型进行不同的操作。<B>Erase</B> 无需为固定大小的数组还原内存。<B>Erase</B> 按照下表设置固定数组的元素：</P>
+<div class="tablediv"><table cellspacing="0" class="dtTABLE">
+
+<TR VALIGN="top">
+<TH width=30%>数组的类型</TH>
+<TH width=70%>Erase 对固定数组元素的影响</TH>
+</TR>
+
+<TR VALIGN="top">
+<TD width=30%>固定数值数组</TD>
+<TD width=70%>将每个元素设置为 0。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=30%>固定字符串数组</TD>
+<TD width=70%>将每个元素设置为零长度字符串 ("")。</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=30%>对象数组</TD>
+<TD width=70%>将每个元素设置为特殊值 Nothing。</TD>
+</TR>
+</table></div>
+
+<P><B>Erase</B> 释放动态数组所使用的内存。在程序再次引用该动态数组之前，必须使用 <B>ReDim</B> 语句来重新定义该数组变量的维数。</P>
+
+<P>下面例子举例说明如何使用 <B>Erase</B> 语句。</P>
+
+<PRE class="code">Dim NumArray(9)
+Dim DynamicArray()
+ReDim DynamicArray(9)   ' 分配存储空间。
+<code><b class="cfe">Erase</b></code> NumArray   ' 每一元素都被重新初始化。
+<code><b class="cfe">Erase</b></code> DynamicArray   ' 释放数组占用的内存。</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="vtoriversioninformation.htm">版本 1</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="vsstmdim.htm">Dim 语句</A> | <A HREF="vskeynothing.htm">Nothing</A> | <A HREF="vsstmredim.htm">ReDim 语句</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

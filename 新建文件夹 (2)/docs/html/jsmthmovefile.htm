@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>MoveFile 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>脚本运行时库</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="jsmthmovefile"></A>MoveFile 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>从一个位置向另一个位置移动一个或多个文件。</P>
+
+<PRE class="syntax">object.<B>MoveFile (</B> source, destination <B>)</B>; </PRE>
+
+<H4 class="dtH4">参数</H4>
+
+<DL>
+<DT><I>object</I></DT>
+
+<DD>必选项。应为 FileSystemObject 的名称。</dd>
+
+<DT><I>source</I></DT>
+
+<DD>必选项。所要移动的文件的路径。<I>source</I> 参数的字符串只能在路径的最后成分中包含通配字符。</dd>
+
+<DT><I>destination</I></DT>
+
+<DD>必选项。文件要移到的路径。<I>destination</I> 参数不能包含通配字符。</dd>
+</DL>
+
+<H4 class="dtH4">说明</H4>
+
+<P>如果 <I>source</I> 包含了通配字符，或者 <I>destination</I> 以路径分隔符 (\) 结束，那么将假定 <I>destination</I> 指定了一个已有的文件夹，匹配的文件将移入其中。否则，将假定 <I>destination</I> 为需要创建的目的文件名。无论哪种情况，如果移动的是单个文件，将有三种可能： 
+
+<UL type="disc">
+	<LI>如果 <I>destination</I> 不存在，那么那么文件将被移动。这是普通情况。</li>
+
+	<LI>如果 <I>destination</I> 是已经存在了的文件，那么将出错。</li>
+
+	<LI>如果 <I>destination</I> 是目录，那么也将出错。</li>
+</UL>
+
+<P>如果 <I>source</I> 中使用的通配字符无法匹配任何文件，那么也将出错。<B>MoveFile</B> 方法在遇到第一个错误时终止。出错后不会试图回滚任何出错前所做的修改。</P>
+
+<BLOCKQUOTE class="dtBlock">
+<B><b class="le">注意</b>&nbsp;&nbsp;&nbsp;</B>只有在操作系统支持时，才能通过这种方法在卷之间移动文件。</BLOCKQUOTE>
+
+<P>下面的例子说明了 <B>MoveFile</B> 方法的用法：</P>
+
+<PRE class="code"><SPAN class="lang">[JScript]
+</SPAN>function MoveFile2Desktop(filespec)
+{
+   var fso;
+   fso = new ActiveXObject("Scripting.FileSystemObject");
+   <code><b class="cfe">fso.MoveFile(</b></code>filespec<code><b class="cfe">,</b></code> "c:\\windows\\desktop\\"<code><b class="cfe">)</b></code>;
+}
+<SPAN class="lang">[VBScript]
+</SPAN>Sub MoveAFile(Drivespec)
+   Dim fso
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   <code><b class="cfe">fso.MoveFile</b></code> Drivespec, "c:\windows\desktop\"
+End Sub</PRE>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="jsmthcopyfile.htm">CopyFile 方法</A> | <A HREF="jsmthdeletefile.htm">DeleteFile 方法</A> | <A HREF="jsmthgetfile.htm">GetFile 方法</A> | <A HREF="jsmthgetfilename.htm">GetFileName 方法</A> | <A HREF="jsmthmove.htm">Move 方法</A> | <A HREF="jsmthmovefolder.htm">MoveFolder 方法</A> | <A HREF="jsmthopentextfile.htm">OpenTextFile 方法</A><BR>
+应用于：<A HREF="jsobjfilesystem.htm">FileSystemObject 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

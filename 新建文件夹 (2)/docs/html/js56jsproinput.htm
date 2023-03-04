@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>input 属性 ($_)</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsproinput"></A>input 属性($_)</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回执行规范表述查找的字符串。只读。</P>
+
+<PRE class="syntax"><B>RegExp</B>.<B>input</B></PRE>
+
+<P>与该属性有关的对象总是全局 <B>RegExp </B>对象。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>任何时候改变了被查找的字符串，<B>input</B> 属性的值都会被修改。</P>
+
+<P>下面的例子举例说明了 <B>input</B> 属性的用法：</P>
+
+<PRE class="code">function inputDemo(){
+   var s;
+   var re = new RegExp("d(b+)(d)","ig");
+   var str = "cdbBdbsbdbdz";
+   var arr = re.exec(str);
+   s = "The string used for the match was " + <code><b class="cfe">RegExp.input</b></code>; 
+   return(s);
+}</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 3</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsobjregexp.htm#js56jsobjregexpprop">RegExp 对象的属性</A> | <A HREF="js56jsgrpregexpsyntax.htm">正则表达式语法</A></P>
+
+<P>应用于：<A HREF="js56jsobjregexp.htm">RegExp 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>

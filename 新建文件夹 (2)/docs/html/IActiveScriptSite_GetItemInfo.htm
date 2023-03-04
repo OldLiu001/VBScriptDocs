@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScriptSite::GetItemInfo</title>
+<META NAME="msdnID" CONTENT="_638908">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScriptSite_GetItemInfo">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptSite::GetItemInfo">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptSite">
+<meta NAME="MS-HKWD" CONTENT="GetItemInfo">
+
+<META NAME="Description" CONTENT="IActiveScriptSite::GetItemInfo">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScriptSite::GetItemInfo;IActiveScriptSite;GetItemInfo">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScriptSite::GetItemInfo</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScriptSite_GetDocVersionString.htm">Previous</a><br>
+    <A HREF="IActiveScriptSite_GetLCID.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT IActiveScriptSite::GetItemInfo(
+    LPCOLESTR pstrName,     // address of item name
+    DWORD dwReturnMask,     // bit mask for information retrieval
+    IUnknown **ppunkItem,   // address of pointer to item's IUnknown
+    ITypeInfo **ppTypeInfo  // address of pointer to item's ITypeInfo
+);
+</code></PRE></FONT>
+
+<P>Allows the scripting engine to obtain information about an item added with the <A HREF="IActiveScript_AddNamedItem.htm#IActiveScript__AddNa">IActiveScript::AddNamedItem</A> method.
+
+<UL>
+<LI>Returns one of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+<TR VALIGN=TOP><TD><Font Size=2>S_OK
+ </FONT></TD><TD><FONT SIZE=2>Success.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_INVALIDARG
+</FONT> </TD><TD><FONT SIZE=2>An argument was invalid.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_POINTER
+</FONT> </TD><TD><FONT SIZE=2>An invalid pointer was specified.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>TYPE_E_ELEMENTNOTFOUND
+</FONT> </TD><TD><FONT SIZE=2>An item of the specified name was not found.
+</FONT></TD></TR></TABLE>
+</UL>
+<DL><DT><I>pstrName</I>
+ </DT><DD>[in] The name associated with the item, as specified in the <A HREF="IActiveScript_AddNamedItem.htm#IActiveScript__AddNa">IActiveScript::AddNamedItem</A> method.
+</DD><DT><I>dwReturnMask</I>
+ </DT><DD>[in] A bit mask specifying what information about the item should be returned. The scripting engine should request the minimum amount of information possible because some of the return parameters (for example, <b>ITypeInfo</b>) can take considerable time to load or generate. Can be a combination of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTINFO_IUNKNOWN
+ </FONT></TD><TD><FONT SIZE=2>Return the <b>IUnknown</b> interface for this item.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTINFO_ITYPEINFO
+ </FONT></TD><TD><FONT SIZE=2>Return the <b>ITypeInfo</b> interface for this item.
+</FONT></TD></TR></TABLE>
+</DD>
+<p><DT><I>ppunkItem</I>
+ </DT><DD>[out] Address of a variable that receives a pointer to the <b>IUnknown</b> interface associated with the given item. The scripting engine can use the <b>IUnknown::QueryInterface</b> method to obtain the <b>IDispatch</b> interface for the item. This parameter receives NULL if <I>dwReturnMask</I> does not include the SCRIPTINFO_IUNKNOWN value. Also, it receives NULL if there is no object associated with the item name; this mechanism is used to create a simple class when the named item was added with the SCRIPTITEM_CODEONLY flag set in the <A HREF="IActiveScript_AddNamedItem.htm#IActiveScript__AddNa">IActiveScript::AddNamedItem</A> method.
+</DD><DT><I>ppTypeInfo</I>
+ </DT><DD>[out] Address of a variable that receives a pointer to the <b>ITypeInfo</b> interface associated with the item. This parameter receives NULL if <I>dwReturnMask</I> does not include the SCRIPTINFO_ITYPEINFO value, or if type information is not available for this item. If type information is not available, the object cannot source events, and name binding must be realized with the <b>IDispatch::GetIDsOfNames</b> method. Note that the <B>ITypeInfo</B> interface retrieved describes the item's coclass (TKIND_COCLASS) because the object may support multiple interfaces and event interfaces. If the item supports the <B>IProvideMultipleTypeInfo</B> interface, the <B>ITypeInfo</B> interface retrieved is the same as the index zero <B>ITypeInfo</B> that would be obtained using the <B>IProvideMultipleTypeInfo::GetInfoOfIndex</B> method. 
+</DD></DL>
+
+<P>This method retrieves only the information indicated by the <I>dwReturnMask</I> parameter; this improves performance. For example, if an <b>ITypeInfo</b> interface is not needed for an item, it is simply not specified in <I>dwReturnMask</I>.
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

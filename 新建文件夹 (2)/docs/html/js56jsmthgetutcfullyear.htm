@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML DIR="LTR"><HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312">
+<TITLE>getUTCFullYear 方法</TITLE>
+<!--CSS_START-->
+<SCRIPT SRC="../scripts/vs70.js"></SCRIPT>
+<SCRIPT SRC="../scripts/vs70link.js"></SCRIPT>
+<!--CSS_END--></HEAD>
+<body topmargin=0 id="bodyID" class = "dtBODY">
+
+<!--NONSCROLLING BANNER START-->
+<div id="nsbanner">
+<div id="bannerrow1">
+<TABLE CLASS="bannerparthead" CELLSPACING=0>
+<TR ID="hdr">
+<TD CLASS="runninghead" nowrap>JScript</TD>
+<TD CLASS="product" nowrap>&nbsp;</TD>
+</TR>
+</TABLE>
+</div>
+<div id="TitleRow">
+<H1 class="dtH1"><A NAME="js56jsmthgetutcfullyear"></A>getUTCFullYear 方法</H1>
+</div></div>
+<!--NONSCROLLING BANNER END-->
+<DIV id="nstext" valign="bottom">
+<P>返回 <B>Date</B> 对象中用全球标准时间 (UTC) 表示的年份值。</P>
+
+<PRE class="syntax"><I>dateObj.</I><B>getUTCFullYear()</B></PRE>
+
+<P>必选项 <I>dateObj</I> 参数 <B>Date</B> 对象。</P>
+
+<H4 class="dtH4">说明</H4>
+
+<P>要获取用本地时间表示的年份值，请使用 <B>getFullYear</B> 方法。</P>
+
+<P><B>getUTCFullYear</B> 方法以绝对数字的形式返回年份值。这样可以避免出现 2000 年问题，从而不会将 2000 年 1 月 1 日以后的日期与 1900 年 1 月 1 日以后的日期混淆起来。</P>
+
+<H4 class="dtH4">示例</H4>
+
+<P>下面这个例子说明了 <B>getUTCFullYear</B> 方法的用法。</P>
+
+<PRE class="code">function UTCDateDemo(){
+   var d, s = "今天 UTC 日期是: ";
+   d = new Date();
+   s += (d.getUTCMonth() + 1) + "/";
+   s += d.getUTCDate() + "/";
+   s += d.<B>getUTCFullYear</B>();
+   return(s);
+}</PRE>
+
+<H4 class="dtH4">要求</H4>
+
+<P><A HREF="js56jsoriversioninformation.htm">版本 3</A></P>
+
+<H4 class="dtH4">请参阅</H4>
+
+<P><A HREF="js56jsobjdate.htm#js56jsobjdatemeth">Date 对象的方法</A> | <A HREF="js56jsmthgetfullyear.htm">getFullYear 方法</A> | <A HREF="js56jsmthsetfullyear.htm">setFullYear 方法</A> | <A HREF="js56jsmthsetutcfullyear.htm">setUTCFullYear 方法</A></P>
+
+<P>应用于： <A HREF="js56jsobjdate.htm">Date 对象</A></P>
+<!--Footer Start-->
+<DIV CLASS="footer">
+<br>
+<HR><!--Copyright-->
+<p>&copy; 2001 Microsoft Corporation. 保留所有权利。</p></div> <!--Closes the footer div-->
+</div> <!--closes the topic content div-->
+<!--FOOTER_END-->
+</BODY>
+</HTML>
