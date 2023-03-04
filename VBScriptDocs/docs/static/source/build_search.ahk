@@ -219,8 +219,9 @@ ScanFile(filename)
     h1.innerHTML := RegExReplace(h1.innerHTML, '<span.*?</span>') ; Remove heading notes or version annotations.
     h1 := Trim(h1.innerText)
     titles[file_index] := h1
-    ;if titles_map.Has(h1_ := StrLower(h1))
-    ;    throw Error("Duplicate title: " h1 "`n  " files[file_index] "`n  " files[titles_map[h1_]])
+    ;while titles_map.Has(h1_ := StrLower(h1))
+	;	h1_ := h1_ . "_"
+        ;throw Error("Duplicate title: " h1 "`n  " files[file_index] "`n  " files[titles_map[h1_]])
 	h1_ := StrLower(h1)
     titles_map[h1_] := file_index
     
