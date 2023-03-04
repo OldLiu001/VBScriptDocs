@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScriptSite::OnScriptTerminate</title>
+<META NAME="msdnID" CONTENT="_638913">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScriptSite_OnScriptTerminate">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptSite::OnScriptTerminate">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptSite">
+<meta NAME="MS-HKWD" CONTENT="OnScriptTerminate">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<META NAME="Description" CONTENT="IActiveScriptSite::OnScriptTerminate">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScriptSite::OnScriptTerminate;IActiveScriptSite;OnScriptTerminate">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScriptSite::OnScriptTerminate</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScriptSite_OnScriptError.htm">Previous</a><br>
+    <A HREF="IActiveScriptSite_OnStateChange.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT OnScriptTerminate(
+    VARIANT *pvarResult,   // address of script results
+    EXCEPINFO *pexcepinfo  // address of structure with exception information
+);
+</code></PRE></FONT>
+
+<P>Informs the host that the script has completed execution.
+
+<UL>
+<LI>Returns S_OK if successful.
+
+</UL>
+<DL><DT><I>pvarResult</I>
+ </DT><DD>[in] Address of a variable that contains the script result, or NULL if the script produced no result.
+</DD><DT><I>pexcepinfo</I>
+ </DT><DD>[in] Address of an <b>EXCEPINFO</b> structure that contains exception information generated when the script terminated, or NULL if no exception was generated.
+</DD></DL>
+
+<P>The scripting engine calls this method before the call to the <A HREF="IActiveScriptSite_OnStateChange.htm#IActiveScriptSite__O">IActiveScriptSite::OnStateChange</A> method, with the SCRIPTSTATE_INITIALIZED flag set, is completed. This method can be used to return completion status and results to the host. Note that many script languages, which are based on sinking events from the host, have life spans that are defined by the host. In this case, this method may never be called.
+
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

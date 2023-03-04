@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScript::InterruptScriptThread</title>
+<META NAME="msdnID" CONTENT="_638925">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScript_InterruptScriptThread">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript::InterruptScriptThread">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript">
+<meta NAME="MS-HKWD" CONTENT="InterruptScriptThread">
+<META NAME="Description" CONTENT="IActiveScript::InterruptScriptThread">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScript::InterruptScriptThread;IActiveScript;InterruptScriptThread">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScript::InterruptScriptThread</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScript_GetScriptThreadState.htm">Previous</a><br>
+    <A HREF="IActiveScript_SetScriptSite.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT InterruptScriptThread(
+    SCRIPTTHREADID   stidThread,  // identifier of thread
+    const EXCEPINFO *pexcepinfo,  // receives error information
+    DWORD dwFlags
+);
+</code></PRE></FONT>
+
+<P>Interrupts the execution of a running script thread (an event sink, an immediate execution, or a macro invocation). This method can be used to terminate a script that is stuck (in an infinite loop, for example). It can be called from non-base threads without resulting in a non-base callout to host objects or to the <A HREF="IActiveScriptSite.htm#IActiveScriptSite">IActiveScriptSite</A> method.
+
+<UL>
+<LI>Returns one of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>S_OK
+ </FONT></TD><TD><FONT SIZE=2>Success.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_INVALIDARG
+ </FONT></TD><TD><FONT SIZE=2>An argument was invalid.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_POINTER
+ </FONT></TD><TD><FONT SIZE=2>An invalid pointer was specified.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_UNEXPECTED
+ </FONT></TD><TD><FONT SIZE=2>The call was not expected (for example, the scripting engine has not yet been loaded or initialized).
+</FONT></TD></TR></TABLE>
+</UL>
+<DL><DT><I>stidThread</I>
+ </DT><DD>[in] Identifier of the thread to interrupt, or one of the following special thread identifier values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD></TR>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTTHREADID_ALL
+ </FONT></TD><TD><FONT SIZE=2>All threads. The interrupt is applied to all script methods currently in progress. Note that unless the caller has requested that the script be disconnected, by calling the <A HREF="IActiveScript_SetScriptState.htm#IActiveScript__SetSc">IActiveScript::SetScriptState</A> method with the SCRIPTSTATE_DISCONNECTED or SCRIPTSTATE_INITIALIZED flag set, the next scripted event causes script code to run again.
+</FONT></TD></TR>
+<TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTTHREADID_BASE
+ </FONT></TD><TD><FONT SIZE=2>The base thread; that is, the thread in which the scripting engine was instantiated.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTTHREADID_CURRENT
+ </FONT></TD><TD><FONT SIZE=2>The currently executing thread.
+</FONT></TD></TR></TABLE>
+</DD><DT><I>pexcepinfo</I>
+ </DT><DD>[in] Address of an <b>EXCEPINFO</b> structure that receives error information associated with the error condition.
+</DD><DT><I>dwFlags</I>
+ </DT><DD>[in] Option flags associated with the interruption. Can be one of these values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTINTERRUPT_DEBUG
+ </FONT></TD><TD><FONT SIZE=2>If supported, enter the scripting engine's debugger at the current script execution point.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTINTERRUPT_RAISEEXCEPTION
+ </FONT></TD><TD><FONT SIZE=2>If supported by the scripting engine's language, let the script handle the exception. Otherwise, the script method is aborted and the error code is returned to the caller; that is, the event source or macro invoker.
+</FONT></TD></TR></TABLE>
+</DD></DL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

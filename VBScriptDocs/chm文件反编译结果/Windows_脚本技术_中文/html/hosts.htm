@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>Windows Script Hosts</title>
+<META NAME="msdnID" CONTENT="_638893">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="hosts">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="Windows Script hosts">
+<META NAME="Description" CONTENT="Windows Script Hosts">
+<META NAME="Keywords" CONTENT="Component Development;Windows Script hosts">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>Windows Script Hosts</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <a HREF="scripting.htm">Previous</a><br>
+    <A HREF="engines.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+<P>When implementing Microsoft&#174; Windows&#174; Script host, you can safely assume that a scripting engine will only call the <A HREF="IActiveScriptSite.htm#IActiveScriptSite">IActiveScriptSite</A> interface in the context of the base thread as long as the host does the following:
+
+<UL>
+<LI>Chooses a base thread (generally the thread that contains the message loop).
+<LI>Instantiates the scripting engine in the base thread.
+<LI>Calls scripting engine methods only from the base thread, except where specifically allowed, as in the cases of <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A> and <A HREF="IActiveScript_Clone.htm#IActiveScript__Clone">IActiveScript::Clone</A>.
+<LI>Calls the scripting engine's dispatch object only from the base thread. 
+<LI>Ensures that the message loop runs in the base thread if a window handle is provided. 
+<LI>Ensures that objects in the host's object model only source events in the base thread. 
+</UL>
+
+<P>These rules are automatically followed by all single-threaded hosts. The restricted model described above is intentionally loose enough to allow a host to abort a stuck script by calling <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A> from another thread (initiated by a <SMALL>CTRL+BREAK</SMALL> handler or the like), or to duplicate a script in a new thread using <A HREF="IActiveScript_Clone.htm#IActiveScript__Clone">IActiveScript::Clone</A>. 
+
+<P>Also, none of these restrictions apply to a host that chooses to implement a free-threaded <A HREF="IActiveScriptSite.htm#IActiveScriptSite">IActiveScriptSite</A> interface and a free-threaded object model. Such a host can use the <A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A> interface from any thread, without restriction.
+
+</Blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

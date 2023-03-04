@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScript::Close</title>
+<META NAME="msdnID" CONTENT="_638918">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScript_Close">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript::Close">
+<meta NAME="MS-HKWD" CONTENT="IActiveScript">
+<meta NAME="MS-HKWD" CONTENT="Close">
+<META NAME="Description" CONTENT="IActiveScript::Close">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScript::Close;IActiveScript;Close">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScript::Close</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScript_Clone.htm">Previous</a><br>
+    <A HREF="IActiveScript_GetCurrentScriptThreadID.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT Close(void);
+</code></PRE></FONT>
+
+<P>Causes the scripting engine to abandon any currently loaded script, lose its state, and release any interface pointers it has to other objects, thus entering a closed state. Event sinks, immediately executed script text, and macro invocations that are already in progress are completed before the state changes (use <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A> to cancel a running script thread). This method must be called by the creating host before the interface is released to prevent circular reference problems. 
+
+<UL>
+<LI>Returns one of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>S_OK
+ </FONT></TD><TD><FONT SIZE=2>Success.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_UNEXPECTED
+ </FONT></TD><TD><FONT SIZE=2>The call was not expected (for example, the scripting engine was already in the closed state).
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>OLESCRIPT_S_PENDING
+ </FONT></TD><TD><FONT SIZE=2>The method was queued successfully, but the state hasn't changed yet. When the state changes, the site will be called back on the <A HREF="IActiveScriptSite_OnStateChange.htm#IActiveScriptSite__O">IActiveScriptSite::OnStateChange</A> method.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>S_FALSE
+ </FONT></TD><TD><FONT SIZE=2>The method succeeded, but the script was already closed.
+</FONT></TD></TR></TABLE>
+</UL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

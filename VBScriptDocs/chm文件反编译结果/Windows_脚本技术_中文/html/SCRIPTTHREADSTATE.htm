@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>SCRIPTTHREADSTATE</title>
+<META NAME="msdnID" CONTENT="_638931">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="SCRIPTTHREADSTATE">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="SCRIPTTHREADSTATE">
+<META NAME="Description" CONTENT="SCRIPTTHREADSTATE">
+<META NAME="Keywords" CONTENT="Component Development;SCRIPTTHREADSTATE">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>SCRIPTTHREADSTATE</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="SCRIPTSTATE.htm">Previous</a><br>
+    <P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>typedef enum tagSCRIPTTHREADSTATE {
+    SCRIPTTHREADSTATE_NOTINSCRIPT  = 0,
+    SCRIPTTHREADSTATE_RUNNING      = 1
+} SCRIPTTHREADSTATE;
+</code></PRE></FONT>
+
+<P>Contains named constant values that specify the state of a thread in a scripting engine. This enumeration is used by the <A HREF="IActiveScript_GetScriptThreadState.htm#IActiveScript__GetSc">IActiveScript::GetScriptThreadState</A> method.
+
+<P><DL>
+<DT>SCRIPTTHREADSTATE_NOTINSCRIPT
+ </DT><DD>Specified thread is not currently servicing a scripted event, processing immediately executed script text, or running a script macro.
+</DD><DT>SCRIPTTHREADSTATE_RUNNING
+ </DT><DD>Specified thread is actively servicing a scripted event, processing immediately executed script text, or running a script macro.
+</DD></DL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

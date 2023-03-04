@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>Windows Script Engines</title>
+<META NAME="msdnID" CONTENT="_638891">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="engines">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="Windows script engines">
+<META NAME="Description" CONTENT="Windows Script Engines">
+<META NAME="Keywords" CONTENT="Component Development;Windows script engines">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>Windows Script Engines</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="hosts.htm">Previous</a><br>
+    <A HREF="reference.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+
+<P>To implement an Microsoft&#174; Windows&#174; Script engine, create an OLE COM object that supports the following interfaces.
+
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><FONT SIZE=2><B>Interface
+ </B></FONT></TD><TD><FONT SIZE=2><B>Description
+</B></FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2><A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A>
+ </FONT></TD><TD><Font Size=2>Provides the basic scripting ability. Implementation of this interface is required.
+</TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2><A HREF="IActiveScriptParse.htm#IActiveScriptParse">IActiveScriptParse</A>
+ </TD><TD><FONT SIZE=2>Provides the ability to add script text, evaluate expressions, and so on. Implementation of this interface is optional; however, if it is not implemented, the script engine must implement one of the <B>IPersist*</B> interfaces in order to load a script.
+</TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2><B>IPersist*</B>
+ </FONT></TD><TD><FONT SIZE=2>Provides persistence support. Implementation of at least one of the following interfaces is required if <A HREF="IActiveScriptParse.htm#IActiveScriptParse">IActiveScriptParse</A> is not implemented.
+ <TABLE> 
+<TR VALIGN=TOP><TD><FONT SIZE=2><B>Interface
+ </FONT></B></TD><TD><FONT SIZE=2><B>Description
+ </FONT></B></TD></TR><TR VALIGN=TOP><TD> <HR Size=1></TD><TD> <HR Size=1></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2><b>IPersistStorage</b>
+</FONT> </TD><TD><FONT SIZE=2>Provides support for the <B>DATA=</B><I>{url}</I> attribute in the OBJECT tag.
+ </FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2><b>IPersistStreamInit</b>
+ </FONT></TD><TD><FONT SIZE=2>Provides support for the same as <b>IPersistStorage</b> as well as the <B>DATA=</B><I>"string-encoded byte stream"</I> attribute in the OBJECT tag.
+ </FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2><b>IPersistPropertyBag</b>
+ </FONT></TD><TD><FONT SIZE=2>Provides support for the <B>PARAM=</B> attribute in the OBJECT tag.
+ </FONT></TD></TR></TABLE>
+</FONT></TD></TR></TABLE>
+
+<P><B>Note:</B>&nbsp;&nbsp;&nbsp;It is possible that the scripting engine will never be called upon to save or restore a script state through <B>IPersist*</B>. Instead, <A HREF="IActiveScriptParse.htm#IActiveScriptParse">IActiveScriptParse</A> is used by calling <A HREF="IActiveScriptParse_InitNew.htm#IActiveScriptParse__">IActiveScriptParse::InitNew</A> to create a blank script, then scriptlets are added and connected to events with <A HREF="IActiveScriptParse_AddScriptlet.htm#IActiveScriptParse__">IActiveScriptParse::AddScriptlet</A> and general code is added with <A HREF="IActiveScriptParse_ParseScriptText.htm#IActiveScriptParse__">IActiveScriptParse::ParseScriptText</A>. Nonetheless, a scripting engine should fully implement at least one <B>IPersist*</B> interface (preferably <b>IPersistStreamInit</b>), because other host applications may try to make use of them.
+<p>The following sections describe implementing a Windows Scripting engine in more detail.
+
+<UL><LI><A CLASS=tctop HREF="engines.htm#Registry_Standard">Registry Standard</A><BR>
+
+<LI><A CLASS=tctop HREF="engines.htm#Engine_States">Script Engine States</A><BR>
+
+<LI><A CLASS=tctop HREF="engines.htm#Scripting_Engine_Thr">Scripting Engine Threading</A></UL><BR>
+
+<p>See the <A CLASS=tctop HREF="reference.htm#ref_engines">Script Interface Reference</A> for more information.
+
+<h5><A NAME="Registry_Standard">Registry Standard</A></h5>
+<blockquote>
+<P>An Windows Script engine can identify itself using component categories. Windows Script currently defines two component categories.
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><FONT SIZE=2><B>Category
+ </B></FONT></TD><TD><FONT SIZE=2><B>Decription
+</B></FONT></TD></TR>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>CATID_ActiveScript
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the class identifiers (CLSIDs) are Windows Script engines that support, at a minimum, the <A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A> interface and a persistence mechanism (the <b>IPersistStorage</b>, <b>IPersistStreamInit</b>, or <b>IPersistPropertyBag</b> interface).
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>CATID_ActiveScriptParse
+</FONT> </TD><TD><FONT SIZE=2>Indicates that the CLSIDs are Windows Script engines that support, at a minimum, the <A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A> and <A HREF="IActiveScriptParse.htm#IActiveScriptParse">IActiveScriptParse</A> interfaces.
+</FONT></TD></TR></TABLE>
+
+<P>Although <A HREF="IActiveScriptParse.htm#IActiveScriptParse">IActiveScriptParse</A> is not a true persistence mechanism, it does support the <A HREF="IActiveScriptParse_InitNew.htm#IActiveScriptParse__">IActiveScriptParse::InitNew</A> method that is functionally equivalent to <B>IPersist*::InitNew</B>.
+
+</blockquote>
+<h5><A NAME="Engine_States">Script Engine States</A></h5>
+<blockquote>
+<P>At any given time, an Windows Script engine can be in one of several states.
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><FONT SIZE=2><B>State
+ </B></FONT></TD><TD><FONT SIZE=2><B>Descriptioon
+</B></FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>uninitialized
+ </FONT></TD><TD><FONT SIZE=2>The script has not been initialized or loaded using an <B>IPersist*</B> interface, or does not have an <A HREF="IActiveScriptSite.htm#IActiveScriptSite">IActiveScriptSite</A> interface set. The scripting engine is generally not usable from this state until the script is loaded. 
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>initialized
+ </FONT></TD><TD><FONT SIZE=2>The script has been initialized with an <B>IPersist*</B> interface and has an <A HREF="IActiveScriptSite.htm#IActiveScriptSite">IActiveScriptSite</A> interface set, but is not connected to host objects and sinking events. Note that this state simply means that the <B>IPersist*::Load</B>, <B>IPersist*::InitNew</B>, or <A HREF="IActiveScriptParse_InitNew.htm#IActiveScriptParse__">IActiveScriptParse::InitNew</A> method has been completed, and that the <A HREF="IActiveScript_SetScriptSite.htm#IActiveScript__SetSc">IActiveScript::SetScriptSite</A> method has been called. The engine cannot run code in this mode. The engine queues code that the host passes to it through the <A HREF="IActiveScriptParse_ParseScriptText.htm#IActiveScriptParse__">IActiveScriptParse::ParseScriptText</A> method, and executes the code after transitioning to the started state. 
+ <P>Because languages can vary widely in semantics, scripting engines are not required to support this state transition. Engines that support the <A HREF="IActiveScript_Clone.htm#IActiveScript__Clone">IActiveScript::Clone</A> method must, however, support this state transition. Hosts must prepare for this transition and take the appropriate action: release the current scripting engine, create a new scripting engine, and call <b>IPersist*::Load</b>, <b>IPersist*::InitNew</b>, or <A HREF="IActiveScriptParse_InitNew.htm#IActiveScriptParse__">IActiveScriptParse::InitNew</A> (and possibly also call <A HREF="IActiveScriptParse_ParseScriptText.htm#IActiveScriptParse__">IActiveScriptParse::ParseScriptText</A>). Use of this transition should be considered an optimization of the above steps. Note that any information the scripting engine has obtained about the names of Named Items and the type information describing Named Items remains valid.
+
+ <P>Because languages vary widely, defining the exact semantics of this transition is difficult. At a minimum, the scripting engine must disconnect from all events, and release all of the SCRIPTINFO_IUNKNOWN pointers obtained by calling the <A HREF="IActiveScriptSite_GetItemInfo.htm#IActiveScriptSite__G">IActiveScriptSite::GetItemInfo</A> method. The engine must re-obtain these pointers after the script is run again. The scripting engine should also reset the script back to an initial state that is appropriate for the language. VBScript, for example, resets all variables and retains any code added dynamically by calling <A HREF="IActiveScriptParse_ParseScriptText.htm#IActiveScriptParse__">IActiveScriptParse::ParseScriptText</A> with the SCRIPTTEXT_ISPERSISTENT flag set. Other languages may need to retain current values (such as Lisp because there is no code/data separation) or reset to a well-known state (this includes languages with statically initialized variables). 
+
+ <P>Note that the transition to the started state should have the same semantics (that is, it should leave the scripting engine in the same state) as calling <B>IPersist*::Save</B> to save the scripting engine, and then calling <B>IPersist*::Load</B> to load a new scripting engine; these actions should have the same semantics as <A HREF="IActiveScript_Clone.htm#IActiveScript__Clone">IActiveScript::Clone</A>. Scripting engines that do not yet support <B>IActiveScript::Clone</B> or <B>IPersist*</B> should carefully consider how the transition to the started state should behave, so that such a transition would not violate the above conditions if <B>IActiveScript::Clone</B> or <B>IPersist*</B> support was later added.
+
+ <P>During this transition to the started state, the scripting engine will disconnect from event sinks after the appropriate destructors, and so on, are executed in the script. To avoid having these destructors executed, the host can first move the script into the disconnected state before moving into the started state.
+
+ <P>Use <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A> to cancel a running script thread without waiting for current events, and so on, to finish running. </font></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>started
+ </FONT></TD><TD><FONT SIZE=2>The transition from the initialized state to the started state causes the engine to execute any code that was queued in the initialized state. The engine can execute code while in the started state, but it is not connected to any events added through the <A HREF="IActiveScript_AddNamedItem.htm#IActiveScript__AddNa">IActiveScript::AddNamedItem</A> method. The engine can execute code by calling the <b>IDispatch</b> interface obtained from the <A HREF="IActiveScript_GetScriptDispatch.htm#IActiveScript__GetSc">IActiveScript::GetScriptDispatch</A> method, or by calling <A HREF="IActiveScriptParse_ParseScriptText.htm#IActiveScriptParse__">IActiveScriptParse::ParseScriptText</A>. It is possible that further background initialization (progressive loading) is still ongoing, and that calling the <A HREF="IActiveScript_SetScriptState.htm#IActiveScript__SetSc">IActiveScript::SetScriptState</A> method with the SCRIPTSTATE_CONNECTED flag set may cause the script to block until initialization is complete.</font></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>connected
+ </FONT></TD><TD><FONT SIZE=2>The script is loaded and connected for sinking events from host objects. If this is a transition from the initialized state, the scripting engine should transition through the started state, performing the necessary actions, before entering the connected state and connecting to events.</font></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>disconnected
+ </FONT></TD><TD><FONT SIZE=2>The script is loaded and has a run-time state, but is temporarily disconnected from sinking events from host objects. This can be done either logically (ignoring events received) or physically (calling <b>IConnectionPoint::Unadvise</b> on the appropriate connection points). If this is a transition from the initialized state, the scripting engine should transition through the started state, performing the necessary actions, before entering the disconnected state. Event sinks that are in progress are completed before the state changes (use <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A> to cancel a running script thread). This state is distinguished from the initialized state in that the transition to this state does not cause the script to reset, the run-time state of the script is not reset, and a script initialization procedure is not executed.</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>closed
+ </FONT></TD><TD><FONT SIZE=2>The script has been closed. The scripting engine no longer works and returns errors for most methods.
+</FONT></TD></TR></TABLE>
+
+<P>The following illustration shows the relationships between the various scripting engine states, and shows the methods that cause transitions from one state to another.
+
+<P>
+
+<P><IMG SRC="olescr02.gif" WIDTH="386" HEIGHT="299" ALT="" >
+
+<P> 
+
+<P>The following illustration shows the actions that the scripting engine performs during the various state transitions.
+
+<P>
+
+<P><IMG SRC="olescr03.gif" WIDTH="390" HEIGHT="358" ALT="" >
+
+<P>
+</blockquote>
+<h5><A NAME="Scripting_Engine_Thr">Scripting Engine Threading</A></h5>
+<blockquote>
+<P>Because an Windows Script engine can be used in many environments, it is important to keep its execution model as flexible as possible. For example, a server-based host may need to preserve a multithreaded design while using Windows Script in an efficient manner. At the same time, a host that does not use threading, such as a typical application, should not be burdened with threading management. Windows Script achieves this balance by restricting the ways a free-threaded scripting engine can call back to the host, freeing hosts from this burden. 
+
+<P>Scripting engines used on servers are typically implemented as free-threading COM objects. This means that methods on the <A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A> interface and its associated interfaces can be called from any thread in the process, without marshaling. (Unfortunately, this also means that the scripting engine must be implemented as an in-process server, because OLE does not currently support interprocess marshaling of free-threaded objects.) Synchronization is the responsibility of the scripting engine. For scripting engines that are not internally reentrant, or for language models that are not multithreaded, synchronization could be as simple as serializing access to the scripting engine with a mutex. Of course certain methods, such as <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A>, should not be serialized in this way so that a stuck script can be terminated from another thread.
+
+<P>The fact that <A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A> is typically free-threaded generally implies that the <A HREF="IActiveScriptSite.htm#IActiveScriptSite">IActiveScriptSite</A> interface and the host's object model should be free-threaded as well. This would make implementation of the host quite difficult, particularly in the common case where the host is a single-threaded Microsoft Windows&#174;-based application with single-threaded or apartment-model ActiveX Controls in its object model. For this reason, the following constraints are placed on the scripting engine's use of <B>IActiveScriptSite</B>:
+
+<UL>
+<LI>The script site is always called in the context of a host thread. That is, the scripting engine never calls the script site in the context of a thread that the scripting engine created, but only from within a scripting engine method that was called from the host through <A HREF="IActiveScript.htm#IActiveScript">IActiveScript</A> and its derivatives, through the exposed scripting engine's dispatch object, through a Windows message, or from an event source in the host's object model. 
+<LI>The script site is never called from within the context of a simple thread state control method (for example, the <A HREF="IActiveScript_InterruptScriptThread.htm#IActiveScript__Inter">IActiveScript::InterruptScriptThread</A> method) or from the <A HREF="IActiveScript_Clone.htm#IActiveScript__Clone">IActiveScript::Clone</A> method.
+</UL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

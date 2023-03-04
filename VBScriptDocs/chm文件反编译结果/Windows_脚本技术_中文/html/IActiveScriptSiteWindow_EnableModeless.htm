@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScriptSiteWindow::EnableModeless</title>
+<META NAME="msdnID" CONTENT="_638905">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScriptSiteWindow_EnableModeless">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptSiteWindow::EnableModeless">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptSiteWindow">
+<meta NAME="MS-HKWD" CONTENT="EnableModeless">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<META NAME="Description" CONTENT="IActiveScriptSiteWindow::EnableModeless">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScriptSiteWindow::EnableModeless;IActiveScriptSiteWindow;EnableModeless">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScriptSiteWindow::EnableModeless</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScriptSiteWindow.htm">Previous</a><br>
+    <A HREF="IActiveScriptSiteWindow_GetWindow.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT IActiveScriptSite::EnableModeless(
+    BOOL fEnable  // enable flag
+);
+</code></PRE></FONT>
+
+<P>Causes the host to enable or disable its main window as well as any modeless dialog boxes.
+
+<UL>
+<LI>Returns S_OK if successful, or E_FAIL if an error occurred. 
+
+</UL>
+<DL><DT><I>fEnable</I>
+ </DT><DD>[in] Flag that, if TRUE, enables the main window and modeless dialogs or, if FALSE, disables them.
+</DD></DL>
+
+<P>This method is identical to the <b>IOleInPlaceFrame::EnableModeless</b> method.
+
+<P>Calls to this method can be nested.
+
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>

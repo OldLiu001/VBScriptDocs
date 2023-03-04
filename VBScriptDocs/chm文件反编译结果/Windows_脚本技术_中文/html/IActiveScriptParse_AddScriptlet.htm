@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><TITLE>IActiveScriptParse::AddScriptlet</title>
+<META NAME="msdnID" CONTENT="_638900">
+<META NAME="MS-GlueFolder" CONTENT="3935"><style>@import url("MS-ITS:dsmsdn.chm::/html/msdn_ie4.css");</style>
+<link rel="stylesheet" href="MS-ITS:dsmsdn.chm::/html/msdn_ie3.css">
+<META NAME=MS-HAID CONTENT="IActiveScriptParse_AddScriptlet">
+<meta NAME="MS-HKWD" CONTENT="component development">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptParse::AddScriptlet">
+<meta NAME="MS-HKWD" CONTENT="IActiveScriptParse">
+<meta NAME="MS-HKWD" CONTENT="AddScriptlet">
+<META NAME="Description" CONTENT="IActiveScriptParse::AddScriptlet">
+<META NAME="Keywords" CONTENT="Component Development;IActiveScriptParse::AddScriptlet;IActiveScriptParse;AddScriptlet">
+<META NAME="Platform" CONTENT="Windows, Win95, WinNT">
+<meta NAME="TECHNOLOGY" CONTENT="SCRIPTING">
+<meta NAME="PRODUCT" CONTENT="Windows Script Interfaces">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso8859-1">
+
+<META NAME="MS.LOCALE" CONTENT="EN-US">
+<META NAME="ROBOTS" CONTENT="all">
+
+
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0033CC">
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<font FACE="Verdana, Arial, Helvetica" SIZE="2">
+
+<table BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+  <tr VALIGN="TOP">
+    <td WIDTH="360"><font SIZE="1" COLOR="#660033">Microsoft&#174; Windows&#174; Script Interfaces</font><br>
+    <font SIZE="4" COLOR="#000000"><b>IActiveScriptParse::AddScriptlet</b></font></td>
+    <td ALIGN="RIGHT"><font SIZE="1">&nbsp;<a HREF="reference.htm">Language&nbsp;Reference</a><br>
+    <A HREF="IActiveScriptParse.htm">Previous</a><br>
+    <A HREF="IActiveScriptParse_InitNew.htm">Next</a><P></font></td>
+  </tr>
+</table>
+<hr noshade SIZE="1">
+<BLOCKQUOTE>
+
+
+<PRE><FONT FACE="Courier New" SIZE=3><code>HRESULT AddScriptlet(
+    LPCOLESTR pstrDefaultName,   // address of default name of scriptlet
+    LPCOLESTR pstrCode,          // address of scriptlet text
+    LPCOLESTR pstrItemName,      // address of item name
+    LPCOLESTR pstrSubItemName,   // address of subitem name
+    LPCOLESTR pstrEventName,     // address of event name
+    LPCOLESTR pstrDelimiter,     // address of end-of-scriptlet delimiter
+    DWORD dwSourceContextCookie, // application-defined value for debugging
+    ULONG ulStartingLineNumber,  // starting line of the script
+    DWORD dwFlags,               // scriptlet flags
+    BSTR *pbstrName,             // address of actual name of scriptlet
+    EXCEPINFO *pexcepinfo        // address of exception information
+);
+</code></PRE></FONT>
+
+<P>Adds a code scriptlet to the script. This method is used in environments where the persistent state of the script is intertwined with the host document and the host is responsible for restoring the script, rather than through an <B>IPersist*</B> interface. The primary examples are HTML scripting languages that allow scriptlets of code embedded in the HTML document to be attached to intrinsic events (for instance, ONCLICK="button1.text='Exit'"). 
+
+<UL>
+<LI>Returns one of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>S_OK
+ </FONT></TD><TD><FONT SIZE=2>Success.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>DISP_E_EXCEPTION
+ </FONT></TD><TD><FONT SIZE=2>An exception occurred in the parsing of the scriptlet; the <I>pexcepinfo</I> parameter contains information about the exception.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_INVALIDARG
+ </FONT></TD><TD><FONT SIZE=2>An argument was invalid.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_NOTIMPL
+ </FONT></TD><TD><FONT SIZE=2>This method is not supported; the scripting engine does not support adding event-sinking scriptlets.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_POINTER
+ </FONT></TD><TD><FONT SIZE=2>An invalid pointer was specified.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>E_UNEXPECTED
+ </FONT></TD><TD><FONT SIZE=2>The call was not expected (for example, the scripting engine has not yet been loaded or initialized) and therefore failed. 
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>OLESCRIPT_E_INVALIDNAME
+ </FONT></TD><TD><FONT SIZE=2>The default name supplied is invalid in this scripting language.
+</FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>OLESCRIPT_E_SYNTAX
+ </FONT></TD><TD><FONT SIZE=2>An unspecified syntax error occurred in the scriptlet.
+</FONT></TD></TR></TABLE>
+</UL>
+<DL><DT><I>pstrDefaultName</I>
+ </DT><DD>[in] Address of a default name to associate with the scriptlet. If the scriptlet does not contain naming information (as in the ONCLICK example above), this name will be used to identify the scriptlet. If this parameter is NULL, the scripting engine manufactures a unique name, if necessary.
+</DD><DT><I>pstrCode</I>
+ </DT><DD>[in] Address of the scriptlet text to add. The interpretation of this string depends on the scripting language.
+</DD><DT><I>pstrItemName</I>
+ </DT><DD>[in] Address of a buffer that contains the item name associated with this scriptlet. This parameter, in addition to <I>pstrSubItemName</I>, identifies the object for which the scriptlet is an event handler.
+</DD><DT><I>pstrSubItemName</I>
+ </DT><DD>[in] Address of a buffer that contains the name of a subobject of the named item with which this scriptlet is associated; this name must be found in the named item's type information. This parameter is NULL if the scriptlet is to be associated with the named item instead of a subitem. This parameter, in addition to <I>pstrItemName</I>, identifies the specific object for which the scriptlet is an event handler.
+</DD><DT><I>pstrEventName</I>
+ </DT><DD>[in] Address of a buffer that contains the name of the event for which the scriptlet is an event handler.
+</DD><DT><I>pstrDelimiter</I>
+ </DT><DD>[in] Address of the end-of-scriptlet delimiter. When the <I>pstrCode</I> parameter is parsed from a stream of text, the host typically uses a delimiter, such as two single quotation marks ("), to detect the end of the scriptlet. This parameter specifies the delimiter that the host used, allowing the scripting engine to provide some conditional primitive preprocessing (for example, replacing a single quotation mark ['] with two single quotation marks for use as a delimiter). Exactly how (and if) the scripting engine makes use of this information depends on the scripting engine. Set this parameter to NULL if the host did not use a delimiter to mark the end of the scriptlet.
+</DD><DT><I>dwSourceContextCookie</I>
+ </DT><DD>[in] Application-defined value that is used for debugging purposes.
+</DD><DT><I>ulStartingLineNumber</I>
+ </DT><DD>[in] Zero-based value that specifies which line the parsing will begin at.
+</DD><DT><I>dwFlags</I>
+ </DT><DD>[in] Flags associated with the scriptlet. Can be a combination of the following values:
+<p>
+<TABLE WIDTH=87% BORDER=1 CELLPADDING=5 CELLSPACING=0>
+<TR VALIGN=TOP BGCOLOR="#DDDDDD"><TD><Font Size=2><b>Return Value</b></Font></TD><TD><Font Size=2><b>Meaning</b></Font></TD>
+
+<TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTTEXT_ISVISIBLE
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the script text should be visible (and, therefore, callable by name) as a global method in the name space of the script.
+ </FONT></TD></TR><TR VALIGN=TOP><TD><FONT SIZE=2>SCRIPTTEXT_ISPERSISTENT
+ </FONT></TD><TD><FONT SIZE=2>Indicates that the code added during this call should be saved if the scripting engine is saved (for example, through a call to <B>IPersist*::Save</B>), or if the scripting engine is reset by way of a transition back to the initialized state. For more information about this state, see <A HREF="engines.htm#Engine_States">Script Engine States</A>.
+ </FONT></TD></TR></TABLE>
+</DD><DT><I>pbstrName</I>
+ </DT><DD>[out] Actual name used to identify the scriptlet. This will be, in order of preference: a name explicitly specified in the scriptlet text, the default name provided in <I>pstrDefaultName</I>, or a unique name synthesized by the scripting engine.
+</DD><DT><I>pexcepinfo</I>
+ </DT><DD>[out] Address of a structure containing exception information. This structure should be filled in if DISP_E_EXCEPTION is returned.
+</DD></DL>
+</blockquote>
+<hr noshade size=1>
+<!--COPYRIGHT BEGIN--><!--COPYRIGHT END-->
+</FONT>
+</BODY>
+</HTML>
