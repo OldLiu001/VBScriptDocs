@@ -1758,7 +1758,7 @@ function ctor_features()
           var pre = $(this).parent().siblings('pre.origin');
           var textToWrite = '\ufeff' + pre.text().replace(/\n/g, "\r\n");
           var textFileAsBlob = new Blob([textToWrite], {type: 'text/csv'});
-          var fileNameToSaveAs = pre.attr("filename") || location.pathname.match(/([^\/]+)(?=\.\w+$)/)[0] + "-Script.ahk";
+          var fileNameToSaveAs = pre.attr("filename") || location.pathname.match(/([^\/]+)(?=\.\w+$)/)[0] + "-Script.txt";
 
           var downloadLink = document.createElement("a");
           downloadLink.download = fileNameToSaveAs;
