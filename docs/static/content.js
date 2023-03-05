@@ -2168,7 +2168,7 @@ function ctor_features()
   self.addFooter = function() {
     var div = document.createElement('div');
     div.className = 'footer';
-    div.innerHTML = 'Copyright &copy; 2003-' + new Date().getFullYear() + ' ' + location.host + ' - LIC: <a href="' + scriptDir + '/../license.htm" class="no-ext">GNU GPLv2</a>';
+    div.innerHTML = 'Copyright &copy; 2003-' + new Date().getFullYear() + ' ' + location.host + ' - LIC: <a href="' + scriptDir + '/../license.htm" class="no-ext">GNU GPLv2</a>&emsp; Visit source: <a target="_blank" href="https://github.com/OldLiu001/WindowsScriptDocs" class="no-ext">Github</a>';
     self.content.appendChild(div);
   };
 
